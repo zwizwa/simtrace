@@ -1,20 +1,21 @@
 Index: wireshark/epan/dissectors/Makefile.common
 ===================================================================
 --- wireshark.orig/epan/dissectors/Makefile.common	2010-11-18 16:04:39.000000000 +0100
-+++ wireshark/epan/dissectors/Makefile.common	2010-11-18 17:04:03.000000000 +0100
-@@ -67,6 +67,7 @@
++++ wireshark/epan/dissectors/Makefile.common	2010-11-19 15:51:50.000000000 +0100
+@@ -67,6 +67,8 @@
  	packet-dcerpc-dnsserver.c 	\
  	packet-dcerpc-eventlog.c \
  	packet-dcerpc-lsa.c \
 +	packet-gsm_sim.c	\
++	packet-card_app_toolkit.c	\
  	packet-dcerpc-winreg.c
  
  #
 Index: wireshark/epan/dissectors/packet-gsm_sim.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-18 19:53:29.000000000 +0100
-@@ -0,0 +1,923 @@
++++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-19 22:18:17.000000000 +0100
+@@ -0,0 +1,676 @@
 +/* packet-gsm_sim.c
 + * Routines for packet dissection of GSM SIM APDUs (GSM TS 11.11)
 + * Copyright 2010 by Harald Welte <laforge@gnumonks.org>
@@ -119,18 +120,33 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_tp_ev_idle_screen = -1;
 +static int hf_tp_ev_cardreader_status = -1;
 +
-+static int hf_stk_tp0 = -1;
-+static int hf_stk_tp1 = -1;
-+static int hf_stk_tp2 = -1;
-+static int hf_stk_tp3 = -1;
-+static int hf_stk_tp4 = -1;
-+static int hf_stk_tp5 = -1;
-+static int hf_stk_tp6 = -1;
-+static int hf_stk_tp7 = -1;
-+static int hf_stk_tp8 = -1;
-+static int hf_stk_tp9 = -1;
++static int hf_cat_ber_tag = -1;
 +
 +static int ett_sim = -1;
++
++static dissector_handle_t sub_handle_cap;
++
++/* According to Section 7.2 of ETSI TS 101 220 / Chapter 7.2 */
++/* BER-TLV tag CAT templates */
++static const value_string ber_tlv_cat_tag_vals[] = {
++	{ 0xcf, "Reserved for proprietary use (terminal->UICC)" },
++	{ 0xd0, "Proactive Command" },
++	{ 0xd1, "GSM/3GPP/3GPP2 - SMS-PP Download" },
++	{ 0xd2, "GSM/3GPP/3GPP2 - Cell Broadcast Download" },
++	{ 0xd3, "Menu selection" },
++	{ 0xd4, "Call Control" },
++	{ 0xd5, "GSM/3G - MO Short Message control" },
++	{ 0xd6, "Event Download" },
++	{ 0xd7, "Timer Expiration" },
++	{ 0xd8, "Reserved for intra-UICC communication" },
++	{ 0xd9, "3G - USSD Download" },
++	{ 0xda, "MMS Transfer status" },
++	{ 0xdb, "MMS notification download" },
++	{ 0xdc, "Terminal application" },
++	{ 0xdd, "3G - Geographical Location Reporting" },
++	{ 0, NULL }
++};
++
 +
 +static const value_string apdu_cla_vals[] = {
 +	{ 0xa0,	"GSM" },
@@ -261,6 +277,79 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0, NULL }
 +};
 +
++/* Section 9.4 of TS 11.11 */
++static const value_string sw_vals[] = {
++	/* we only list the non-wildcard commands here */
++	{ 0x9000, "Normal ending of the command" },
++	{ 0x9300, "SIM Application Toolkit is busy" },
++	{ 0x9240, "Memory problem" },
++	{ 0x9400, "No EF selected" },
++	{ 0x9402, "Out of range (invalid address)" },
++	{ 0x0404, "File ID not found" },
++	{ 0x9408, "File is inconsistent with the command" },
++	{ 0x9802, "No CHV initialized" },
++	{ 0x9804, "Access condition not fulfilled / authentication failed" },
++	{ 0x9808, "In contradiction with CHV status" },
++	{ 0x9810, "In contradiction with invalidation status" },
++	{ 0x9840, "Unsuccessful CHV verification, no attempt left / CHV blocked" },
++	{ 0x9850, "Increase cannot be performed, max value reached" },
++	{ 0x6b00, "Incorrect paramaeter P1 or P2" },
++	{ 0, NULL },
++};
++
++static const gchar *get_sw_string(guint16 sw)
++{
++	guint8 sw1 = sw >> 8;
++
++	switch (sw1) {
++	case 0x91:
++		return "Normal ending of command with info from proactive SIM";
++	case 0x9e:
++		return "Length of the response data given / SIM data download error";
++	case 0x9f:
++		return "Length of the response data";
++	case 0x92:
++		if ((sw & 0xf0) == 0x00)
++			return "Command successful but after internal retry routine";
++	case 0x67:
++		return "Incorrect parameter P3";
++	case 0x6d:
++		return "Unknown instruction code";
++	case 0x6e:
++		return "Wrong instruction class";
++	case 0x6f:
++		return "Technical problem with no diacnostic";
++	}
++	return val_to_str(sw, sw_vals, "%04x");
++}
++
++static void
++dissect_bertlv(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
++{
++	int pos = 0;
++
++	while (pos < tvb_length(tvb)) {
++		guint8 tag, len;
++		tvbuff_t *subtvb;
++
++		proto_tree_add_item(tree, hf_cat_ber_tag, tvb, pos, 1, FALSE);
++
++		/* FIXME: properly follow BER coding rules */
++		tag = tvb_get_guint8(tvb, pos++);
++		len = tvb_get_guint8(tvb, pos++);
++
++		subtvb = tvb_new_subset(tvb, pos, len, len);
++		switch (tag) {
++		case 0xD0:	/* proactive command */
++			call_dissector(sub_handle_cap, subtvb, pinfo, tree);
++			break;
++		}
++
++		pos += len;
++	}
++}
++
++
 +#define P1_OFFS 	0
 +#define P2_OFFS 	1
 +#define P3_OFFS 	2
@@ -271,7 +360,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		 tvbuff_t *tvb, int offset, packet_info *pinfo, proto_tree *tree)
 +{
 +	guint16 g16;
-+
++	tvbuff_t *subtvb;
 +
 +	col_append_fstr(pinfo->cinfo, COL_INFO, "%s ",
 +			val_to_str(ins, apdu_ins_vals, "%02x"));
@@ -329,11 +418,14 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		proto_tree_add_item(tree, hf_tp_ucs2_display, tvb, offset, 1, FALSE);
 +		offset++;
 +		/* FIXME */
-+#if 0
-+		proto_tree_add_item(tree, hf_stk_tp0, tvb, offset++, 1, FALSE);
-+		proto_tree_add_item(tree, hf_stk_tp1, tvb, offset++, 1, FALSE);
-+		proto_tree_add_item(tree, hf_stk_tp2, tvb, offset++, 1, FALSE);
-+#endif
++		break;
++	case 0x12: /* FETCH */
++		subtvb = tvb_new_subset(tvb, offset+DATA_OFFS, p3, p3);
++		dissect_bertlv(subtvb, pinfo, tree);
++		break;
++	case 0x14: /* TERMINAL RESPONSE */
++		subtvb = tvb_new_subset(tvb, offset+DATA_OFFS, p3, p3);
++		call_dissector(sub_handle_cap, subtvb, pinfo, tree);
 +		break;
 +	default:
 +		return -1;
@@ -386,7 +478,10 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +
 +	/* obtain status word */
 +	sw = tvb_get_ntohs(tvb, tvb_len-2);
-+	proto_tree_add_item(sim_tree, hf_apdu_sw, tvb, tvb_len-2, 2, FALSE);
++	//proto_tree_add_item(sim_tree, hf_apdu_sw, tvb, tvb_len-2, 2, FALSE);
++	proto_tree_add_uint_format(sim_tree, hf_apdu_sw, tvb, tvb_len-2, 2, sw,
++				   "Status Word: %s", get_sw_string(sw));
++
 +#if 0
 +	sw1 = tvb_get_guint8(tvb, tvb_len-2);
 +	proto_tree_add_item(sim_tree, hf_apdu_sw1, tvb, tvb_len-2, 1, TRUE);
@@ -402,42 +497,6 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	proto_tree *sim_tree;
 +
 +	dissect_apdu_tvb(tvb, 0, pinfo, tree);
-+#if 0
-+	int offset = 0;
-+
-+	col_set_str(pinfo->cinfo, COL_PROTOCOL, "SIM");
-+
-+	//top_tree = tree;
-+	if (tree) {
-+		u_int8_t msg_disc = tvb_get_guint8(tvb, offset);
-+
-+		ti = proto_tree_add_item(tree, proto_abis_oml, tvb, 0, -1, FALSE);
-+		oml_tree = proto_item_add_subtree(ti, ett_oml);
-+
-+		proto_tree_add_item(oml_tree, hf_oml_msg_disc, tvb, offset++,
-+				    1, TRUE);
-+		proto_tree_add_item(oml_tree, hf_oml_placement, tvb, offset++,
-+				    1, TRUE);
-+		proto_tree_add_item(oml_tree, hf_oml_sequence, tvb, offset++,
-+				    1, TRUE);
-+		proto_tree_add_item(oml_tree, hf_oml_length, tvb, offset++,
-+				    1, TRUE);
-+
-+		switch (msg_disc) {
-+		case ABIS_OM_MDISC_FOM:
-+			offset = dissect_oml_fom(tvb, pinfo, oml_tree,
-+						 offset, ti);
-+			break;
-+		case ABIS_OM_MDISC_MANUF:
-+			offset = dissect_oml_manuf(tvb, pinfo, oml_tree,							       offset, ti);
-+			break;
-+		case ABIS_OM_MDISC_MMI:
-+		case ABIS_OM_MDISC_TRAU:
-+		default:
-+			break;
-+		}
-+	}
-+#endif
 +}
 +
 +void
@@ -474,12 +533,12 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		},
 +		{ &hf_apdu_data,
 +			{ "APDU Payload", "iso7816.apdu.data",
-+			  FT_NONE, BASE_NONE, NULL, 0,
++			  FT_BYTES, BASE_NONE, NULL, 0,
 +			  "ISO 7816-4 APDU Data Payload", HFILL }
 +		},
 +		{ &hf_apdu_sw,
 +			{ "Status Word (SW1:SW2)", "iso7816.apdu.sw",
-+			  FT_UINT16, BASE_HEX, NULL, 0,
++			  FT_UINT16, BASE_HEX, VALS(sw_vals), 0,
 +			  "ISO 7816-4 APDU Status Word", HFILL }
 +		},
 +		{ &hf_file_id,
@@ -499,10 +558,10 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		},
 +		{ &hf_auth_rand,
 +			{ "Random Challenge", "iso7816.auth_rand",
-+			  FT_NONE, BASE_NONE, NULL, 0,
++			  FT_BYTES, BASE_NONE, NULL, 0,
 +			  "GSM Authentication Random Challenge", HFILL }
 +		},
-+		/* Terminal Profile Byte 0 */
++		/* Terminal Profile Byte 1 */
 +		{ &hf_tp_prof_dld,
 +			{ "Profile Download", "iso7816.tp.prof_dld",
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
@@ -543,7 +602,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
 +			  "TP Envelope CC always sent to SIM during automatic redial", HFILL }
 +		},
-+		/* Terminal Profile Byte 1 */
++		/* Terminal Profile Byte 2 */
 +		{ &hf_tp_cmd_res,
 +			{ "Command result", "iso7816.tp.cmd_res",
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
@@ -584,318 +643,12 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
 +			  "TP Display of the Extension Text", HFILL }
 +		},
-+#if 0
-+		{ &hf_oml_msg_disc,
-+			{ "Message Discriminator", "oml.msg_dsc",
-+			  FT_UINT8, BASE_HEX, VALS(oml_msg_disc_vals), 0,
-+			  "GSM 12.21 Message Discriminator", HFILL }
-+		},
-+		{ &hf_oml_placement,
-+			{ "Placement Indicator", "oml.placement",
-+			  FT_UINT8, BASE_HEX, VALS(oml_placement_vals), 0,
-+			  "GSM 12.21 Placement Indicator", HFILL }
-+		},
-+		{ &hf_oml_sequence,
-+			{ "Sequence Number", "oml.sequence",
-+			  FT_UINT8, BASE_HEX, NULL, 0,
-+			  "Sequence Number (if multi-part msg)", HFILL }
-+		},
-+		{ &hf_oml_length,
-+			{ "Length Indicator", "oml.length",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  "Total length of payload", HFILL }
-+		},
-+		{ &hf_oml_fom_msgtype,
-+			{ "FOM Message Type", "oml.fom.msg_type",
-+			  FT_UINT8, BASE_HEX|BASE_EXT_STRING, (&oml_fom_msgtype_vse), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_objclass,
-+			{ "FOM Object Class", "oml.fom.obj_class",
-+			  FT_UINT8, BASE_HEX, VALS(oml_fom_objclass_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_inst_bts,
-+			{ "FOM Object Instance BTS", "oml.fom.obj_inst.bts",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_inst_trx,
-+			{ "FOM Object Instance TRX", "oml.fom.obj_inst.trx",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_inst_ts,
-+			{ "FOM Object Instance TS", "oml.fom.obj_inst.ts",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_attr_tag,
-+			{ "FOM Attribute ID", "oml.fom.attr_id",
-+			  FT_UINT8, BASE_HEX|BASE_EXT_STRING, (&oml_fom_attr_vse), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_attr_len,
-+			{ "FOM Attribute Length", "oml.fom.attr_len",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_oml_fom_attr_val,
-+			{ "FOM Attribute Value", "oml.fom.attr_val",
-+			  FT_BYTES, BASE_NONE, NULL, 0,
-+			  NULL, HFILL }
-+		},
 +
-+
-+
-+		/* OML Attributes */
-+		{ &hf_attr_adm_state,
-+			{ "Administrative State", "oml.fom.attr.adm_state",
-+			  FT_UINT8, BASE_HEX, VALS(oml_adm_state_vals), 0,
-+			  NULL, HFILL }
++		{ &hf_cat_ber_tag,
++			{ "BER-TLV Tag", "cat.ber_tlv_tag",
++			  FT_UINT8, BASE_HEX, VALS(ber_tlv_cat_tag_vals), 0,
++			  "Card Application Toolkit BER-TLV tag", HFILL },
 +		},
-+		{ &hf_attr_arfcn,
-+			{ "ARFCN", "oml.fom.attr.arfcn",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_oper_state,
-+			{ "Operational State", "oml.fom.attr.oper_state",
-+			  FT_UINT8, BASE_HEX, VALS(oml_oper_state_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_avail_state,
-+			{ "Availability Status", "oml.fom.attr.avail_state",
-+			  FT_UINT8, BASE_HEX, VALS(oml_avail_state_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_event_type,
-+			{ "Event Type", "oml.fom.attr.event_type",
-+			  FT_UINT8, BASE_HEX, VALS(oml_event_type_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_severity,
-+			{ "Severity", "oml.fom.attr.severity",
-+			  FT_UINT8, BASE_HEX, VALS(oml_severity_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_bcch_arfcn,
-+			{ "BCCH ARFCN", "oml.fom.attr.bcch_arfcn",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  "ARFCN of the BCCH", HFILL }
-+		},
-+		{ &hf_attr_bsic,
-+			{ "BSIC", "oml.fom.attr.bsic",
-+			  FT_UINT16, BASE_HEX, NULL, 0,
-+			  "Base Station Identity Cdoe", HFILL }
-+		},
-+		{ &hf_attr_test_no,
-+			{ "Test Number", "oml.fom.attr.test_no",
-+			  FT_UINT8, BASE_HEX, VALS(oml_test_no_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_tsc,
-+			{ "TSC", "oml.fom.attr.tsc",
-+			  FT_UINT8, BASE_HEX, NULL, 0,
-+			  "Training Sequence Code", HFILL }
-+		},
-+		{ &hf_attr_tei,
-+			{ "TEI", "oml.fom.attr.tei",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_ach_btsp,
-+			{ "BTS E1 Port", "oml.fom.attr.abis_ch.bts_port",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_ach_tslot,
-+			{ "E1 Timeslot", "oml.fom.attr.abis_ch.timeslot",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_ach_sslot,
-+			{ "E1 Subslot", "oml.fom.attr.abis_ch.subslot",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_gsm_time,
-+			{ "GSM Time", "oml.fom.attr.gsm_time",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  "GSM Time", HFILL }
-+		},
-+		{ &hf_attr_chan_comb,
-+			{ "Channel Combination", "oml.fom.attr.chan_comb",
-+			  FT_UINT8, BASE_HEX, VALS(oml_chan_comb_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_hsn,
-+			{ "HSN", "oml.fom.attr.hsn",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  "Hopping Sequence Number", HFILL }
-+		},
-+		{ &hf_attr_maio,
-+			{ "MAIO", "oml.fom.attr.maio",
-+			  FT_UINT8, BASE_DEC, NULL, 0,
-+			  "Mobile Allocation Index Offset", HFILL }
-+		},
-+
-+		/* IP Access */
-+		{ &hf_oml_ipa_tres_attr_tag,
-+			{ "IPA Test Result Embedded IE",
-+						"oml.fom.testrep.ipa_tag",
-+			  FT_UINT8, BASE_HEX, VALS(ipacc_testres_ie_vals), 0,
-+			  "Information Element embedded into the Test Result "
-+			  "of ip.access BTS", HFILL },
-+		},
-+		{ &hf_oml_ipa_tres_attr_len,
-+			{ "IPA Test Result Embedded IE Length",
-+						"oml.fom.testrep.ipa_len",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  "Length of ip.access Test Result Embedded IE", HFILL }
-+		},
-+		{ &hf_attr_ipa_test_res,
-+			{ "IPA Test Result", "oml.fom.testrep.result",
-+			  FT_UINT8, BASE_DEC, VALS(ipacc_test_res_vals), 0,
-+			  NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_rxlev,
-+			{ "Rx Level", "oml.fom.testrep.ipa_rxlev",
-+			  FT_UINT16, BASE_DEC, NULL, 0xfc00, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_b_rxlev,
-+			{ "Rx Level", "oml.fom.testrep.ipa_rxlev_b",
-+			  FT_UINT8, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_arfcn,
-+			{ "ARFCN", "oml.fom.testrep.ipa_arfcn",
-+			  FT_UINT16, BASE_DEC, NULL, 0x03ff, "ARFCN", HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_f_qual,
-+			{ "Frequency Quality", "oml.fom.testrep.ipa.freq_qual",
-+			  FT_UINT8, BASE_DEC, NULL, 0xfc, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_f_err,
-+			{ "Frequency Error", "oml.fom.testrep.ipa.freq_err",
-+			  FT_INT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_rxqual,
-+			{ "Rx Quality", "oml.fom.testrep.ipa.rx_qual",
-+			  FT_UINT8, BASE_DEC, NULL, 0x7, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_frame_offs,
-+			{ "Frame Offset", "oml.fom.testrep.ipa.frame_offset",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_framenr_offs,
-+			{ "Frame Number Offset",
-+					"oml.fom.testrep.ipa.framenr_offset",
-+			  FT_UINT32, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_bsic,
-+			{ "BSIC", "oml.fom.testrep.ipa.bsic",
-+			  FT_UINT8, BASE_DEC, NULL, 0x3f,
-+			  "Base Station Identity Code", HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_cell_id,
-+			{ "Cell ID", "oml.fom.testrep.ipa.cell_id",
-+			  FT_UINT16, BASE_HEX, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_rsl_ip,
-+			{ "BSC RSL IP Address", "oml.fom.attr.ipa.rsl_ip",
-+			  FT_IPv4, BASE_NONE, NULL, 0,
-+			  "IP Address to which the BTS establishes "
-+			  "the RSL link", HFILL }
-+		},
-+		{ &hf_attr_ipa_rsl_port,
-+			{ "BSC RSL TCP Port", "oml.fom.attr.ipa.rsl_port",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  "Port number to which the BST establishes "
-+			  "the RSL link", HFILL }
-+		},
-+		{ &hf_attr_ipa_prim_oml_ip,
-+			{ "Primary OML IP Address",
-+					"oml.fom.attr.ipa.prim_oml_ip",
-+			  FT_IPv4, BASE_NONE, NULL, 0,
-+			  "IP Address of the BSC for the primary OML link",
-+			  HFILL }
-+		},
-+		{ &hf_attr_ipa_prim_oml_port,
-+			{ "Primary OML TCP Port",
-+					"oml.fom.attr.ipa.prim_oml_port",
-+			  FT_UINT16, BASE_DEC, NULL, 0,
-+			  "TCP Port of the BSC for the primarly OML link",
-+			  HFILL }
-+		},
-+		{ &hf_attr_ipa_location_name,
-+			{ "Location Name", "oml.fom.attr.ipa.loc_name",
-+			  FT_STRING, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_unit_name,
-+			{ "Unit Name", "oml.fom.attr.ipa.unit_name",
-+			  FT_STRING, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_unit_id,
-+			{ "Unit ID", "oml.fom.attr.ipa.unit_id",
-+			  FT_STRING, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nv_flags,
-+			{ "NVRAM Config Flags", "oml.fom.attr.ipa.nv_flags",
-+			  FT_UINT16, BASE_HEX, NULL, 0xffff, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nv_mask,
-+			{ "NVRAM Config Mask", "oml.fom.attr.ipa.nv_mask",
-+			  FT_UINT16, BASE_HEX, NULL, 0xffff, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_si2,
-+			{ "System Information 2", "oml.fom.attr.ipa.si2",
-+			  FT_BYTES, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_si2bis,
-+			{ "System Information 2bis", "oml.fom.attr.ipa.si2bis",
-+			  FT_BYTES, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_si2ter,
-+			{ "System Information 2ter", "oml.fom.attr.ipa.si2ter",
-+			  FT_BYTES, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_tr_chan_desc,
-+			{ "Cell Channel Description",
-+						"oml.fom.attr.ipa.chan_desc",
-+			  FT_BYTES, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nsl_sport,
-+			{ "NS Link IP Source Port",
-+						"oml.fom.attr.ipa.nsl_sport",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nsl_daddr,
-+			{ "NS Link IP Destination Addr",
-+						"oml.fom.attr.ipa.nsl_daddr",
-+			  FT_IPv4, BASE_NONE, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nsl_dport,
-+			{ "NS Link IP Destination Port",
-+						"oml.fom.attr.ipa.nsl_dport",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nsei,
-+			{ "NSEI", "oml.fom.attr.ipa.nsei",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_nsvci,
-+			{ "NSVCI", "oml.fom.attr.ipa.nsvci",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_bvci,
-+			{ "BVCI", "oml.fom.attr.ipa.bvci",
-+			  FT_UINT16, BASE_DEC, NULL, 0, NULL, HFILL }
-+		},
-+		{ &hf_attr_ipa_rac,
-+			{ "RAC", "oml.fom.attr.ipa.rac",
-+			  FT_UINT8, BASE_HEX, NULL, 0,
-+			  "Routing Area Code", HFILL }
-+		},
-+#endif
 +	};
 +	static gint *ett[] = {
 +		&ett_sim,
@@ -919,6 +672,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		    "Use ipaccess nanoBTS specific definitions for OML",
 +		    &global_oml_use_nano_bts);
 +#endif
++	sub_handle_cap = find_dissector("etsi_cat");
 +}
 +
 +/* This function is called once at startup and every time the user hits
@@ -980,3 +734,510 @@ Index: wireshark/epan/dissectors/packet-gsmtap.c
  	gsmtap_handle = create_dissector_handle(dissect_gsmtap, proto_gsmtap);
  	dissector_add("udp.port", GSMTAP_UDP_PORT, gsmtap_handle);
  }
+Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ wireshark/epan/dissectors/packet-card_app_toolkit.c	2010-11-19 22:16:55.000000000 +0100
+@@ -0,0 +1,502 @@
++/* packet-card_app_toolkit
++ * Routines for packet dissection of ETSI TS 102 223 / 3GPP 31.111
++ * Copyright 2010 by Harald Welte <laforge@gnumonks.org>
++ *
++ * $Id$
++ *
++ * Wireshark - Network traffic analyzer
++ * By Gerald Combs <gerald@wireshark.org>
++ * Copyright 1998 Gerald Combs
++ *
++ * This program is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU General Public License
++ * as published by the Free Software Foundation; either version 2
++ * of the License, or (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++#ifdef HAVE_CONFIG_H
++# include "config.h"
++#endif
++
++#include <glib.h>
++
++#include <epan/packet.h>
++#include <epan/emem.h>
++#include <epan/lapd_sapi.h>
++#include <epan/prefs.h>
++
++#include <stdio.h>
++
++static int proto_cat = -1;
++
++static int hf_cat_tlv = -1;
++
++static int hf_ctlv_devid_src = -1;
++static int hf_ctlv_devid_dst = -1;
++static int hf_ctlv_alpha_id = -1;
++static int hf_ctlv_cmd_nr = -1;
++static int hf_ctlv_cmd_type = -1;
++static int hf_ctlv_cmd_qual = -1;
++static int hf_ctlv_dur_time_intv = -1;
++static int hf_ctlv_dur_time_unit = -1;
++static int hf_ctlv_result_gen = -1;
++static int hf_ctlv_text_string_enc = -1;
++
++static int ett_cat = -1;
++static int ett_elem = -1;
++
++
++/* According to Section 7.2 of ETSI TS 101 220 / Chapter 7.2 */
++
++#if 0
++/* BER-TLV tag - Remote Management application Data templates */
++static const value_string ber_tlv_rmad_tag_vals[] = {
++	{ 0x01, "OMA SCWS" },
++	{ 0x81, "OMA SCWS and GP 2.2 Amd. B" },
++	{ 0xaa, "Command Scripting template for definite length coding" },
++	{ 0xab, "Response Scripting Template for definite length coding" },
++	{ 0xae, "Command Scripting template for indefinite length coding" },
++	{ 0xaf, "Response Scripting Template for indefinite length coding" },
++	{ 0, NULL }
++};
++#endif
++
++/* Comprehension-TLV tag */
++static const value_string comp_tlv_tag_vals[] = {
++	{ 0x01, "Command details" },
++	{ 0x02, "Device identity" },
++	{ 0x03, "Result" },
++	{ 0x04, "Duration" },
++	{ 0x05, "Alpha identifier" },
++	{ 0x06, "Address" },
++	{ 0x07, "Capability configuration parameters" },
++	{ 0x08, "Subaddress" },
++	{ 0x09, "GSM/3G SS string" },
++	{ 0x0a, "GSM/3G USSD string" },
++	{ 0x0b, "GSM/3G SMS TPDU" },
++	{ 0x0c, "GSM/3G Cell Broadcast page" },
++	{ 0x0d, "Text string" },
++	{ 0x0e, "Tone" },
++	{ 0x0f, "Item" },
++	{ 0x10, "Item identifier" },
++	{ 0x11, "Response length" },
++	{ 0x12, "File List" },
++	{ 0x13, "Location Information" },
++	{ 0x14, "IMEI" },
++	{ 0x15, "Help requeest" },
++	{ 0x16, "Network Measurement Results" },
++	{ 0x17, "Default Text" },
++	{ 0x18, "Items Next Action Indicator" },
++	{ 0x19, "Event list" },
++	{ 0x1a, "GSM/3G Cause" },
++	{ 0x1b, "Location status" },
++	{ 0x1c, "transaction identifier" },
++	{ 0x1d, "GSM/3G BCCH channel list" },
++	{ 0x1e, "Icon identifier" },
++	{ 0x1f, "Item Icon identifier list" },
++	{ 0x20, "Card reader status" },
++	{ 0x21, "Card ATR" },
++	{ 0x22, "C-APDU" },
++	{ 0x23, "R-APDU" },
++	{ 0x24, "Timer identifier" },
++	{ 0x25, "Timer value" },
++	{ 0x26, "Date-Time and Time zone" },
++	{ 0x27, "Call control requested action" },
++	{ 0x28, "AT Command" },
++	{ 0x29, "AT Response" },
++	{ 0x2a, "GSM/3G BC Repeat Indicator" },
++	{ 0x2b, "Immedaite response" },
++	{ 0x2c, "DTMF string" },
++	{ 0x2d, "Language" },
++	{ 0x2e, "GSM/3G Timing Advance" },
++	{ 0x2f, "AID" },
++	{ 0x30, "Browser Identity" },
++	{ 0x31, "URL" },
++	{ 0x32, "Bearer" },
++	{ 0x33, "Provisioning Reference File" },
++	{ 0x34, "Browser Termination Cause" },
++	{ 0x35, "Bearer d escription" },
++	{ 0x36, "Channel data" },
++	{ 0x37, "Channel data length" },
++	{ 0x38, "Channel status" },
++	{ 0x39, "Buffer size" },
++	{ 0x3a, "Card reader identifier" },
++	{ 0x3b, "File Update Information" },
++	{ 0x3c, "UICC/terminal interface transport level" },
++	{ 0x3e, "Other address (data destination address)" },
++	{ 0x3f, "Access Technology" },
++	{ 0x40, "Display parameters" },
++	{ 0x41, "Service Record" },
++	{ 0x42, "Device Filter" },
++	{ 0x43, "Service Search" },
++	{ 0x44, "Attribute information" },
++	{ 0x45, "Service Availability" },
++	{ 0x46, "3GPP2 ESN" },
++	{ 0x47, "Network Access Name" },
++	{ 0x48, "3GPP2 CDMA-SMS-TPDU" },
++	{ 0x49, "remote Entity Address" },
++	{ 0x4a, "3GPP I-WLAN Identifier" },
++	{ 0x4b, "3GPP I-WLAN Access Status" },
++	{ 0x50, "Text attribute" },
++	{ 0x51, "Item text attribute list" },
++	{ 0x52, "3GPP PDP Context Activation parameter" },
++	{ 0x53, "Contactless state request" },
++	{ 0x54, "Conactless functionality state" },
++	{ 0x55, "3GPP CSG cell selection status" },
++	{ 0x56, "3GPP CSG ID" },
++	{ 0x57, "3GPP HNB name" },
++	{ 0x62, "IMEISV tag" },
++	{ 0x63, "Battery state" },
++	{ 0x64, "Browsing status" },
++	{ 0x65, "Network Search Mode" },
++	{ 0x66, "Frame Layout" },
++	{ 0x67, "Frames Information" },
++	{ 0x68, "Frame identifier" },
++	{ 0x69, "3GPP UTRAN Measurement qualifier" },
++	{ 0x6a, "Multimedia Messsage Reference" },
++	{ 0x6b, "Multimedia Message Identifier" },
++	{ 0x6c, "Multimedia Message Transfer Status" },
++	{ 0x6d, "MEID" },
++	{ 0x6e, "Multimedia Message Content Identifier" },
++	{ 0x6f, "Multimedia Message Notification" },
++	{ 0x70, "Last Envelope" },
++	{ 0x71, "Registry application data" },
++	{ 0x72, "3GPP PLMNwAcT List" },
++	{ 0x73, "3GPP Routing Area Information" },
++	{ 0x74, "3GPP Update/Attach Type" },
++	{ 0x75, "3GPP Rejection Cause Code" },
++	{ 0x76, "3GPP Geographical Location Parameters" },
++	{ 0x77, "3GPP GAD Shapes" },
++	{ 0x78, "3GPP NMEA sentence" },
++	{ 0x79, "3GPP PLMN list" },
++	{ 0x7a, "Broadcast Network Information" },
++	{ 0x7b, "ACTIVATE descriptor" },
++	{ 0x7c, "3GPP EPS PDN connection activation parameters" },
++	{ 0x7d, "3GPP Tracking Area Identification" },
++	{ 0x7e, "3GPP CSG ID list" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 Chapter 8.7 */
++static const value_string dev_id_vals[] = {
++	{ 0x01,	"Keypad" },
++	{ 0x02, "Display" },
++	{ 0x03, "Earpiece" },
++	{ 0x10, "Additional Card Reader 0" },
++	{ 0x11, "Additional Card Reader 1" },
++	{ 0x12, "Additional Card Reader 2" },
++	{ 0x13, "Additional Card Reader 3" },
++	{ 0x14, "Additional Card Reader 4" },
++	{ 0x15, "Additional Card Reader 5" },
++	{ 0x16, "Additional Card Reader 6" },
++	{ 0x17, "Additional Card Reader 7" },
++	{ 0x21, "Channel ID 1" },
++	{ 0x22, "Channel ID 2" },
++	{ 0x23, "Channel ID 3" },
++	{ 0x24, "Channel ID 4" },
++	{ 0x25, "Channel ID 5" },
++	{ 0x26, "Channel ID 6" },
++	{ 0x27, "Channel ID 7" },
++	{ 0x81, "SIM / USIM / UICC" },
++	{ 0x82, "Terminal (Card Reader)" },
++	{ 0x83, "Network" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 Chapter 9.4 */
++static const value_string cmd_type_vals[] = {
++	{ 0x01, "REFRESH" },
++	{ 0x02, "MORE TIME" },
++	{ 0x03, "POLL INTERVAL" },
++	{ 0x04, "POLLING OFF" },
++	{ 0x05, "SET UP EVENT LIST" },
++	{ 0x10, "SET UP CALL" },
++	{ 0x11, "GSM/3G SEND SS" },
++	{ 0x12, "GSM/3G SEND USSD" },
++	{ 0x13, "SEND SHORT MESSAGE" },
++	{ 0x14, "SEND DTMF" },
++	{ 0x15, "LAUNCH BROWSER" },
++	{ 0x16, "3GPP GEOGRAPHICAL LOCATION REQUEST" },
++	{ 0x20, "PLAY TONE" },
++	{ 0x21, "DISPLAY TEXT" },
++	{ 0x22, "GET INKEY" },
++	{ 0X23, "GET INPUT" },
++	{ 0x24, "SELECT ITEM" },
++	{ 0X25, "SET UP MENU" },
++	{ 0x26, "PROVIDE LOCAL INFORMATION" },
++	{ 0x27, "TIMER MANAGEMENT" },
++	{ 0x28, "SET UP IDLE MODE TEXT" },
++	{ 0x30, "PERFORM CARD APDU" },
++	{ 0x31, "POWER ON CARD" },
++	{ 0x32, "POWER OFF CARD" },
++	{ 0x33, "GET READER STATUS" },
++	{ 0x34, "RUN AT COMMAND" },
++	{ 0x35, "LANGUAGE NOTIFICATION" },
++	{ 0x40, "OPEN CHANNEL" },
++	{ 0x41, "CLOSE CHANNEL" },
++	{ 0x42, "RECEIVE DATA" },
++	{ 0x43, "SEND DATA" },
++	{ 0x44, "GET CHANNEL STATUS" },
++	{ 0x45, "SERVICE SEARCH" },
++	{ 0x46, "GET SERVICE INFORMATION" },
++	{ 0x47, "DECLARE SERVICE" },
++	{ 0x50, "SET FRAMES" },
++	{ 0x51, "GET FRAMES STATUS" },
++	{ 0x60, "RETRIEVE MULTIMEDIA MESSAGE" },
++	{ 0x61, "SUBMIT MULTIMEDIA MESSAGE" },
++	{ 0x62, "DISPLAY MULTIMEDIA MESSAGE" },
++	{ 0x70, "ACTIVATE" },
++	{ 0x71, "CONTACTLESS STATE CHANGED" },
++	{ 0x81, "End of the proactive session" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 Chapter 8.8 */
++static const value_string time_unit_vals[] = {
++	{ 0x00, "minutes" },
++	{ 0x01, "seconds" },
++	{ 0x02, "tenths of seconds" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 Chapter 7.12 */
++static const value_string result_vals[] = {
++	{ 0x00, "Command performed successfully" },
++	{ 0x01, "Command performed with partial comprehension" },
++	{ 0x02, "Command performed with missing information" },
++	{ 0x03, "REFRESH performed with additional EFs read" },
++	{ 0x04, "Command performed successfully, but requested icon could not be displayed" },
++	{ 0x05, "Command performed, but modified by call control by NAA" },
++	{ 0x06, "Command performed successfully, limited service" },
++	{ 0x07, "Command performed with modifications" },
++	{ 0x08, "REFRESH performed by indicated NAA was not active" },
++	{ 0x09, "Command performed successfully, tone not played" },
++	{ 0x10, "Proactive UICC session terminated by the user" },
++	{ 0x11, "Backward movei n the proactive UICC session requested by user" },
++	{ 0x12, "No response from user" },
++	{ 0x13, "Help information required by the user" },
++	{ 0x20, "Terminal currently unable to process command" },
++	{ 0x21, "Network currently unable to process command" },
++	{ 0x22, "User did not accept the proactive command" },
++	{ 0x23, "User cleared down call before connection or network refuse" },
++	{ 0x24, "Action in contradiction with the current timer state" },
++	{ 0x25, "Interaction with call control by NAA temporary problem" },
++	{ 0x26, "Launch browser generic error code" },
++	{ 0x27, "MMS temporary problem" },
++	{ 0x30, "Command beyond terminal's capabilities" },
++	{ 0x31, "Command type not understood by terminal" },
++	{ 0x32, "Command data not understood by terminal" },
++	{ 0x33, "Command number not known by terminal" },
++	{ 0x36, "Error, required values are missing" },
++	{ 0x38, "MultipleCard commands error" },
++	{ 0x39, "Interaction with call control by NAA, permanent problem" },
++	{ 0x3a, "Bearer Independent Protocol error" },
++	{ 0x3b, "Access Technology unable to process command" },
++	{ 0x3c, "Frames error" },
++	{ 0x3d, "MMS error" },
++	{ 0, NULL }
++};
++
++static const value_string text_encoding_vals[] = {
++	{ 0x00, "GSM default alphabet, 7 bits packed" },
++	{ 0x01, "GSM default alphabet, 8 bits" },
++	{ 0x08, "UCS2" },
++	{ 0, NULL }
++};
++
++static void
++dissect_cat(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
++{
++	proto_item *cat_ti;
++	proto_tree *cat_tree, *elem_tree;
++	int pos = 0;
++
++	cat_ti = proto_tree_add_item(tree, proto_cat, tvb, 0, -1, FALSE);
++	cat_tree = proto_item_add_subtree(cat_ti, ett_cat);
++	while (pos < tvb_length(tvb)) {
++		proto_item *ti;
++		guint8 tag, len, g8;
++		void *ptr;
++
++		tag = tvb_get_guint8(tvb, pos++);
++		len = tvb_get_guint8(tvb, pos++);
++
++#if 1
++		{
++		printf("tag=%02x len=%u ", tag, len);
++		fflush(stdout);
++		ptr = tvb_bytes_to_str(tvb, pos, len);
++		printf("%p=%s\n", ptr, ptr);
++		fflush(stdout);
++		}
++
++		ti = proto_tree_add_bytes_format(cat_tree, hf_cat_tlv, tvb, pos,
++					    len, ptr, "%s: %s",
++					    val_to_str(tag&0x7f, comp_tlv_tag_vals, "%02x"),
++					    tvb_bytes_to_str(tvb, pos, len));
++#else
++		ti = proto_tree_add_bytes_format(cat_tree, hf_cat_tlv, tvb, pos,
++					    len, ptr, "%s:   ",
++					    val_to_str(tag&0x7f, comp_tlv_tag_vals, "%02x"));
++#endif
++		elem_tree = proto_item_add_subtree(ti, ett_elem);
++
++		switch (tag & 0x7f) {
++		case 0x01:	/* command details */
++			if (len != 3)
++				break;
++			proto_tree_add_item(elem_tree, hf_ctlv_cmd_nr, tvb, pos, 1, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_cmd_type, tvb, pos+1, 1, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_cmd_qual, tvb, pos+2, 1, FALSE);
++			/* append command type to INFO column */
++			g8 = tvb_get_guint8(tvb, pos+1);
++			col_append_fstr(pinfo->cinfo, COL_INFO, "%s ",
++					val_to_str(g8, cmd_type_vals, "%02x "));
++			break;
++		case 0x02:	/* device identity */
++			if (len != 2)
++				break;
++			proto_tree_add_item(elem_tree, hf_ctlv_devid_src, tvb, pos, 1, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_devid_dst, tvb, pos+1, 1, FALSE);
++			break;
++		case 0x03:	/* Result */
++			proto_tree_add_item(elem_tree, hf_ctlv_result_gen, tvb, pos, 1, FALSE);
++			break;
++		case 0x04:	/* Duration */
++			if (len != 2)
++				break;
++			proto_tree_add_item(elem_tree, hf_ctlv_dur_time_intv, tvb, pos+1, 1, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_dur_time_unit, tvb, pos, 1, FALSE);
++			break;
++		case 0x05:	/* alpha identifier */
++			break;
++		case 0x0d:	/* text string */
++			/* 1st byte: encoding */
++			proto_tree_add_item(elem_tree, hf_ctlv_text_string_enc, tvb, pos, 1, FALSE);
++			g8 = tvb_get_guint8(tvb, pos);
++			switch (g8) {
++			case 0x04: /* 8bit */
++				proto_tree_add_text(elem_tree, tvb, pos+1, len-1, "Text payload");
++				break;
++			case 0x00: /* 7bit */
++			case 0x08: /* UCS2 */
++				/* FIXME: 7bit and UCS-2 */
++				break;
++			}
++			break;
++		}
++
++		pos += len;
++	}
++}
++
++
++void
++proto_reg_handoff_card_app_toolkit(void);
++
++void
++proto_register_card_app_toolkit(void)
++{
++	static hf_register_info hf[] = {
++		{ &hf_cat_tlv,
++			{ "COMPREHENSIVE-TLV", "cat.comp_tlv",
++			  FT_BYTES, BASE_NONE, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_devid_src,
++			{ "Source Device ID", "cat.comp_tlv.src_dev",
++			  FT_UINT8, BASE_HEX, VALS(dev_id_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_devid_dst,
++			{ "Destination Device ID", "cat.comp_tlv.dst_dev",
++			  FT_UINT8, BASE_HEX, VALS(dev_id_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_cmd_nr,
++			{ "Command Number", "cat.comp_tlv.cmd_nr",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_cmd_type,
++			{ "Command Type", "cat.comp_tlv.cmd_type",
++			  FT_UINT8, BASE_HEX, VALS(cmd_type_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_cmd_qual,
++			{ "Command Qualifier", "cat.comp_tlv.cmd_qual",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_dur_time_intv,
++			{ "Time Interval", "cat.comp_tlv.time_interval",
++			  FT_UINT8, BASE_DEC, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_dur_time_unit,
++			{ "Time Unit", "cat.comp_tlv.time_unit",
++			  FT_UINT8, BASE_HEX, VALS(time_unit_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_result_gen,
++			{ "Result", "cat.comp_tlv.result",
++			  FT_UINT8, BASE_HEX, VALS(result_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_text_string_enc,
++			{ "Text String Encoding", "cat.comp_tlv.text_encoding",
++			  FT_UINT8, BASE_HEX, VALS(text_encoding_vals), 0,
++			  NULL, HFILL },
++		},
++	};
++	static gint *ett[] = {
++		&ett_cat,
++		&ett_elem,
++	};
++
++	module_t *cat_module;
++
++	proto_cat = proto_register_protocol("Card Application Tookit ETSI TS 102.223", "ETSI CAT",
++						 "etsi_cat");
++
++	proto_register_field_array(proto_cat, hf, array_length(hf));
++
++	proto_register_subtree_array(ett, array_length(ett));
++
++	register_dissector("etsi_cat", dissect_cat, proto_cat);
++
++#if 0
++	sim_module = prefs_register_protocol(proto_gsm_sim, proto_reg_handoff_gsm_sim);
++	prefs_register_bool_preference(sim_module, "use_ipaccess_oml",
++		    "Use nanoBTS definitions",
++		    "Use ipaccess nanoBTS specific definitions for OML",
++		    &global_oml_use_nano_bts);
++#endif
++}
++
++/* This function is called once at startup and every time the user hits
++ * 'apply' in the preferences dialogue */
++void
++proto_reg_handoff_card_app_toolkit(void)
++{
++	static gboolean initialized = FALSE;
++
++	if (!initialized) {
++		dissector_handle_t cat_handle;
++
++		cat_handle = create_dissector_handle(dissect_cat, proto_cat);
++		//dissector_add("iso7816.apdu.sim", 0, gsm_sim_handle);
++
++	} else {
++		/* preferences have been changed */
++	}
++}
