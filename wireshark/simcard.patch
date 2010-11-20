@@ -14,10 +14,13 @@ Index: wireshark/epan/dissectors/Makefile.common
 Index: wireshark/epan/dissectors/packet-gsm_sim.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-19 22:18:17.000000000 +0100
-@@ -0,0 +1,676 @@
++++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-20 19:47:28.000000000 +0100
+@@ -0,0 +1,1458 @@
 +/* packet-gsm_sim.c
 + * Routines for packet dissection of GSM SIM APDUs (GSM TS 11.11)
++ *
++ *	GSM TS 11.11 / 3GPP TS 51.011
++ * 	3GPP TS 31.102
 + * Copyright 2010 by Harald Welte <laforge@gnumonks.org>
 + *
 + * $Id$
@@ -70,11 +73,30 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_apdu_sw2 = -1;
 +
 +static int hf_file_id = -1;
++static int hf_aid = -1;
 +static int hf_bin_offset = -1;
 +static int hf_record_nr = -1;
 +static int hf_auth_rand = -1;
 +
 +/* Chapter 5.2 TS 11.14 */
++static int hf_tprof_b1 = -1;
++static int hf_tprof_b2 = -1;
++static int hf_tprof_b3 = -1;
++static int hf_tprof_b4 = -1;
++static int hf_tprof_b5 = -1;
++static int hf_tprof_b6 = -1;
++static int hf_tprof_b7 = -1;
++static int hf_tprof_b8 = -1;
++static int hf_tprof_b9 = -1;
++static int hf_tprof_b10 = -1;
++static int hf_tprof_b11 = -1;
++static int hf_tprof_b12 = -1;
++static int hf_tprof_b13 = -1;
++static int hf_tprof_b14 = -1;
++static int hf_tprof_b15 = -1;
++static int hf_tprof_b16 = -1;
++static int hf_tprof_b17 = -1;
++/* First byte */
 +static int hf_tp_prof_dld = -1;
 +static int hf_tp_sms_data_dld = -1;
 +static int hf_tp_cb_data_dld = -1;
@@ -98,7 +120,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_tp_pa_get_input = -1;
 +static int hf_tp_pa_more_time = -1;
 +static int hf_tp_pa_play_tone = -1;
-+static int hf_tp_pa_poll_interval = -1;
++static int hf_tp_pa_poll_intv = -1;
 +static int hf_tp_pa_polling_off = -1;
 +static int hf_tp_pa_refresh = -1;
 +/* 4th byte (Proactive SIM) */
@@ -106,10 +128,10 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_tp_pa_send_sms = -1;
 +static int hf_tp_pa_send_ss = -1;
 +static int hf_tp_pa_send_ussd = -1;
-+static int hf_tp_pa_setup_call = -1;
-+static int hf_tp_pa_setup_menu = -1;
-+static int hf_tp_pa_loci_lac = -1;
-+static int hf_tp_pa_loci_nmr = -1;
++static int hf_tp_pa_set_up_call = -1;
++static int hf_tp_pa_set_up_menu = -1;
++static int hf_tp_pa_prov_loci = -1;
++static int hf_tp_pa_prov_loci_nmr = -1;
 +/* 5th byte (Event drive information) */
 +static int hf_tp_pa_evt_list = -1;
 +static int hf_tp_ev_mt_call = -1;
@@ -119,12 +141,196 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_tp_ev_user_activity = -1;
 +static int hf_tp_ev_idle_screen = -1;
 +static int hf_tp_ev_cardreader_status = -1;
++/* 6th byte (Event drive information extension) */
++static int hf_tp_ev_lang_sel = -1;
++static int hf_tp_ev_brows_term = -1;
++static int hf_tp_ev_data_avail = -1;
++static int hf_tp_ev_chan_status = -1;
++/* 7th byte (Multiple card proactive commands) */
++static int hf_tp_pa_power_on = -1;
++static int hf_tp_pa_power_off = -1;
++static int hf_tp_pa_perform_card_apdu = -1;
++static int hf_tp_pa_get_reader_status = -1;
++static int hf_tp_pa_get_reader_status_id = -1;
++/* 8th byte (Proactive SIM) */
++static int hf_tp_pa_timer_start_stop = -1;
++static int hf_tp_pa_timer_get_current = -1;
++static int hf_tp_pa_prov_loci_date_tz = -1;
++static int hf_tp_pa_get_inkey_binary = -1;
++static int hf_tp_pa_set_up_idle_mode_text = -1;
++static int hf_tp_pa_run_at_command = -1;
++static int hf_tp_pa_2nd_alpha_setup_call = -1;
++static int hf_tp_pa_2nd_capability_param = -1;
++
++/* 12th byte (Proactive SIM) */
++static int hf_tp_pa_open_chan = -1;
++static int hf_tp_pa_close_chan = -1;
++static int hf_tp_pa_recv_data = -1;
++static int hf_tp_pa_send_data = -1;
++static int hf_tp_pa_get_chan_status = -1;
++
++/* 13th byte (Proactive SIM) */
++static int hf_tp_bip_csd = -1;
++static int hf_tp_bip_gprs = -1;
++
++/* 17th byte (Proactive SIM) */
++static int hf_tp_bip_tcp = -1;
++static int hf_tp_bip_udp = -1;
 +
 +static int hf_cat_ber_tag = -1;
 +
 +static int ett_sim = -1;
++static int ett_tprof_b1 = -1;
++static int ett_tprof_b2 = -1;
++static int ett_tprof_b3 = -1;
++static int ett_tprof_b4 = -1;
++static int ett_tprof_b5 = -1;
++static int ett_tprof_b6 = -1;
++static int ett_tprof_b7 = -1;
++static int ett_tprof_b8 = -1;
++static int ett_tprof_b9 = -1;
++static int ett_tprof_b10 = -1;
++static int ett_tprof_b11 = -1;
++static int ett_tprof_b12 = -1;
++static int ett_tprof_b13 = -1;
++static int ett_tprof_b14 = -1;
++static int ett_tprof_b15 = -1;
++static int ett_tprof_b16 = -1;
++static int ett_tprof_b17 = -1;
 +
 +static dissector_handle_t sub_handle_cap;
++
++
++static const int *tprof_b1_fields[] = {
++	&hf_tp_prof_dld,
++	&hf_tp_sms_data_dld,
++	&hf_tp_cb_data_dld,
++	&hf_tp_menu_sel,
++	&hf_tp_9e_err,
++	&hf_tp_timer_exp,
++	&hf_tp_ussd_cc,
++	&hf_tp_auto_redial,
++	NULL
++};
++
++static const int *tprof_b2_fields[] = {
++	&hf_tp_cmd_res,
++	&hf_tp_cc_sim,
++	&hf_tp_cc_sim_cellid,
++	&hf_tp_mo_sms_sim,
++	&hf_tp_alpha_id,
++	&hf_tp_ucs2_entry,
++	&hf_tp_ucs2_display,
++	&hf_tp_display_ext,
++	NULL
++};
++
++static const int *tprof_b3_fields[] = {
++	&hf_tp_pa_display_text,
++	&hf_tp_pa_get_inkey,
++	&hf_tp_pa_get_input,
++	&hf_tp_pa_more_time,
++	&hf_tp_pa_play_tone,
++	&hf_tp_pa_poll_intv,
++	&hf_tp_pa_polling_off,
++	&hf_tp_pa_refresh,
++	NULL
++};
++
++static const int *tprof_b4_fields[] = {
++	&hf_tp_pa_select_item,
++	&hf_tp_pa_send_sms,
++	&hf_tp_pa_send_ss,
++	&hf_tp_pa_send_ussd,
++	&hf_tp_pa_set_up_call,
++	&hf_tp_pa_set_up_menu,
++	&hf_tp_pa_prov_loci,
++	&hf_tp_pa_prov_loci_nmr,
++	NULL
++};
++
++static const int *tprof_b5_fields[] = {
++	&hf_tp_pa_evt_list,
++	&hf_tp_ev_mt_call,
++	&hf_tp_ev_call_connected,
++	&hf_tp_ev_call_disconnected,
++	&hf_tp_ev_location_status,
++	&hf_tp_ev_user_activity,
++	&hf_tp_ev_idle_screen,
++	&hf_tp_ev_cardreader_status,
++	NULL
++};
++
++static const int *tprof_b6_fields[] = {
++	&hf_tp_ev_lang_sel,
++	&hf_tp_ev_brows_term,
++	&hf_tp_ev_data_avail,
++	&hf_tp_ev_chan_status,
++	NULL
++};
++
++static const int *tprof_b7_fields[] = {
++	&hf_tp_pa_power_on,
++	&hf_tp_pa_power_off,
++	&hf_tp_pa_perform_card_apdu,
++	&hf_tp_pa_get_reader_status,
++	&hf_tp_pa_get_reader_status_id,
++	NULL
++};
++
++static const int *tprof_b8_fields[] = {
++	&hf_tp_pa_timer_start_stop,
++	&hf_tp_pa_timer_get_current,
++	&hf_tp_pa_prov_loci_date_tz,
++	&hf_tp_pa_get_inkey_binary,
++	&hf_tp_pa_set_up_idle_mode_text,
++	&hf_tp_pa_run_at_command,
++	&hf_tp_pa_2nd_alpha_setup_call,
++	&hf_tp_pa_2nd_capability_param,
++	NULL
++};
++
++static const int *tprof_b9_fields[] = {
++	NULL
++};
++
++static const int *tprof_b10_fields[] = {
++	NULL
++};
++
++static const int *tprof_b11_fields[] = {
++	NULL
++};
++
++static const int *tprof_b12_fields[] = {
++	&hf_tp_pa_open_chan,
++	&hf_tp_pa_close_chan,
++	&hf_tp_pa_recv_data,
++	&hf_tp_pa_send_data,
++	&hf_tp_pa_get_chan_status,
++	NULL
++};
++
++static const int *tprof_b13_fields[] = {
++	&hf_tp_bip_csd,
++	&hf_tp_bip_gprs,
++	NULL
++};
++
++static const int *tprof_b14_fields[] = {
++	NULL
++};
++static const int *tprof_b15_fields[] = {
++	NULL
++};
++static const int *tprof_b16_fields[] = {
++	NULL
++};
++static const int *tprof_b17_fields[] = {
++	&hf_tp_bip_tcp,
++	&hf_tp_bip_udp,
++	NULL
++};
 +
 +/* According to Section 7.2 of ETSI TS 101 220 / Chapter 7.2 */
 +/* BER-TLV tag CAT templates */
@@ -170,13 +376,22 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x2C, "UNBLOCK CHV" },
 +	{ 0x04, "INVALIDATE" },
 +	{ 0x44, "REHABILITATE" },
-+	{ 0x88, "RUN GSM ALGORITHM" },
++	{ 0x88, "RUN GSM ALGORITHM / AUTHENTICATE" },
 +	{ 0xFA, "SLEEP" },
 +	{ 0xC0, "GET RESPONSE" },
 +	{ 0x10, "TERMINAL PROFILE" },
 +	{ 0xC2, "ENVELOPE" },
 +	{ 0x12, "FETCH" },
 +	{ 0x14, "TERMINAL RESPONSE" },
++	/* Only in TS 102 221 v9.2.0 */
++	{ 0xCB, "RETRIEVE DATA" },
++	{ 0xDB, "SET DATA" },
++	{ 0x89, "RUN GSM ALGORITHM / AUTHENTICATE" },
++	{ 0x84, "GET CHALLENGE" },
++	{ 0xAA, "TERMINAL CAPABILITY" },
++	{ 0x70, "MANAGE CHANNEL" },
++	{ 0x73, "MANAGE SECURE CHANNEL" },
++	{ 0x75, "TRANSACT DATA" },
 +	{ 0, NULL }
 +};
 +
@@ -188,13 +403,16 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x7f10, "DF.TELECOM" },
 +	{ 0x7f22, "DF.IS-41" },
 +	{ 0x7f23, "DF.FP-CTS" },
++	{ 0x7fff, "ADF" },
 +#if 0
 +	{ 0, NULL }
 +};
 +static const value_string mf_efs[] = {
 +#endif
-+	{ 0x2fe2, "EF.ICCID" },
++	{ 0x2f00, "EF.DIR" },
 +	{ 0x2f05, "EF.ELP" },
++	{ 0x2f06, "EF.PL" },
++	{ 0x2fe2, "EF.ICCID" },
 +#if 0
 +	{ 0, NULL }
 +};
@@ -202,6 +420,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +/* Elementary files at the DF.TELECOM level */
 +static const value_string df_telecom_efs[] = {
 +#endif
++	{ 0x6f06, "EF.ARR" },
 +	{ 0x6f3a, "EF.ADN" },
 +	{ 0x6f3b, "EF.FDN" },
 +	{ 0x6f3c, "EF.SMS" },
@@ -217,6 +436,8 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x6f4c, "EF.EXT3" },
 +	{ 0x6f4d, "EF.BDN" },
 +	{ 0x6f4e, "EF.EXT4" },
++	{ 0x6f4f, "EF.ECCP" },
++	{ 0x6f54, "EF.SUME" },
 +#if 0
 +	{ 0, NULL }
 +};
@@ -274,6 +495,102 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x5f60, "DF.CTS" },
 +	{ 0x5f70, "DF.SoLSA" },
 +	{ 0x5f3c, "DF.MExE" },
++#if 0
++	{ 0, NULL }
++};
++
++static const value_string adf_usim_dfs[] = {
++#endif
++	{ 0x5f3a, "DF.PHONEBOOK" },
++	{ 0x5f3b, "DF.GSM-ACCESS" },
++	{ 0x5f3c, "DF.MExE" },
++	{ 0x5f70, "DF.SoLSA" },
++	{ 0x5f40, "DF.WLAN" },
++#if 0
++	{ 0, NULL }
++};
++
++static const value_string adf_usim_efs[] = {
++#endif
++	{ 0x6f05, "EF.LI" },
++	{ 0x6f06, "EF.ARR" },
++	{ 0x6f07, "EF.IMSI" },
++	{ 0x6f08, "EF.Keys" },
++	{ 0x6f09, "EF.KeysPS" },
++	{ 0x6f2c, "EF.DCK" },
++	{ 0x6f31, "EF.HPPLMN" },
++	{ 0x6f32, "EF.CNL" },
++	{ 0x6f37, "EF.ACMax" },
++	{ 0x6f38, "EF.USI" },
++	{ 0x6f39, "EF.ACM" },
++	{ 0x6f3b, "EF.FDN" },
++	{ 0x6f3c, "EF.SMS" },
++	{ 0x6f3e, "EF.GID1" },
++	{ 0x6f3f, "EF.GID2" },
++	{ 0x6f40, "EF.MSISDN" },
++	{ 0x6f41, "EF.PUCI" },
++	{ 0x6f42, "EF.SMSP" },
++	{ 0x6f43, "EF.SMSS" },
++	{ 0x6f45, "EF.CBMI" },
++	{ 0x6f46, "EF.SPN" },
++	{ 0x6f47, "EF.SMSR" },
++	{ 0x6f48, "EF.CBMID" },
++	{ 0x6f49, "EF.SIN" },
++	{ 0x6f4b, "EF.EXT2" },
++	{ 0x6f4c, "EF.EXT3" },
++	{ 0x6f4d, "EF.BDN" },
++	{ 0x6f4e, "EF.EXT5" },
++	{ 0x6f50, "EF.CBMIR" },
++	{ 0x6f55, "EF.EXT4" },
++	{ 0x6f56, "EF.EST" },
++	{ 0x6f57, "EF.ACL" },
++	{ 0x6f58, "EF.CMI" },
++	{ 0x6f5b, "EF.START-HFN" },
++	{ 0x6f5c, "EF.THRESHOLD" },
++	{ 0x6f60, "EF.PLMNwAcT" },
++	{ 0x6f61, "EF.OPLMNwAcT" },
++	{ 0x6f62, "EF.HPLMNAcT" },
++	{ 0x6fd9, "EF.EHPLMN" },
++	{ 0x6f73, "EF.PSLOCI" },
++	{ 0x6f78, "EF.ACC" },
++	{ 0x6f7b, "EF.FPLMN" },
++	{ 0x6f7e, "EF.LOCI" },
++	{ 0x6f80, "EF.ICI" },
++	{ 0x6f81, "EF.OCI" },
++	{ 0x6f82, "EF.ICT" },
++	{ 0x6f83, "EF.OCT" },
++	{ 0x6fad, "EF.AD" },
++	{ 0x6fb5, "EF.eMLPP" },
++	{ 0x6fb6, "EF.AAeM" },
++	{ 0x6fb7, "EF.ECC" },
++	{ 0x6fc3, "EF.Hiddenkey" },
++	{ 0x6fc4, "EF.NETPAR" },
++	{ 0x6fc5, "EF.PNN" },
++	{ 0x6fc6, "EF.OPL" },
++	{ 0x6fc7, "EF.MBDN" },
++	{ 0x6fc8, "EF.EXT6" },
++	{ 0x6fc9, "EF.MBI" },
++	{ 0x6fca, "EF.MWIS" },
++	{ 0x6fcb, "EF.CFIS" },
++	{ 0x6fcc, "EF.EXT7" },
++	{ 0x6fcd, "EF.SPDI" },
++	{ 0x6fce, "EF.MMSN" },
++	{ 0x6fcf, "EF.EXT8" },
++	{ 0x6fd0, "EF.MMSICP" },
++	{ 0x6fd1, "EF.MMSUP" },
++	{ 0x6fd2, "EF.MMSUCP" },
++	{ 0x6fd3, "EF.NIA" },
++	{ 0x6f4f, "EF.CCP2" },
++	{ 0x6fb1, "EF.VGCS" },
++	{ 0x6fb2, "EF.VGCSS" },
++	{ 0x6fb3, "EF.VBS" },
++	{ 0x6fb4, "EF.VBSS" },
++	{ 0x6fd4, "EF.VGCSCA" },
++	{ 0x6fd5, "EF.VBSCA" },
++	{ 0x6fd6, "EF.GBAP" },
++	{ 0x6fd7, "EF.MSK" },
++	{ 0x6fd8, "EF.MUK" },
++	{ 0x6fda, "EF.GBANL" },
 +	{ 0, NULL }
 +};
 +
@@ -294,6 +611,51 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x9840, "Unsuccessful CHV verification, no attempt left / CHV blocked" },
 +	{ 0x9850, "Increase cannot be performed, max value reached" },
 +	{ 0x6b00, "Incorrect paramaeter P1 or P2" },
++	/* Section 10.2.1.3 of TS 102 221 */
++	{ 0x6200, "Warning: No information given, state of volatile memory unchanged" },
++	{ 0x6281, "Warning: Part of returned data may be corrupted" },
++	{ 0x6282, "Warning: End of file/record reached before reading Le bytes" },
++	{ 0x6283, "Warning: Selected file invalidated" },
++	{ 0x6285, "Warning: Selected file in termination state" },
++	{ 0x62f1, "Warning: More data available" },
++	{ 0x62f2, "Warning: More data available and proactive command pending" },
++	{ 0x62f3, "Warning: Response data available" },
++	{ 0x63f1, "Warning: More data expected" },
++	{ 0x63f2, "Warning: More data expected and proactive command pending" },
++	/* Section 10.2.1.4 of TS 102 221 */
++	{ 0x6400, "Execution error: No information given, memory unchanged" },
++	{ 0x6500, "Execution error: No information given, memory changed" },
++	{ 0x6581, "Execution error: Memory problem" },
++	/* Section 10.2.1.5 of TS 102 221 */
++	{ 0x6700, "Wrong length" },
++	{ 0x6d00, "Instruction code not supported or invalid" },
++	{ 0x6e00, "Class not supported" },
++	{ 0x6f00, "Technical problem, no precise diagnosis" },
++	/* Section 10.2.1.5.1 of TS 102 221 */
++	{ 0x6800, "Function in CLA not supported" },
++	{ 0x6881, "Function in CLA not supported: Logical channel not supported" },
++	{ 0x6882, "Function in CLA not supported: Secure messaging not supported" },
++	/* Section 10.2.1.5.2 of TS 102 221 */
++	{ 0x6900, "Command not allowed" },
++	{ 0x6981, "Command not allowed: Command incompatible with file structure" },
++	{ 0x6982, "Command not allowed: Security status not satisfied" },
++	{ 0x6983, "Command not allowed: Authentication/PIN method blocked" },
++	{ 0x6984, "Command not allowed: Referenced data invalid" },
++	{ 0x6985, "Command not allowed: Conditions of use not satisfied" },
++	{ 0x6986, "Command not allowed: No EF selected" },
++	{ 0x6989, "Command not allowed: Secure channel - security not satisfied" },
++	/* Section 10.2.1.5.3 of TS 102 221 */
++	{ 0x6a80, "Wrong parameters: Incorrect parameters in the data field" },
++	{ 0x6a81, "Wrong parameters: Function not supported" },
++	{ 0x6a82, "Wrong parameters: File not found" },
++	{ 0x6a83, "Wrong parameters: Record not found" },
++	{ 0x6a84, "Wrong parameters: Not enough memory space" },
++	{ 0x6a86, "Wrong parameters: Incorrect P1 to P2" },
++	{ 0x6a87, "Wrong parameters: Lc inconsistent with P1 to P2" },
++	{ 0x6a88, "Wrong parameters: Referenced data not found" },
++	/* Section 10.2.1.6 of TS 102 221 */
++	{ 0x9862, "Authentication error, application specific" },
++	{ 0x9863, "Security session or association expired" },
 +	{ 0, NULL },
 +};
 +
@@ -361,6 +723,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +{
 +	guint16 g16;
 +	tvbuff_t *subtvb;
++	int i;
 +
 +	col_append_fstr(pinfo->cinfo, COL_INFO, "%s ",
 +			val_to_str(ins, apdu_ins_vals, "%02x"));
@@ -369,11 +732,36 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	case 0xA4: /* SELECT */
 +		if (p3 < 2)
 +			break;
-+		g16 = tvb_get_ntohs(tvb, offset+DATA_OFFS);
-+		col_append_fstr(pinfo->cinfo, COL_INFO, "%s ",
-+				val_to_str(g16, mf_dfs, "%04x"));
-+		proto_tree_add_item(tree, hf_file_id, tvb, offset+DATA_OFFS, p3, FALSE);
-+		offset++;
++		switch (p1) {
++		case 0x03:	/* parent DF */
++			col_append_fstr(pinfo->cinfo, COL_INFO, "Parent DF ");
++			break;
++		case 0x04:	/* select by AID */
++			col_append_fstr(pinfo->cinfo, COL_INFO, "Application %s ",
++					tvb_bytes_to_str(tvb, offset+DATA_OFFS, p3));
++			proto_tree_add_item(tree, hf_aid, tvb, offset+DATA_OFFS, p3, FALSE);
++			break;
++
++		case 0x09:	/* select by relative path */
++			col_append_fstr(pinfo->cinfo, COL_INFO, ".");
++			/* fallthrough */
++		case 0x08:	/* select by absolute path */
++			for (i = 0; i < p3; i += 2) {
++				g16 = tvb_get_ntohs(tvb, offset+DATA_OFFS+i);
++				col_append_fstr(pinfo->cinfo, COL_INFO, "/%s",
++						val_to_str(g16, mf_dfs, "%04x"));
++				proto_tree_add_item(tree, hf_file_id, tvb, offset+DATA_OFFS+i, 2, FALSE);
++			}
++			col_append_fstr(pinfo->cinfo, COL_INFO, " ");
++			break;
++		default:
++			g16 = tvb_get_ntohs(tvb, offset+DATA_OFFS);
++			col_append_fstr(pinfo->cinfo, COL_INFO, "File %s ",
++					val_to_str(g16, mf_dfs, "%04x"));
++			proto_tree_add_item(tree, hf_file_id, tvb, offset+DATA_OFFS, p3, FALSE);
++			offset++;
++			break;
++		}
 +		break;
 +	case 0xB0: /* READ BINARY */
 +	case 0xD6: /* UPDATE BINARY */
@@ -400,23 +788,23 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +		break;
 +	case 0x10: /* TERMINAL PROFILE */
 +		offset += DATA_OFFS;
-+		proto_tree_add_item(tree, hf_tp_prof_dld, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_sms_data_dld, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_cb_data_dld, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_menu_sel, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_9e_err, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_timer_exp, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_ussd_cc, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_auto_redial, tvb, offset, 1, FALSE);
-+		offset++;
-+		proto_tree_add_item(tree, hf_tp_cmd_res, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_cc_sim, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_cc_sim_cellid, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_mo_sms_sim, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_alpha_id, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_ucs2_entry, tvb, offset, 1, FALSE);
-+		proto_tree_add_item(tree, hf_tp_ucs2_display, tvb, offset, 1, FALSE);
-+		offset++;
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b1, ett_tprof_b1, tprof_b1_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b2, ett_tprof_b2, tprof_b2_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b3, ett_tprof_b3, tprof_b3_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b4, ett_tprof_b4, tprof_b4_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b5, ett_tprof_b5, tprof_b5_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b6, ett_tprof_b6, tprof_b6_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b7, ett_tprof_b7, tprof_b7_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b8, ett_tprof_b8, tprof_b8_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b9, ett_tprof_b9, tprof_b9_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b10, ett_tprof_b10, tprof_b10_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b11, ett_tprof_b11, tprof_b11_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b12, ett_tprof_b12, tprof_b12_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b13, ett_tprof_b13, tprof_b13_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b14, ett_tprof_b14, tprof_b14_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b15, ett_tprof_b15, tprof_b15_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b16, ett_tprof_b16, tprof_b16_fields, FALSE);
++		proto_tree_add_bitmask(tree, tvb, offset++, hf_tprof_b17, ett_tprof_b17, tprof_b17_fields, FALSE);
 +		/* FIXME */
 +		break;
 +	case 0x12: /* FETCH */
@@ -462,7 +850,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	col_append_fstr(pinfo->cinfo, COL_INFO, "%s ",
 +			val_to_str(cla, apdu_cla_vals, "%02x"));
 +
-+	if (cla == 0xA0)
++	//if (cla == 0xA0)
 +		rc = dissect_gsm_apdu(ins, p1, p2, p3, tvb, offset, pinfo, sim_tree);
 +
 +	if (rc == -1 && sim_tree) {
@@ -481,6 +869,17 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	//proto_tree_add_item(sim_tree, hf_apdu_sw, tvb, tvb_len-2, 2, FALSE);
 +	proto_tree_add_uint_format(sim_tree, hf_apdu_sw, tvb, tvb_len-2, 2, sw,
 +				   "Status Word: %s", get_sw_string(sw));
++
++	switch (sw >> 8) {
++	case 0x61:
++	case 0x90:
++	case 0x91:
++	case 0x92:
++		break;
++	default:
++		col_append_fstr(pinfo->cinfo, COL_INFO, ": %s ", get_sw_string(sw));
++		break;
++	}
 +
 +#if 0
 +	sw1 = tvb_get_guint8(tvb, tvb_len-2);
@@ -546,6 +945,11 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_UINT16, BASE_HEX, VALS(mf_dfs), 0,
 +			  "ISO 7816-4 File ID", HFILL }
 +		},
++		{ &hf_aid,
++			{ "Application ID", "iso7816.aid",
++			  FT_BYTES, BASE_NONE, NULL, 0,
++			  "ISO 7816-4 Application ID", HFILL }
++		},
 +		{ &hf_bin_offset,
 +			{ "Offset", "iso7816.bin_offset",
 +			  FT_UINT16, BASE_DEC, NULL, 0,
@@ -562,6 +966,11 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  "GSM Authentication Random Challenge", HFILL }
 +		},
 +		/* Terminal Profile Byte 1 */
++		{ &hf_tprof_b1,
++			{ "Terminal Profile Byte 1 (Download)", "iso7816.tp.b1",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
 +		{ &hf_tp_prof_dld,
 +			{ "Profile Download", "iso7816.tp.prof_dld",
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
@@ -602,7 +1011,13 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
 +			  "TP Envelope CC always sent to SIM during automatic redial", HFILL }
 +		},
++
 +		/* Terminal Profile Byte 2 */
++		{ &hf_tprof_b2,
++			{ "Terminal Profile Byte 2 (Other)", "iso7816.tp.b2",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
 +		{ &hf_tp_cmd_res,
 +			{ "Command result", "iso7816.tp.cmd_res",
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
@@ -643,15 +1058,382 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
 +			  "TP Display of the Extension Text", HFILL }
 +		},
++		/* Terminal Profile Byte 3 */
++		{ &hf_tprof_b3,
++			{ "Terminal Profile Byte 3 (Proactive SIM)", "iso7816.tp.b3",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_display_text,
++			{ "Proactive SIM: DISPLAY TEXT", "iso7816.tp.pa.display_text",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_inkey,
++			{ "Proactive SIM: GET INKEY", "iso7816.tp.pa.get_inkey",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_input,
++			{ "Proactive SIM: GET INPUT", "iso7816.tp.pa.get_input",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_more_time,
++			{ "Proactive SIM: MORE TIME", "iso7816.tp.pa.more_time",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_play_tone,
++			{ "Proactive SIM: PLAY TONE", "iso7816.tp.pa.play_tone",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_poll_intv,
++			{ "Proactive SIM: POLL INTERVAL", "iso7816.tp.pa.poll_intv",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x20,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_polling_off,
++			{ "Proactive SIM: POLLING OFF", "iso7816.tp.pa.polling_off",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x40,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_refresh,
++			{ "Proactive SIM: REFRESH", "iso7816.tp.pa.refresh",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
++			  NULL, HFILL }
++		},
++		/* Terminal Profile Byte 4 */
++		{ &hf_tprof_b4,
++			{ "Terminal Profile Byte 4 (Proactive SIM)", "iso7816.tp.b4",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_select_item,
++			{ "Proactive SIM: SELECT ITEM", "iso7816.tp.pa.select_item",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_send_sms,
++			{ "Proactive SIM: SEND SHORT MESSAGE", "iso7816.tp.pa.send_sms",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_send_ss,
++			{ "Proactive SIM: SEND SS", "iso7816.tp.pa.send_ss",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_send_ussd,
++			{ "Proactive SIM: SEND USSD", "iso7816.tp.pa.send_ussd",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_set_up_call,
++			{ "Proactive SIM: SET UP CALL", "iso7816.tp.pa.set_up_call",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_set_up_menu,
++			{ "Proactive SIM: SET UP MENU", "iso7816.tp.pa.set_up_menu",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x20,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_prov_loci,
++			{ "Proactive SIM: PROVIDE LOCAL INFORMATION", "iso7816.tp.pa.prov_loci",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x40,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_prov_loci_nmr,
++			{ "Proactive SIM: PROVIDE LOCAL INFORMATION (NMR)", "iso7816.tp.pa.prov_loci_nmr",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
++			  NULL, HFILL }
++		},
++		/* Terminal Profile Byte 5 */
++		{ &hf_tprof_b5,
++			{ "Terminal Profile Byte 5 (Event driven information)", "iso7816.tp.b5",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_evt_list,
++			{ "Proactive SIM: SET UP EVENT LIST", "iso7816.tp.pa.set_up_evt_list",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_mt_call,
++			{ "Event: MT call", "iso7816.tp.evt.mt_call",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_call_connected,
++			{ "Event: Call connected", "iso7816.tp.evt.call_conn",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_call_disconnected,
++			{ "Event: Call disconnected", "iso7816.tp.evt.call_disc",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_location_status,
++			{ "Event: Location status", "iso7816.tp.evt.loc_status",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_user_activity,
++			{ "Event: User activity", "iso7816.tp.evt.user_activity",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x20,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_idle_screen,
++			{ "Event: Idle screen available", "iso7816.tp.evt.idle_screen",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x40,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_cardreader_status,
++			{ "Event: Cardreader status", "iso7816.tp.evt.card_status",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
++			  NULL, HFILL }
++		},
++		/* Terminal Profile Byte 6 */
++		{ &hf_tprof_b6,
++			{ "Terminal Profile Byte 6 (Event driven information extension)", "iso7816.tp.b6",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_ev_lang_sel,
++			{ "Event: Language Selection", "iso7816.tp.evt.lang_sel",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_brows_term,
++			{ "Event: Browser Termination", "iso7816.tp.evt.brows_term",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_data_avail,
++			{ "Event: Data Available", "iso7816.tp.evt.data_avail",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_ev_chan_status,
++			{ "Event: Channel Status", "iso7816.tp.evt.chan_status",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		/* Terminal Profile Byte 7 */
++		{ &hf_tprof_b7,
++			{ "Terminal Profile Byte 7 (Multiple card proactive commands)", "iso7816.tp.b7",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_power_on,
++			{ "Proactive SIM: POWER ON CARD", "iso7816.tp.pa.power_on_card",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_power_off,
++			{ "Proactive SIM: POWER OFF CARD", "iso7816.tp.pa.power_off_card",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_perform_card_apdu,
++			{ "Proactive SIM: PERFORM CARD APDU", "iso7816.tp.pa.perf_card_apdu",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_reader_status,
++			{ "Proactive SIM: GET READER STATUS (status)", "iso7816.tp.pa.get_rdr_status",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_reader_status_id,
++			{ "Proactive SIM: GET READER STATUS (identifier)", "iso7816.tp.pa.get_rdr_status_id",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++		/* Terminal Profile Byte 8 */
++		{ &hf_tprof_b8,
++			{ "Terminal Profile Byte 8 (Proactive SIM)", "iso7816.tp.b8",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_timer_start_stop,
++			{ "Proactive SIM: TIMER MANAGEMENT (start, stop)", "iso7816.tp.pa.timer_start_stop",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_timer_get_current,
++			{ "Proactive SIM: TIMER MANAGEMENT (get current value)", "iso7816.tp.pa.timer_get_current",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_prov_loci_date_tz,
++			{ "Proactive SIM: PROVIDE LOCAL INFORMATION (date, time, tz)", "iso7816.tp.pa.prov_loci_date",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_inkey_binary,
++			{ "Proactive SIM: Binary choice in GET INKEY", "iso7816.tp.pa.get_inkey_bin",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_set_up_idle_mode_text,
++			{ "Proactive SIM: SET UP IDLE MODE TEXT", "iso7816.tp.pa.set_up_idle_text",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_run_at_command,
++			{ "Proactive SIM: RUN AT COMMAND", "iso7816.tp.pa.run_at_command",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x20,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_2nd_alpha_setup_call,
++			{ "Proactive SIM: 2nd alpha identifier in SET UP CALL", "iso7816.tp.pa.2nd_alpha_id",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x40,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_2nd_capability_param,
++			{ "Proactive SIM: 2nd capability config param", "iso7816.tp.pa.2nd_capa_conf",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x80,
++			  NULL, HFILL }
++		},
++
++		/* Terminal Profile Byte 9 */
++		{ &hf_tprof_b9,
++			{ "Terminal Profile Byte 9", "iso7816.tp.b9",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 10 */
++		{ &hf_tprof_b10,
++			{ "Terminal Profile Byte 10", "iso7816.tp.b10",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 11 */
++		{ &hf_tprof_b11,
++			{ "Terminal Profile Byte 11", "iso7816.tp.b11",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 12 */
++		{ &hf_tprof_b12,
++			{ "Terminal Profile Byte 12", "iso7816.tp.b12",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_pa_open_chan,
++			{ "Proactive SIM: OPEN CHANNEL", "iso7816.tp.pa.open_chan",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_close_chan,
++			{ "Proactive SIM: CLOSE CHANNEL", "iso7816.tp.pa.close_chan",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_recv_data,
++			{ "Proactive SIM: RECEIVE DATA", "iso7816.tp.pa.recv_data",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x04,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_send_data,
++			{ "Proactive SIM: SEND DATA", "iso7816.tp.pa.send_data",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x08,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_pa_get_chan_status,
++			{ "Proactive SIM: GET CHANNEL STATUS", "iso7816.tp.pa.get_chan_status",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x10,
++			  NULL, HFILL }
++		},
++
++		/* Terminal Profile Byte 13 */
++		{ &hf_tprof_b13,
++			{ "Terminal Profile Byte 13 (Bearer Independent protocol)", "iso7816.tp.b13",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_bip_csd,
++			{ "CSD bearer", "iso7816.tp.bip.csd",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_bip_gprs,
++			{ "GPRS bearer", "iso7816.tp.bip.gprs",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
++
++		/* Terminal Profile Byte 14 */
++		{ &hf_tprof_b14,
++			{ "Terminal Profile Byte 14 (Screen height)", "iso7816.tp.b14",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 15 */
++		{ &hf_tprof_b15,
++			{ "Terminal Profile Byte 15 (Screen width)", "iso7816.tp.b15",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 16 */
++		{ &hf_tprof_b16,
++			{ "Terminal Profile Byte 16 (Screen effects)", "iso7816.tp.b16",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++
++		/* Terminal Profile Byte 17 */
++		{ &hf_tprof_b17,
++			{ "Terminal Profile Byte 17 (Bearer independent protocol)", "iso7816.tp.b17",
++			  FT_UINT8, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_tp_bip_tcp,
++			{ "TCP transport", "iso7816.tp.bip.tcp",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x01,
++			  NULL, HFILL }
++		},
++		{ &hf_tp_bip_udp,
++			{ "UDP transport", "iso7816.tp.bip.udp",
++			  FT_BOOLEAN, 8, TFS(&tfs_supported_not_supported), 0x02,
++			  NULL, HFILL }
++		},
 +
 +		{ &hf_cat_ber_tag,
 +			{ "BER-TLV Tag", "cat.ber_tlv_tag",
 +			  FT_UINT8, BASE_HEX, VALS(ber_tlv_cat_tag_vals), 0,
 +			  "Card Application Toolkit BER-TLV tag", HFILL },
 +		},
++
 +	};
 +	static gint *ett[] = {
 +		&ett_sim,
++		&ett_tprof_b1,
++		&ett_tprof_b2,
++		&ett_tprof_b3,
++		&ett_tprof_b4,
++		&ett_tprof_b5,
++		&ett_tprof_b6,
++		&ett_tprof_b7,
++		&ett_tprof_b8,
++		&ett_tprof_b9,
++		&ett_tprof_b10,
++		&ett_tprof_b11,
++		&ett_tprof_b12,
++		&ett_tprof_b13,
++		&ett_tprof_b14,
++		&ett_tprof_b15,
++		&ett_tprof_b16,
++		&ett_tprof_b17,
 +	};
 +
 +	module_t *sim_module;
@@ -737,10 +1519,13 @@ Index: wireshark/epan/dissectors/packet-gsmtap.c
 Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ wireshark/epan/dissectors/packet-card_app_toolkit.c	2010-11-19 22:16:55.000000000 +0100
-@@ -0,0 +1,502 @@
++++ wireshark/epan/dissectors/packet-card_app_toolkit.c	2010-11-20 13:13:26.000000000 +0100
+@@ -0,0 +1,726 @@
 +/* packet-card_app_toolkit
-+ * Routines for packet dissection of ETSI TS 102 223 / 3GPP 31.111
++ * Routines for packet dissection of
++ *	ETSI TS 102 223 v10.0.0  (Release 10 / 2010-10)
++ *	3GPP TS 11.14 v8.17.0 (Release 1999 / 2004-09)
++ *	3GPP TS 31.111
 + * Copyright 2010 by Harald Welte <laforge@gnumonks.org>
 + *
 + * $Id$
@@ -777,6 +1562,8 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +
 +#include <stdio.h>
 +
++#include "packet-e212.h"
++
 +static int proto_cat = -1;
 +
 +static int hf_cat_tlv = -1;
@@ -791,6 +1578,16 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +static int hf_ctlv_dur_time_unit = -1;
 +static int hf_ctlv_result_gen = -1;
 +static int hf_ctlv_text_string_enc = -1;
++static int hf_ctlv_event = -1;
++static int hf_ctlv_tone = -1;
++static int hf_ctlv_loc_status = -1;
++static int hf_ctlv_bearer = -1;
++static int hf_ctlv_bearer_descr = -1;
++static int hf_ctlv_transport_ptype = -1;
++static int hf_ctlv_transport_port = -1;
++static int hf_ctlv_access_tech = -1;
++static int hf_ctlv_loci_lac = -1;
++static int hf_ctlv_loci_cell_id = -1;
 +
 +static int ett_cat = -1;
 +static int ett_elem = -1;
@@ -865,7 +1662,7 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +	{ 0x32, "Bearer" },
 +	{ 0x33, "Provisioning Reference File" },
 +	{ 0x34, "Browser Termination Cause" },
-+	{ 0x35, "Bearer d escription" },
++	{ 0x35, "Bearer description" },
 +	{ 0x36, "Channel data" },
 +	{ 0x37, "Channel data length" },
 +	{ 0x38, "Channel status" },
@@ -1054,6 +1851,129 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +	{ 0, NULL }
 +};
 +
++/* TS 102 223 - Chapter 8.16 */
++static const value_string tone_vals[] = {
++	/* Standard supervisory tones */
++	{ 0x01, "Dial tone" },
++	{ 0x02, "Called subscriber busy" },
++	{ 0x03, "Congestion" },
++	{ 0x04, "Radio path acknowledge" },
++	{ 0x05, "Radio path not available / Call dropped" },
++	{ 0x06, "Error / Special information" },
++	{ 0x07, "Call waiting tone" },
++	{ 0x08, "Ringing tone" },
++	/* Terminal proprietary tones */
++	{ 0x10, "General beep" },
++	{ 0x11, "Positive acknowledgement tone" },
++	{ 0x12, "Negative acknowledgement or error tone" },
++	{ 0x13, "Ringing tone as selected by the oser for incoming speech call" },
++	{ 0x14, "Alert tone as selected by the user for incoming SMS" },
++	{ 0x15, "Critical alert" },
++	{ 0x20, "Vibrate only, if available" },
++	/* Themed tones */
++	{ 0x30, "happy tone" },
++	{ 0x31, "sad tone" },
++	{ 0x32, "urgent action tone" },
++	{ 0x33, "question tone" },
++	{ 0x34, "message received tone" },
++	/* Melody tones */
++	{ 0x40, "Melody 1" },
++	{ 0x41, "Melody 2" },
++	{ 0x42, "Melody 3" },
++	{ 0x43, "Melody 4" },
++	{ 0x44, "Melody 5" },
++	{ 0x45, "Melody 6" },
++	{ 0x46, "Melody 7" },
++	{ 0x47, "Melody 8" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.25 */
++static const value_string event_list_vals[] = {
++	{ 0x00, "MT call" },
++	{ 0x01, "Call connected" },
++	{ 0x02, "Call disconnected" },
++	{ 0x03, "Location status" },
++	{ 0x04, "User activity" },
++	{ 0x05, "Idle screen available" },
++	{ 0x06, "Card reader status" },
++	{ 0x07, "Language selection" },
++	{ 0x08, "Browser termination" },
++	{ 0x09, "Data available" },
++	{ 0x0a, "Channel status" },
++	{ 0x0b, "Access Technology Change (single access technology)" },
++	{ 0x0c, "Display parameters changed" },
++	{ 0x0d, "Local connection" },
++	{ 0x0e, "Network Search Mode Change" },
++	{ 0x0f, "Browsing status" },
++	{ 0x10, "Frames Informations Change" },
++	{ 0x11, "3GPP I-WLAN Access Status" },
++	{ 0x12, "3GPP Network Rejection" },
++	{ 0x13, "HCI connectivity event" },
++	{ 0x14, "Access Technology Change (multiple access technologies)" },
++	{ 0x15, "3GPP CSG cell selection" },
++	{ 0x16, "Contactless state request" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.27 */
++static const value_string loc_status_vals[] = {
++	{ 0x00, "Normal service" },
++	{ 0x01, "Limited service" },
++	{ 0x02, "No service" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.49 + TS 11.14 Chapter 12.49 */
++static const value_string bearer_vals[] = {
++	{ 0x00, "SMS" },
++	{ 0x01, "CSD" },
++	{ 0x02, "USSD" },
++	{ 0x03, "GPRS / packet switched" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.52 + TS 11.14 Chapter 12.52 */
++static const value_string bearer_descr_vals[] = {
++	{ 0x01, "CSD" },
++	{ 0x02, "GPRS" },
++	{ 0x03, "default bearer for requested transport layer" },
++	{ 0x04, "local link techonlogy independent" },
++	{ 0x05, "Bluetooth" },
++	{ 0x06, "IrDA" },
++	{ 0x07, "RS232" },
++	{ 0x08, "TIA/EIA/IS-820 packet data service" },
++	{ 0x09, "GSM/3GPP ???" },
++	{ 0x0a, "3GPP I-WLAN" },
++	{ 0x0b, "3GPP E-UTRAN / Mapped UTRAN packet service" },
++	{ 0x10, "USB" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.59 + TS 11.14 Chapter 12.59 */
++static const value_string transport_ptype_vals[] = {
++	{ 0x01, "UDP, UICC in client mode, remote connection" },
++	{ 0x02, "TCP, UICC in client mode, remote connection" },
++	{ 0x03, "TCP, UICC in server mode" },
++	{ 0x04, "UDP, UICC in client mode, local connection" },
++	{ 0x05, "TCP, UICC in client mode, locel connection" },
++	{ 0, NULL }
++};
++
++/* TS 102 223 - Chapter 8.61 */
++static const value_string access_tech_vals[] = {
++	{ 0x00, "GSM" },
++	{ 0x01, "TIA/EIA-553" },
++	{ 0x02, "TIA/EIA-136-C" },
++	{ 0x03, "UTRAN" },
++	{ 0x04, "TETRA" },
++	{ 0x05, "TIE/EIA-95" },
++	{ 0x06, "cdma2000 1x (TIA/EIA/IS-2000)" },
++	{ 0x07, "cdma2000 HRPD (TIA/EIA/IS-856)" },
++	{ 0x08, "E-UTRAN" },
++	{ 0, NULL }
++};
++
 +static void
 +dissect_cat(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
 +{
@@ -1067,6 +1987,7 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +		proto_item *ti;
 +		guint8 tag, len, g8;
 +		void *ptr;
++		unsigned int i;
 +
 +		tag = tvb_get_guint8(tvb, pos++);
 +		len = tvb_get_guint8(tvb, pos++);
@@ -1093,7 +2014,7 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +
 +		switch (tag & 0x7f) {
 +		case 0x01:	/* command details */
-+			if (len != 3)
++			if (len < 3)
 +				break;
 +			proto_tree_add_item(elem_tree, hf_ctlv_cmd_nr, tvb, pos, 1, FALSE);
 +			proto_tree_add_item(elem_tree, hf_ctlv_cmd_type, tvb, pos+1, 1, FALSE);
@@ -1104,7 +2025,7 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +					val_to_str(g8, cmd_type_vals, "%02x "));
 +			break;
 +		case 0x02:	/* device identity */
-+			if (len != 2)
++			if (len < 2)
 +				break;
 +			proto_tree_add_item(elem_tree, hf_ctlv_devid_src, tvb, pos, 1, FALSE);
 +			proto_tree_add_item(elem_tree, hf_ctlv_devid_dst, tvb, pos+1, 1, FALSE);
@@ -1113,7 +2034,7 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +			proto_tree_add_item(elem_tree, hf_ctlv_result_gen, tvb, pos, 1, FALSE);
 +			break;
 +		case 0x04:	/* Duration */
-+			if (len != 2)
++			if (len < 2)
 +				break;
 +			proto_tree_add_item(elem_tree, hf_ctlv_dur_time_intv, tvb, pos+1, 1, FALSE);
 +			proto_tree_add_item(elem_tree, hf_ctlv_dur_time_unit, tvb, pos, 1, FALSE);
@@ -1133,6 +2054,46 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +				/* FIXME: 7bit and UCS-2 */
 +				break;
 +			}
++			break;
++		case 0x0e:	/* tone */
++			if (len < 1)
++				break;
++			proto_tree_add_item(elem_tree, hf_ctlv_tone, tvb, pos, 1, FALSE);
++			break;
++		case 0x13:	/* location information */
++			if (len < 7)
++				break;
++			/* MCC/MNC / LAC / CellID */
++			dissect_e212_mcc_mnc(tvb, pinfo, elem_tree, pos, TRUE);
++			proto_tree_add_item(elem_tree, hf_ctlv_loci_lac, tvb, pos+3, 2, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_loci_cell_id, tvb, pos+5, 2, FALSE);
++			break;
++		case 0x19:	/* event list */
++			for (i = 0; i < len; i++)
++				proto_tree_add_item(elem_tree, hf_ctlv_event, tvb, pos+i, 1, FALSE);
++			break;
++		case 0x1b:	/* location status */
++			for (i = 0; i < len; i++)
++				proto_tree_add_item(elem_tree, hf_ctlv_loc_status, tvb, pos+i, 1, FALSE);
++			break;
++		case 0x32:	/* bearer */
++			for (i = 0; i < len; i++)
++				proto_tree_add_item(elem_tree, hf_ctlv_bearer, tvb, pos+i, 1, FALSE);
++			break;
++		case 0x35:	/* bearer description */
++			proto_tree_add_item(elem_tree, hf_ctlv_bearer, tvb, pos, 1, FALSE);
++			for (i = 1; i < len; i++)
++				proto_tree_add_item(elem_tree, hf_ctlv_bearer_descr, tvb, pos+i, 1, FALSE);
++			break;
++		case 0x3c:	/* UICC/terminal interface transport level */
++			if (len < 3)
++				break;
++			proto_tree_add_item(elem_tree, hf_ctlv_transport_ptype, tvb, pos, 1, FALSE);
++			proto_tree_add_item(elem_tree, hf_ctlv_transport_port, tvb, pos+1, 2, FALSE);
++			break;
++		case 0x3f:	/* access technology */
++			for (i = 1; i < len; i++)
++				proto_tree_add_item(elem_tree, hf_ctlv_access_tech, tvb, pos+i, 1, FALSE);
 +			break;
 +		}
 +
@@ -1196,6 +2157,51 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +		{ &hf_ctlv_text_string_enc,
 +			{ "Text String Encoding", "cat.comp_tlv.text_encoding",
 +			  FT_UINT8, BASE_HEX, VALS(text_encoding_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_event,
++			{ "Event", "cat.comp_tlv.event",
++			  FT_UINT8, BASE_HEX, VALS(event_list_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_tone,
++			{ "Tone", "cat.comp_tlv.tone",
++			  FT_UINT8, BASE_HEX, VALS(tone_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_loc_status,
++			{ "Location Status", "cat.comp_tlv.loc_status",
++			  FT_UINT8, BASE_HEX, VALS(loc_status_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_bearer,
++			{ "Bearer", "cat.comp_tlv.bearer",
++			  FT_UINT8, BASE_HEX, VALS(bearer_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_transport_ptype,
++			{ "Transport protocol type", "cat.comp_tlv.transport.ptype",
++			  FT_UINT8, BASE_HEX, VALS(transport_ptype_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_transport_port,
++			{ "Transport port", "cat.comp_tlv.transport.port",
++			  FT_UINT16, BASE_DEC, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_access_tech,
++			{ "Access technology", "cat.comp_tlv.access_tech",
++			  FT_UINT8, BASE_HEX, VALS(access_tech_vals), 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_loci_lac,
++			{ "Location Area Code", "cat.comp_tlv.loci.lac",
++			  FT_UINT16, BASE_HEX, NULL, 0,
++			  NULL, HFILL },
++		},
++		{ &hf_ctlv_loci_cell_id,
++			{ "Cell ID", "cat.comp_tlv.loci.cell_id",
++			  FT_UINT16, BASE_HEX, NULL, 0,
 +			  NULL, HFILL },
 +		},
 +	};
