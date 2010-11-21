@@ -14,8 +14,8 @@ Index: wireshark/epan/dissectors/Makefile.common
 Index: wireshark/epan/dissectors/packet-gsm_sim.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
-+++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-20 19:47:28.000000000 +0100
-@@ -0,0 +1,1458 @@
++++ wireshark/epan/dissectors/packet-gsm_sim.c	2010-11-21 20:15:47.000000000 +0100
+@@ -0,0 +1,1528 @@
 +/* packet-gsm_sim.c
 + * Routines for packet dissection of GSM SIM APDUs (GSM TS 11.11)
 + *
@@ -77,6 +77,8 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +static int hf_bin_offset = -1;
 +static int hf_record_nr = -1;
 +static int hf_auth_rand = -1;
++static int hf_chan_op = -1;
++static int hf_chan_nr = -1;
 +
 +/* Chapter 5.2 TS 11.14 */
 +static int hf_tprof_b1 = -1;
@@ -353,6 +355,11 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0, NULL }
 +};
 +
++static const value_string chan_op_vals[] = {
++	{ 0x00, "Open Channel" },
++	{ 0x80, "Close Channel" },
++	{ 0, NULL }
++};
 +
 +static const value_string apdu_cla_vals[] = {
 +	{ 0xa0,	"GSM" },
@@ -399,6 +406,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +
 +/* Files at the MF level */
 +static const value_string mf_dfs[] = {
++	{ 0x3f00, "MF" },
 +	{ 0x7f20, "DF.GSM" },
 +	{ 0x7f10, "DF.TELECOM" },
 +	{ 0x7f22, "DF.IS-41" },
@@ -591,6 +599,37 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	{ 0x6fd7, "EF.MSK" },
 +	{ 0x6fd8, "EF.MUK" },
 +	{ 0x6fda, "EF.GBANL" },
++#if 0
++	{ 0, NULL }
++};
++
++static const value_string df_phonebook_efs[] = {
++#endif
++	{ 0x4f30, "EF.PBR" },
++	{ 0x4f4a, "EF.EXT1" },
++	{ 0x4f4b, "EF.AAS" },
++	{ 0x4f4c, "EF.GAS" },
++	{ 0x4f22, "EF.FSC" },
++	{ 0x4f23, "EF.CC" },
++	{ 0x4f24, "EF.PUID" },
++	{ 0x4f3a, "EF.ADN" },
++	{ 0x4f09, "EF.PBC" },
++	{ 0x4f11, "EF.ANRA" },
++	{ 0x4f13, "EF.ANRB" },
++	{ 0x4f50, "EF.EMAIL" },
++	{ 0x4f19, "EF.SNE" },
++	{ 0x4f21, "EF.UID" },
++	{ 0x4f26, "EF.GRP" },
++	{ 0x4f15, "EF.ANRC" },
++	{ 0x4f3b, "EF.ADN1" },
++	{ 0x4f0a, "EF.PBC1" },
++	{ 0x4f12, "EF.ANRA1" },
++	{ 0x4f14, "EF.ANRB1" },
++	{ 0x4f51, "EF.EMAIL1" },
++	{ 0x4f1a, "EF.SNE1" },
++	{ 0x4f20, "EF.UID1" },
++	{ 0x4f25, "EF.GRP1" },
++	{ 0x4f16, "EF.ANRC1" },
 +	{ 0, NULL }
 +};
 +
@@ -656,7 +695,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	/* Section 10.2.1.6 of TS 102 221 */
 +	{ 0x9862, "Authentication error, application specific" },
 +	{ 0x9863, "Security session or association expired" },
-+	{ 0, NULL },
++	{ 0, NULL }
 +};
 +
 +static const gchar *get_sw_string(guint16 sw)
@@ -721,6 +760,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +dissect_gsm_apdu(guint8 ins, guint8 p1, guint8 p2, guint8 p3,
 +		 tvbuff_t *tvb, int offset, packet_info *pinfo, proto_tree *tree)
 +{
++	guint8 g8;
 +	guint16 g16;
 +	tvbuff_t *subtvb;
 +	int i;
@@ -778,7 +818,7 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	case 0x20: /* VERIFY CHV */
 +	case 0x24: /* CHANGE CHV */
 +	case 0x2C: /* UNBLOCK CHV */
-+		col_append_fstr(pinfo->cinfo, COL_INFO, "CHV=%u ", offset+P2_OFFS, 1, FALSE);
++		col_append_fstr(pinfo->cinfo, COL_INFO, "CHV=%u ", p2);
 +		offset += DATA_OFFS;
 +		break;
 +	case 0x88: /* RUN GSM ALGO */
@@ -814,6 +854,24 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +	case 0x14: /* TERMINAL RESPONSE */
 +		subtvb = tvb_new_subset(tvb, offset+DATA_OFFS, p3, p3);
 +		call_dissector(sub_handle_cap, subtvb, pinfo, tree);
++		break;
++	case 0x70: /* MANAGE CHANNEL */
++		proto_tree_add_item(tree, hf_chan_op, tvb, offset-3, 1, FALSE);
++		col_append_fstr(pinfo->cinfo, COL_INFO, "Operation=%s ",
++				val_to_str(p1, chan_op_vals, "%02x"));
++		switch (p1) {
++		case 0x00: /* OPEN */
++			/* Logical channels are assigned by the card, so in 'open' they are
++			 * in the DATA, whereas in close their number is in P2 */
++			proto_tree_add_item(tree, hf_chan_nr, tvb, offset+DATA_OFFS, 1, FALSE);
++			g8 = tvb_get_guint8(tvb, offset+DATA_OFFS);
++			col_append_fstr(pinfo->cinfo, COL_INFO, "Channel=%d ", g8);
++			break;
++		case 0x80: /* CLOSE */
++			proto_tree_add_item(tree, hf_chan_nr, tvb, offset-2, 1, FALSE);
++			col_append_fstr(pinfo->cinfo, COL_INFO, "Channel=%d ", p2);
++			break;
++		}
 +		break;
 +	default:
 +		return -1;
@@ -965,6 +1023,18 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +			  FT_BYTES, BASE_NONE, NULL, 0,
 +			  "GSM Authentication Random Challenge", HFILL }
 +		},
++		{ &hf_chan_nr,
++			{ "Channel Number", "iso7816.chan_nr",
++			  FT_UINT8, BASE_DEC, NULL, 0,
++			  "ISO 7816-4 Logical Channel Number", HFILL }
++		},
++		{ &hf_chan_op,
++			{ "Channel Operation", "iso7816.chan_op",
++			  FT_UINT8, BASE_HEX, VALS(chan_op_vals), 0,
++			  "ISO 7816-4 Logical Channel Operation", HFILL }
++		},
++
++
 +		/* Terminal Profile Byte 1 */
 +		{ &hf_tprof_b1,
 +			{ "Terminal Profile Byte 1 (Download)", "iso7816.tp.b1",
