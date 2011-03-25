@@ -1,0 +1,13 @@
+Osmocom SIMTRACE
+======================================================================
+(C) 2010 by Harald Welte <laforge@gnumonks.org>
+
+SIMTRACE is a program that can be used for tracing the communication
+betewen a phone and the SIM card.  More generally, it can trace any
+ISO 7816 based smart card interface.
+
+This repository contains a host program 'simtrace' as well as a patch
+for wireshark.
+
+The corresponding device firmware can be found in the openpcd.git
+repository on git.gnumonks.org.
