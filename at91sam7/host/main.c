@@ -38,7 +38,7 @@
 #include "simtrace_usb.h"
 #include "apdu_split.h"
 
-#include <osmocore/gsmtap.h>
+#include <osmocom/core/gsmtap.h>
 
 static struct usb_dev_handle *udev;
 static struct apdu_split *as;
