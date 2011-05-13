@@ -1,3 +1,8 @@
-EESchema-DOCLIB  Version 2.0  Date: So 21 Nov 2010 00:39:43 CET
+EESchema-DOCLIB  Version 2.0  Date: Mo 22 Nov 2010 13:18:43 CET
+#
+$CMP SC
+D Symbole general de connecteur
+K CONN
+$ENDCMP
 #
 #End Doc Library
