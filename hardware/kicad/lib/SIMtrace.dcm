@@ -1,4 +1,4 @@
-EESchema-DOCLIB  Version 2.0  Date: Mo 06 Dez 2010 13:50:44 CET
+EESchema-DOCLIB  Version 2.0  Date: Sa 07 Mai 2011 21:47:47 CEST
 #
 $CMP JTAG
 D symbole general de connecteur
@@ -11,11 +11,6 @@ $ENDCMP
 #
 $CMP LM3046M
 F datasheet/LM3046.pdf
-$ENDCMP
-#
-$CMP SAM-BA
-D Symbole general de connecteur
-K CONN
 $ENDCMP
 #
 #End Doc Library
