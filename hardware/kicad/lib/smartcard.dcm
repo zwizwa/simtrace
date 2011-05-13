@@ -1,6 +1,19 @@
-EESchema-DOCLIB  Version 2.0  Date: Mo 22 Nov 2010 13:21:06 CET
+EESchema-DOCLIB  Version 2.0  Date: Do 25 Nov 2010 18:05:11 CET
 #
-$CMP SC
+$CMP ISO7816_NC
+D smart card with normally closed presence switch
+$ENDCMP
+#
+$CMP ISO7816_NO
+D smart card with normally closed presence switch
+$ENDCMP
+#
+$CMP ISO7816_SIMPLE
+D Symbole general de connecteur
+K CONN
+$ENDCMP
+#
+$CMP PORT_SIMPLE
 D Symbole general de connecteur
 K CONN
 $ENDCMP

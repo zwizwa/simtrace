@@ -1,5 +1,23 @@
-update=Mi 24 Nov 2010 08:47:36 CET
+update=Do 02 Dez 2010 14:59:43 CET
 last_client=eeschema
+[pcbnew]
+[pcbnew/libraries]
+LibName1=sockets
+LibName2=connect
+LibName3=discret
+LibName4=pin_array
+LibName5=divers
+LibName6=libcms
+LibName7=display
+LibName8=valves
+LibName9=led
+LibName10=dip_sockets
+LibDir=
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms
 [eeschema]
 version=1
 LibDir=
@@ -67,7 +85,7 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=lib/at91sam7sxxx-au
-LibName32=lib/smartcard
-LibName33=lib/v-reg-2
-LibName34=lib/con-usb
-LibName35=lib/debug
+LibName32=lib/v-reg-2
+LibName33=lib/con-usb
+LibName34=lib/smartcard
+LibName35=lib/SIMtrace

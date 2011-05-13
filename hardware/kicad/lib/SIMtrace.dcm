@@ -1,0 +1,7 @@
+EESchema-DOCLIB  Version 2.0  Date: Do 02 Dez 2010 17:59:22 CET
+#
+$CMP LM3046M
+F datasheet/LM3046.pdf
+$ENDCMP
+#
+#End Doc Library
