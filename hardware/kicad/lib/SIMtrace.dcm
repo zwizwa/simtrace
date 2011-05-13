@@ -1,4 +1,8 @@
-EESchema-DOCLIB  Version 2.0  Date: Mo 09 Mai 2011 17:23:10 CEST
+EESchema-DOCLIB  Version 2.0  Date: Do 12 Mai 2011 20:32:22 CEST
+#
+$CMP BC847
+F transistors/bipolar/*.*
+$ENDCMP
 #
 $CMP JTAG
 D symbole general de connecteur
