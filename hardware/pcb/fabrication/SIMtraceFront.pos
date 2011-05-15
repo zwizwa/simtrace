@@ -1,0 +1,52 @@
+### Module positions - created on So 15 Mai 2011 11:54:54 CEST ###
+### Printed by PcbNew version pcbnew (2010-00-09 BZR 23xx)-stable
+## Unit = inches, Angle = deg.
+## Side : Front
+# Ref    Val                  PosX       PosY        Rot     Side
+C1       2.2uF                2.9200     4.6500     180.0    Front
+C3       100nF                3.2646     4.2871      90.0    Front
+C4       100nF                3.0600     5.1150     270.0    Front
+C5       33pF                 4.2650     4.7850      90.0    Front
+C6       10nF                 2.6600     4.5100      90.0    Front
+C7       100nF                3.7050     4.5700       0.0    Front
+C9       100nF                3.5400     4.2550      90.0    Front
+C10      1nF                  2.5350     4.5500     180.0    Front
+C11      15pF                 3.8350     4.2450      90.0    Front
+C12      2.2uF                2.9200     4.7450     180.0    Front
+C13      15pF                 3.7350     4.2450      90.0    Front
+C14      1uF                  4.0750     5.4900     180.0    Front
+C15      100nF                3.0300     4.3950      90.0    Front
+C16      100nF                3.2850     5.1150     270.0    Front
+C17      10pF                 3.1633     4.2588     180.0    Front
+C18      10pF                 2.9150     4.2550     270.0    Front
+C19      100nF                3.1700     5.1150     270.0    Front
+C20      100nF                3.4250     4.2550      90.0    Front
+C21      10nF                 3.8650     5.4900     180.0    Front
+C22      1uF                  3.8650     5.4050       0.0    Front
+C23      100nF                2.7250     4.3800       0.0    Front
+D4       RED                  3.0200     5.3400     180.0    Front
+D5       GREEN                3.0200     5.4250     180.0    Front
+FB1      FILTER               4.3900     5.2700     270.0    Front
+FB2      FILTER               2.5500     4.3800       0.0    Front
+IC4      QS3244               2.1700     4.2350     180.0    Front
+Q1       BC847                4.6050     4.6100      90.0    Front
+Q2       BC847                4.2250     4.4050     180.0    Front
+R1       100K                 4.5950     4.4750     180.0    Front
+R2       10K                  4.4700     4.7900      90.0    Front
+R3       1K5                  4.3750     4.7900      90.0    Front
+R4       100K                 2.7700     3.8650     270.0    Front
+R5       100K                 2.8700     3.8650     270.0    Front
+R6       100K                 2.9700     3.8650     270.0    Front
+R7       100K                 3.0700     3.8700     270.0    Front
+R8       100K                 3.2700     3.8700     270.0    Front
+R9       27R                  3.9950     4.7450       0.0    Front
+R10      27R                  3.9900     4.6500       0.0    Front
+R11      1k5                  2.5350     4.4700       0.0    Front
+R12      100k                 4.1142     4.1267       0.0    Front
+R13      150R                 3.1750     5.3400     180.0    Front
+R14      150R                 3.1750     5.4250     180.0    Front
+R15      10K                  2.5700     3.8950      90.0    Front
+R16      10K                  4.2300     4.5600       0.0    Front
+R17      10k                  3.5050     5.5150       0.0    Front
+R18      10k                  3.4100     5.0900     180.0    Front
+## End
