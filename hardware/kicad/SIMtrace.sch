@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Fr 13 Mai 2011 02:01:22 CEST
+EESchema Schematic File Version 2  date Fr 13 Mai 2011 12:32:07 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -893,7 +893,7 @@ U 1 1 4DC7A1CA
 P 1200 1600
 F 0 "Q1" H 1200 1450 50  0000 R CNN
 F 1 "BC847" H 1050 1500 50  0000 R CNN
-F 2 "SO14E" H 1200 1600 60  0001 C CNN
+F 2 "SOT23EBC" H 1200 1600 60  0001 C CNN
 F 4 "45V" H 750 1400 50  0000 C CNN "Field1"
 F 5 "100mA" H 950 1400 50  0000 C CNN "Field2"
 	1    1200 1600

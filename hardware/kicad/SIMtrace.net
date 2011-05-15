@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  Fr 13 Mai 2011 02:00:46 CEST
+# EESchema Netlist Version 1.1 created  Fr 13 Mai 2011 12:31:44 CEST
 (
  ( /4DC804A6 PIN_ARRAY_2X1 BT1 BATTERY
   ( 1 N-000062 )
@@ -273,7 +273,7 @@
   ( SW1 /SW_SIM )
   ( SW2 3V3 )
  )
- ( /4DC7A1CA SO14E Q1 BC847
+ ( /4DC7A1CA SOT23EBC Q1 BC847
   ( 1 /UDP_PUP )
   ( 2 N-000013 )
   ( 3 3V3 )

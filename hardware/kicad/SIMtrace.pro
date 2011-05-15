@@ -1,4 +1,4 @@
-update=Fr 13 Mai 2011 01:59:57 CEST
+update=So 15 Mai 2011 12:48:27 CEST
 last_client=pcbnew
 [general]
 version=1
@@ -93,7 +93,7 @@ DrawLar=150
 EdgeLar=150
 TxtLar=120
 MSegLar=150
-LastNetListRead=
+LastNetListRead=SIMtrace.net
 [pcbnew/libraries]
 LibDir=
 LibName1=sockets
