@@ -1,4 +1,4 @@
-Cmp-Mod V01 Genere par PcbNew le So 15 Mai 2011 12:35:45 CEST
+Cmp-Mod V01 Genere par PcbNew le Di 17 Mai 2011 13:20:11 CEST
 
 BeginCmp
 TimeStamp = 4DCD07C6
@@ -57,7 +57,7 @@ IdModule  = PIN_ARRAY_2X1;
 EndCmp
 
 BeginCmp
-TimeStamp = 4DCD07D0
+TimeStamp = 4DD21AFA
 Path = /4DC804A6
 Reference = BT1;
 ValeurCmp = BATTERY;
@@ -497,7 +497,7 @@ IdModule  = TQFP_64;
 EndCmp
 
 BeginCmp
-TimeStamp = 4DCD0832
+TimeStamp = 4DD21AF7
 Path = /4CFAC6EA
 Reference = J1;
 ValeurCmp = USB-B_MINI;

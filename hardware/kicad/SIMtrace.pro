@@ -1,4 +1,4 @@
-update=So 15 Mai 2011 12:48:27 CEST
+update=Di 17 Mai 2011 13:22:46 CEST
 last_client=pcbnew
 [general]
 version=1
@@ -90,7 +90,7 @@ TxtModH=600
 TxtModW=120
 VEgarde=100
 DrawLar=150
-EdgeLar=150
+EdgeLar=80
 TxtLar=120
 MSegLar=150
 LastNetListRead=SIMtrace.net
