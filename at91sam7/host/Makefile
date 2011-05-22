@@ -1,4 +1,4 @@
-LDFLAGS=-lusb #-losmocore
+LDFLAGS=-lusb -losmocore
 
 all: simtrace
 
