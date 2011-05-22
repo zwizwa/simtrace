@@ -1,6 +1,6 @@
 /* simtrace - main program for the host PC
  *
- * (C) 2010 by Harald Welte <hwelte@hmw-consulting.de>
+ * (C) 2010-2011 by Harald Welte <hwelte@hmw-consulting.de>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License version 2 
@@ -39,12 +39,13 @@
 #include "apdu_split.h"
 
 #include <osmocom/core/gsmtap.h>
+#include <osmocom/core/gsmtap_util.h>
 
 static struct usb_dev_handle *udev;
 static struct apdu_split *as;
-static int gsmtap_fd;
+static struct gsmtap_inst *g_gti;
 
-static int gsmtap_send(const uint8_t *apdu, unsigned int len)
+static int gsmtap_send_sim(const uint8_t *apdu, unsigned int len)
 {
 	struct gsmtap_hdr *gh;
 	unsigned int gross_len = len + sizeof(*gh);
@@ -62,7 +63,7 @@ static int gsmtap_send(const uint8_t *apdu, unsigned int len)
 
 	memcpy(buf + sizeof(*gh), apdu, len);
 
-	rc = write(gsmtap_fd, buf, gross_len);
+	rc = write(gsmtap_inst_fd(g_gti), buf, gross_len);
 	if (rc < 0) {
 		perror("write gsmtap");
 		free(buf);
@@ -76,7 +77,7 @@ static int gsmtap_send(const uint8_t *apdu, unsigned int len)
 static void apdu_out_cb(uint8_t *buf, unsigned int len, void *user_data)
 {
 	printf("APDU: %s\n", hexdump(buf, len));
-	gsmtap_send(buf, len);
+	gsmtap_send_sim(buf, len);
 }
 
 static int process_usb_msg(uint8_t *buf, int len)
@@ -140,7 +141,6 @@ int main(int argc, char **argv)
 	int rc, c;
 	int skip_atr = 0;
 	unsigned int msg_count, byte_count;
-	struct sockaddr_in sin;
 
 	print_welcome();
 
@@ -164,24 +164,12 @@ int main(int argc, char **argv)
 		}
 	}
 
-	sin.sin_family= AF_INET;
-	sin.sin_port = htons(GSMTAP_UDP_PORT);
-	rc = inet_aton(gsmtap_host, &sin.sin_addr);
-	if (rc < 0) {
-		perror("parsing gsmtap IP address");
-		exit(2);
+	g_gti = gsmtap_source_init(gsmtap_host, GSMTAP_UDP_PORT, 0);
+	if (!g_gti) {
+		perror("unable to open GSMTAP");
+		exit(1);
 	}
-	rc = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-	if (rc < 0) {
-		perror("gsmtap initialization");
-		exit(2);
-	}
-	gsmtap_fd = rc;
-	rc = connect(rc, (struct sockaddr *)&sin, sizeof(sin));
-	if (rc < 0) {
-		perror("connecting GSMTAP socket");
-		exit(2);
-	}
+	gsmtap_source_add_sink(g_gti);
 
 	udev = usb_find_open(SIMTRACE_USB_VENDOR, SIMTRACE_USB_PRODUCT);
 	if (!udev) {
