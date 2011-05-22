@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Fr 13 Mai 2011 12:32:07 CEST
+EESchema Schematic File Version 2  date So 22 Mai 2011 15:32:18 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -32,7 +32,6 @@ LIBS:valves
 LIBS:at91sam7sxxx-au
 LIBS:SIMtrace
 LIBS:smartcard
-LIBS:SIMtrace-cache
 EELAYER 24  0
 EELAYER END
 $Descr A4 11700 8267
@@ -1782,7 +1781,7 @@ U 1 1 4CE9ADCF
 P 9950 3100
 F 0 "P2" H 9950 3450 60  0000 C CNN
 F 1 "DEBUG" V 10150 3100 60  0000 C CNN
-F 2 "pin_array_3x2" H 9950 3100 60  0001 C CNN
+F 2 "PIN_ARRAY-6X1" H 9950 3100 60  0001 C CNN
 	1    9950 3100
 	1    0    0    -1  
 $EndComp

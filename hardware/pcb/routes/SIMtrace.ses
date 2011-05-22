@@ -21,9 +21,6 @@
       (place JP1 39900 -39700 front 0)
       (place BT1 46600 -54200 front 270)
     )
-    (component pin_array_3x2
-      (place P2 39250 -36650 front 0)
-    )
     (component PUSH_BUTTON
       (place SW2 23350 -36900 front 0)
       (place SW1 44770 -42033 front 0)
@@ -103,6 +100,9 @@
     (component "USB_MINI-B"
       (place J1 48150 -50000 front 90)
     )
+    (component "PIN_ARRAY-6X1"
+      (place P2 39550 -36000 front 0)
+    )
   )
   (was_is
   )
@@ -136,28 +136,6 @@
       (net +1.8V
         (wire
           (path Front 80
-            31477 -45123
-            31801 -45123
-            32077 -45399
-            32976 -45399
-            33443 -44932
-          )
-        )
-        (wire
-          (path Front 80
-            30639 -47489
-            30196 -47489
-          )
-        )
-        (wire
-          (path Front 80
-            29807 -47493
-            30192 -47493
-            30196 -47489
-          )
-        )
-        (wire
-          (path Front 80
             29807 -47493
             29811 -47489
           )
@@ -170,6 +148,32 @@
           )
           (type protect)
         )
+        (via "Via[0-1]_35:25_mil" 32935 -48528
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 31231 -46702
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            31477 -45123
+            31801 -45123
+            32077 -45399
+            32976 -45399
+            33443 -44932
+            33443 -44489
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            30639 -47489
+            30196 -47489
+            30192 -47493
+            29807 -47493
+          )
+          (type protect)
+        )
         (wire
           (path Back 80
             31231 -46702
@@ -177,18 +181,14 @@
             31232 -46825
             32935 -48528
           )
-        )
-        (wire
-          (path Front 80
-            33443 -44489
-            33443 -44932
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             31477 -45123
             31477 -44489
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -196,6 +196,7 @@
             31477 -46456
             31477 -45123
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -211,6 +212,7 @@
             30639 -46702
             31231 -46702
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -220,6 +222,7 @@
             29754 -47737
             29754 -47546
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -230,12 +233,15 @@
             28527 -47940
             28710 -48122
           )
+          (type protect)
         )
         (wire
           (path Front 80
             28710 -48122
             28700 -48132
+            28700 -48500
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -243,12 +249,6 @@
             29754 -47546
           )
           (type protect)
-        )
-        (wire
-          (path Front 80
-            28700 -48500
-            28700 -48132
-          )
         )
         (wire
           (path Front 80
@@ -268,20 +268,12 @@
         )
         (wire
           (path Front 80
+            32852 -49175
             32852 -48732
             32935 -48649
             32935 -48528
           )
-        )
-        (wire
-          (path Front 80
-            32852 -49175
-            32852 -48732
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 32935 -48528
-        )
-        (via "Via[0-1]_35:25_mil" 31231 -46702
+          (type protect)
         )
         (wire
           (path Front 80
@@ -301,6 +293,9 @@
         )
       )
       (net //RESET
+        (via "Via[0-1]_35:25_mil" 35908 -47209
+          (type protect)
+        )
         (wire
           (path Back 80
             33700 -37200
@@ -308,13 +303,16 @@
             35901 -47202
             35908 -47209
           )
+          (type protect)
         )
         (wire
           (path Front 80
             41442 -41267
             42637 -41267
             42658 -41246
+            43431 -41246
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -325,40 +323,25 @@
             41073 -41636
             41442 -41267
           )
-        )
-        (wire
-          (path Front 80
-            43431 -41246
-            42658 -41246
-          )
-        )
-        (wire
-          (path Front 80
-            35768 -47096
-            35881 -47209
-            35908 -47209
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -47096
             35768 -47096
+            35881 -47209
+            35908 -47209
           )
-        )
-        (via "Via[0-1]_35:25_mil" 35908 -47209
+          (type protect)
         )
         (wire
           (path Front 80
             43431 -41246
             44204 -41246
-          )
-        )
-        (wire
-          (path Front 80
-            44905 -43750
             44905 -41947
-            44204 -41246
+            44905 -43750
           )
+          (type protect)
         )
       )
       (net "/A-B-DETECT"
@@ -374,13 +357,9 @@
             46015 -50938
             46166 -50787
             46166 -49685
-          )
-        )
-        (wire
-          (path Front 80
             45748 -49685
-            46166 -49685
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -389,17 +368,26 @@
             45328 -49685
             45748 -49685
           )
+          (type protect)
         )
       )
       (net /BOOTLOADER
+        (via "Via[0-1]_35:25_mil" 30885 -44984
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 31803 -45583
+          (type protect)
+        )
         (wire
           (path Front 80
+            33836 -44489
             33836 -44932
             33957 -45053
             33957 -45561
             33935 -45583
             31803 -45583
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -407,12 +395,7 @@
             31484 -45583
             31803 -45583
           )
-        )
-        (wire
-          (path Front 80
-            33836 -44489
-            33836 -44932
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -422,31 +405,34 @@
             25331 -39019
             25700 -38650
           )
-        )
-        (via "Via[0-1]_35:25_mil" 30885 -44984
-        )
-        (via "Via[0-1]_35:25_mil" 31803 -45583
-        )
-        (wire
-          (path Front 80
-            25462 -36113
-            25700 -36351
-            25700 -38650
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             24689 -36113
             25462 -36113
+            25700 -36351
+            25700 -38650
           )
+          (type protect)
         )
       )
       (net /CLK_PHONE
+        (via "Via[0-1]_35:25_mil" 34344 -47293
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 21785 -40770
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 32760 -46623
+          (type protect)
+        )
         (wire
           (path Front 80
             35325 -47293
             34344 -47293
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -454,6 +440,7 @@
             33674 -46623
             34344 -47293
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -463,8 +450,7 @@
             32760 -44597
             32760 -46623
           )
-        )
-        (via "Via[0-1]_35:25_mil" 34344 -47293
+          (type protect)
         )
         (wire
           (path Front 80
@@ -472,8 +458,7 @@
             21707 -40770
             21785 -40770
           )
-        )
-        (via "Via[0-1]_35:25_mil" 21785 -40770
+          (type protect)
         )
         (wire
           (path Front 80
@@ -482,8 +467,7 @@
             31222 -48080
             30639 -48080
           )
-        )
-        (via "Via[0-1]_35:25_mil" 32760 -46623
+          (type protect)
         )
         (wire
           (path Front 80
@@ -492,12 +476,14 @@
             19119 -41853
             16947 -41853
           )
+          (type protect)
         )
         (wire
           (path Front 80
             21570 -41300
             21570 -40907
           )
+          (type protect)
         )
       )
       (net /CLK_SIM
@@ -505,8 +491,9 @@
           (path Front 80
             34026 -47521
             34191 -47686
-            34882 -47686
+            35325 -47686
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -517,50 +504,44 @@
             33386 -47521
             34026 -47521
           )
-        )
-        (wire
-          (path Front 80
-            34882 -46112
-            34026 -46968
-            34026 -47521
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -46112
             34882 -46112
+            34026 -46968
+            34026 -47521
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25403 -50294
-            24807 -50294
-          )
-        )
-        (wire
-          (path Front 80
-            21310 -43400
-            21310 -44508
-            20349 -45469
-            20349 -49522
             21121 -50294
-            24807 -50294
+            20349 -49522
+            20349 -45469
+            21310 -44508
+            21310 -43400
           )
-        )
-        (wire
-          (path Front 80
-            35325 -47686
-            34882 -47686
-          )
+          (type protect)
         )
       )
       (net /CS
+        (via "Via[0-1]_35:25_mil" 33972 -48587
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 33174 -52409
+          (type protect)
+        )
         (wire
           (path Front 80
+            34332 -54242
             34332 -53863
             33174 -52705
             33174 -52409
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -569,29 +550,16 @@
             33114 -52349
             33174 -52409
           )
-        )
-        (wire
-          (path Front 80
-            33639 -48732
-            33827 -48732
-            33972 -48587
-          )
-        )
-        (wire
-          (path Front 80
-            34332 -54242
-            34332 -53863
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             33639 -49175
             33639 -48732
+            33827 -48732
+            33972 -48587
           )
-        )
-        (via "Via[0-1]_35:25_mil" 33972 -48587
-        )
-        (via "Via[0-1]_35:25_mil" 33174 -52409
+          (type protect)
         )
       )
       (net /DDM
@@ -651,72 +619,57 @@
       )
       (net /DRXD
         (wire
-          (path Back 80
-            39250 -36150
-            39750 -36650
-            39750 -38084
-            36961 -40873
-            36961 -48107
-            35450 -49618
-          )
-        )
-        (wire
           (path Front 80
-            34033 -49618
-            34033 -49681
-            34153 -49801
-            35267 -49801
-            35450 -49618
-          )
-        )
-        (wire
-          (path Front 80
+            35875 -49017
+            35091 -49801
+            34055 -49801
+            34033 -49779
             34033 -49175
-            34033 -49618
           )
         )
-        (via "Via[0-1]_35:25_mil" 35450 -49618
+        (via "Via[0-1]_35:25_mil" 35875 -49017
+        )
+        (wire
+          (path Back 80
+            40050 -36000
+            40866 -36816
+            40866 -44869
+            36718 -49017
+            35875 -49017
+          )
         )
         (wire
           (path Front 80
-            39250 -36150
-            39733 -35667
-            40823 -35667
-            42458 -37302
-          )
-        )
-        (wire
-          (path Front 80
+            40050 -36000
+            41352 -37302
             43074 -37302
-            42458 -37302
           )
         )
       )
       (net /DTXD
         (wire
-          (path Back 80
-            36539 -48982
-            37144 -48377
-            37144 -41154
-            40250 -38048
-            40250 -37150
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 36539 -48982
-        )
-        (wire
           (path Front 80
+            36906 -50171
+            34053 -50171
+            33836 -49954
             33836 -49175
-            33836 -49795
-            34043 -50002
-            35519 -50002
-            36539 -48982
+          )
+        )
+        (via "Via[0-1]_35:25_mil" 36906 -50171
+        )
+        (wire
+          (path Back 80
+            41050 -36000
+            41050 -46027
+            36906 -50171
           )
         )
         (wire
           (path Front 80
-            40250 -37150
-            42931 -39831
+            41050 -36000
+            41677 -36627
+            43751 -36627
+            45830 -38706
             45830 -39831
           )
         )
@@ -724,11 +677,31 @@
       (net /I/O_PHONE
         (wire
           (path Front 80
+            30639 -47883
             30196 -47883
             28831 -49248
             27297 -49248
             27217 -49168
           )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            30639 -47293
+            31082 -47293
+            31082 -47883
+            30639 -47883
+          )
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 17632 -42186
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 27217 -49168
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 20733 -43930
+          (type protect)
         )
         (wire
           (path Back 80
@@ -736,6 +709,7 @@
             25971 -49168
             27217 -49168
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -743,70 +717,36 @@
             19376 -43930
             20733 -43930
           )
+          (type protect)
         )
         (wire
           (path Front 80
             17632 -42186
             17545 -42186
             17484 -42247
-          )
-        )
-        (wire
-          (path Front 80
             16947 -42247
-            17484 -42247
           )
-        )
-        (via "Via[0-1]_35:25_mil" 17632 -42186
-        )
-        (wire
-          (path Front 80
-            30639 -47883
-            30196 -47883
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 27217 -49168
-        )
-        (wire
-          (path Front 80
-            30815 -47883
-            30639 -47883
-          )
-        )
-        (wire
-          (path Front 80
-            30815 -47883
-            31082 -47883
-          )
-        )
-        (wire
-          (path Front 80
-            30639 -47293
-            31082 -47293
-          )
-        )
-        (wire
-          (path Front 80
-            31082 -47883
-            31082 -47293
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             20733 -43930
             20550 -43747
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 20733 -43930
-        )
-        (wire
-          (path Front 80
             20550 -43400
-            20550 -43747
           )
+          (type protect)
         )
       )
       (net /I/O_SIM
+        (via "Via[0-1]_35:25_mil" 21766 -41832
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 33086 -47370
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 33597 -47881
+          (type protect)
+        )
         (wire
           (path Front 80
             35325 -48080
@@ -814,12 +754,14 @@
             34669 -47881
             33597 -47881
           )
+          (type protect)
         )
         (wire
           (path Back 80
             33086 -47370
             33597 -47881
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -833,27 +775,25 @@
             32897 -47370
             33086 -47370
           )
-        )
-        (wire
-          (path Front 80
-            20800 -41693
-            21627 -41693
-            21766 -41832
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             20800 -41300
             20800 -41693
+            21627 -41693
+            21766 -41832
           )
-        )
-        (via "Via[0-1]_35:25_mil" 21766 -41832
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -45521
             34882 -45521
+            34882 -45574
+            33086 -47370
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -862,27 +802,18 @@
             29746 -49821
             26026 -49821
             25999 -49794
-          )
-        )
-        (wire
-          (path Front 80
-            34882 -45521
-            34882 -45574
-            33086 -47370
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 33086 -47370
-        )
-        (via "Via[0-1]_35:25_mil" 33597 -47881
-        )
-        (wire
-          (path Front 80
             25403 -49794
-            25999 -49794
           )
+          (type protect)
         )
       )
       (net /I/O_SW
+        (via "Via[0-1]_35:25_mil" 22829 -43929
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 26986 -48216
+          (type protect)
+        )
         (wire
           (path Front 80
             30639 -47686
@@ -891,6 +822,7 @@
             27823 -49053
             26986 -48216
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -898,32 +830,32 @@
             26986 -48086
             26986 -48216
           )
+          (type protect)
         )
         (wire
           (path Front 80
             22600 -43400
             22600 -43793
-          )
-        )
-        (wire
-          (path Front 80
-            22600 -43793
             22693 -43793
             22829 -43929
           )
-        )
-        (via "Via[0-1]_35:25_mil" 22829 -43929
-        )
-        (via "Via[0-1]_35:25_mil" 26986 -48216
+          (type protect)
         )
       )
       (net /LED_G
+        (via "Via[0-1]_35:25_mil" 29300 -47712
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 30016 -52898
+          (type protect)
+        )
         (wire
           (path Front 80
             30639 -47096
             29916 -47096
             29300 -47712
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -932,26 +864,25 @@
             29165 -47847
             29300 -47712
           )
-        )
-        (wire
-          (path Front 80
-            29931 -53037
-            30016 -52952
-            30016 -52898
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             29931 -53337
             29931 -53037
+            30016 -52952
+            30016 -52898
           )
-        )
-        (via "Via[0-1]_35:25_mil" 29300 -47712
-        )
-        (via "Via[0-1]_35:25_mil" 30016 -52898
+          (type protect)
         )
       )
       (net /LED_R
+        (via "Via[0-1]_35:25_mil" 28845 -47808
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 29516 -54115
+          (type protect)
+        )
         (wire
           (path Front 80
             30639 -46899
@@ -959,6 +890,7 @@
             28845 -47588
             28845 -47808
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -966,60 +898,52 @@
             28845 -53444
             28845 -47808
           )
-        )
-        (wire
-          (path Front 80
-            29658 -54115
-            29516 -54115
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             29958 -54115
-            29658 -54115
+            29516 -54115
           )
-        )
-        (via "Via[0-1]_35:25_mil" 28845 -47808
-        )
-        (via "Via[0-1]_35:25_mil" 29516 -54115
+          (type protect)
         )
       )
       (net /MISO
+        (via "Via[0-1]_35:25_mil" 33443 -49767
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 33628 -52363
+          (type protect)
+        )
         (wire
           (path Back 80
             33443 -49767
             33443 -52178
             33628 -52363
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            34832 -54242
             34832 -53863
             33628 -52659
             33628 -52363
           )
+          (type protect)
         )
         (wire
           (path Front 80
             33443 -49767
             33443 -49175
           )
-        )
-        (wire
-          (path Front 80
-            34832 -54242
-            34832 -53863
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 33443 -49767
-        )
-        (via "Via[0-1]_35:25_mil" 33628 -52363
+          (type protect)
         )
       )
       (net /MOSI
         (wire
           (path Front 80
-            35832 -51579
+            35832 -51958
             35832 -51318
             35238 -50724
             33885 -50724
@@ -1030,15 +954,16 @@
             32458 -51569
             32458 -49175
           )
-        )
-        (wire
-          (path Front 80
-            35832 -51958
-            35832 -51579
-          )
+          (type protect)
         )
       )
       (net /RST_PHONE
+        (via "Via[0-1]_35:25_mil" 22544 -41844
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 32261 -48563
+          (type protect)
+        )
         (wire
           (path Back 80
             32261 -48563
@@ -1048,6 +973,7 @@
             22713 -41675
             22544 -41844
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1056,6 +982,7 @@
             22230 -41844
             22544 -41844
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1067,23 +994,16 @@
             17814 -41459
             16947 -41459
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32655 -49175
             32655 -48732
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 22544 -41844
-        )
-        (via "Via[0-1]_35:25_mil" 32261 -48563
-        )
-        (wire
-          (path Front 80
-            32655 -48732
             32430 -48732
             32261 -48563
           )
+          (type protect)
         )
       )
       (net /RST_SIM
@@ -1096,6 +1016,7 @@
             34427 -48540
             34427 -49175
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1105,13 +1026,9 @@
             20162 -43187
             20342 -43007
             21830 -43007
-          )
-        )
-        (wire
-          (path Front 80
             21830 -43400
-            21830 -43007
           )
+          (type protect)
         )
       )
       (net /SCK
@@ -1128,15 +1045,24 @@
             32262 -51662
             32262 -49175
           )
+          (type protect)
         )
       )
       (net /SC_SW
+        (via "Via[0-1]_35:25_mil" 23025 -41993
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 30086 -48456
+          (type protect)
+        )
         (wire
           (path Front 80
+            30639 -48277
             30196 -48277
             30196 -48346
             30086 -48456
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1146,32 +1072,25 @@
             30086 -48038
             30086 -48456
           )
-        )
-        (wire
-          (path Front 80
-            30639 -48277
-            30196 -48277
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             22850 -41300
             22850 -41693
-          )
-        )
-        (wire
-          (path Front 80
-            23025 -41993
             23025 -41868
-            22850 -41693
+            23025 -41993
           )
-        )
-        (via "Via[0-1]_35:25_mil" 23025 -41993
-        )
-        (via "Via[0-1]_35:25_mil" 30086 -48456
+          (type protect)
         )
       )
       (net /SW_SIM
+        (via "Via[0-1]_35:25_mil" 29484 -49487
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 34784 -49479
+          (type protect)
+        )
         (wire
           (path Back 80
             34784 -49479
@@ -1180,39 +1099,31 @@
             33044 -53047
             29484 -49487
           )
-        )
-        (wire
-          (path Front 80
-            25999 -48400
-            27086 -49487
-            29484 -49487
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             25403 -48400
             25999 -48400
+            27086 -49487
+            29484 -49487
           )
-        )
-        (via "Via[0-1]_35:25_mil" 29484 -49487
+          (type protect)
         )
         (wire
           (path Front 80
             34230 -49175
             34230 -49618
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 34784 -49479
-        )
-        (wire
-          (path Front 80
-            34230 -49618
             34645 -49618
             34784 -49479
           )
+          (type protect)
         )
       )
       (net /TCK
+        (via "Via[0-1]_35:25_mil" 33639 -45194
+          (type protect)
+        )
         (wire
           (path Back 80
             31700 -37200
@@ -1222,40 +1133,40 @@
             34464 -44369
             33639 -45194
           )
+          (type protect)
         )
         (wire
           (path Front 80
             33639 -44489
             33639 -45194
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30700 -37200
-            30700 -38132
-          )
-        )
-        (wire
-          (path Front 80
             30700 -38400
-            30700 -38132
           )
+          (type protect)
         )
         (wire
           (path Front 80
             31700 -37200
             30700 -37200
           )
-        )
-        (via "Via[0-1]_35:25_mil" 33639 -45194
+          (type protect)
         )
       )
       (net /TDI
+        (via "Via[0-1]_35:25_mil" 34614 -48277
+          (type protect)
+        )
         (wire
           (path Front 80
             35325 -48277
             34614 -48277
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1267,22 +1178,28 @@
             34675 -48216
             34614 -48277
           )
-        )
-        (via "Via[0-1]_35:25_mil" 34614 -48277
+          (type protect)
         )
         (wire
           (path Front 80
             28700 -38350
             28700 -37200
           )
+          (type protect)
         )
       )
       (net /TDO
+        (via "Via[0-1]_35:25_mil" 34698 -43367
+          (type protect)
+        )
         (wire
           (path Front 80
             34427 -44489
             34427 -44046
+            34698 -43775
+            34698 -43367
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1290,61 +1207,51 @@
             34698 -39198
             32700 -37200
           )
-        )
-        (via "Via[0-1]_35:25_mil" 34698 -43367
-        )
-        (wire
-          (path Front 80
-            34427 -44046
-            34698 -43775
-            34698 -43367
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             32700 -38400
             32700 -37200
           )
+          (type protect)
         )
       )
       (net /TEST
-        (wire
-          (path Front 80
-            35768 -46899
-            35782 -46885
-            37323 -46885
-            37463 -47025
-          )
-        )
-        (wire
-          (path Back 80
-            39400 -40143
-            37463 -42080
-            37463 -47025
-          )
+        (via "Via[0-1]_35:25_mil" 37463 -47025
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -46899
             35768 -46899
+            35782 -46885
+            37323 -46885
+            37463 -47025
           )
+          (type protect)
         )
         (wire
           (path Back 80
             39400 -39700
             39400 -40143
+            37463 -42080
+            37463 -47025
           )
-        )
-        (via "Via[0-1]_35:25_mil" 37463 -47025
+          (type protect)
         )
       )
       (net /TMS
+        (via "Via[0-1]_35:25_mil" 34103 -43902
+          (type protect)
+        )
         (wire
           (path Front 80
-            34033 -44039
+            34033 -44482
             34033 -43972
             34103 -43902
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1353,20 +1260,14 @@
             33999 -43902
             34103 -43902
           )
+          (type protect)
         )
         (wire
           (path Front 80
             29700 -38350
             29700 -37200
           )
-        )
-        (wire
-          (path Front 80
-            34033 -44482
-            34033 -44039
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 34103 -43902
+          (type protect)
         )
       )
       (net /UDP_PUP
@@ -1374,22 +1275,13 @@
           (path Front 80
             45650 -44750
             45918 -44750
-          )
-        )
-        (wire
-          (path Front 80
-            45650 -46450
-            45650 -46127
-          )
-        )
-        (wire
-          (path Front 80
-            45650 -46127
-            45951 -46127
-            45973 -46105
             45973 -44805
-            45918 -44750
+            45973 -46105
+            45951 -46127
+            45650 -46127
+            45650 -46450
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1398,12 +1290,15 @@
             43300 -43650
             42250 -43650
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            46195 -43750
             46034 -43750
             45389 -44395
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1411,12 +1306,7 @@
             45650 -44656
             45650 -44750
           )
-        )
-        (wire
-          (path Front 80
-            46195 -43750
-            46034 -43750
-          )
+          (type protect)
         )
       )
       (net /USBVCC
@@ -1424,17 +1314,19 @@
           (path Front 80
             43945 -53950
             43945 -53567
-          )
-        )
-        (wire
-          (path Front 80
-            43945 -53567
             43900 -53522
             43900 -53075
           )
+          (type protect)
         )
       )
       (net /VCC_PHONE
+        (via "Via[0-1]_35:25_mil" 23323 -41090
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 28150 -45859
+          (type protect)
+        )
         (wire
           (path Front 80
             22600 -40907
@@ -1442,7 +1334,9 @@
             22000 -40084
             18466 -40084
             17484 -41066
+            16947 -41066
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1451,6 +1345,7 @@
             29338 -45859
             28150 -45859
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1458,6 +1353,7 @@
             28092 -45859
             23323 -41090
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1465,25 +1361,23 @@
             23140 -40907
             22600 -40907
           )
-        )
-        (via "Via[0-1]_35:25_mil" 23323 -41090
-        )
-        (via "Via[0-1]_35:25_mil" 28150 -45859
-        )
-        (wire
-          (path Front 80
-            16947 -41066
-            17484 -41066
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             22600 -41300
             22600 -40907
           )
+          (type protect)
         )
       )
       (net /VCC_SIM
+        (via "Via[0-1]_35:25_mil" 30709 -52356
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 35131 -49051
+          (type protect)
+        )
         (wire
           (path Front 80
             25403 -52294
@@ -1495,7 +1389,9 @@
             22290 -42973
             22306 -42973
             22340 -43007
+            22340 -43400
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1505,95 +1401,147 @@
             35131 -52131
             35131 -49051
           )
-        )
-        (wire
-          (path Front 80
-            35768 -47883
-            35768 -48414
-            35131 -49051
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -47883
             35768 -47883
+            35768 -48414
+            35131 -49051
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25403 -52294
             25999 -52294
-          )
-        )
-        (wire
-          (path Front 80
-            30709 -52356
             26061 -52356
-            25999 -52294
+            30709 -52356
           )
-        )
-        (via "Via[0-1]_35:25_mil" 30709 -52356
-        )
-        (via "Via[0-1]_35:25_mil" 35131 -49051
-        )
-        (wire
-          (path Front 80
-            22340 -43400
-            22340 -43007
-          )
+          (type protect)
         )
       )
       (net /WP
         (wire
           (path Front 80
+            35332 -54242
             35332 -53863
             33952 -52483
             33952 -52074
             33922 -52044
             32383 -52044
             32065 -51726
-            32065 -49618
+            32065 -49175
           )
+          (type protect)
         )
         (wire
           (path Front 80
             35271 -54994
             35271 -54626
-          )
-        )
-        (wire
-          (path Front 80
-            35332 -54242
-            35332 -54621
-          )
-        )
-        (wire
-          (path Front 80
-            35271 -54626
             35327 -54626
             35332 -54621
-          )
-        )
-        (wire
-          (path Front 80
-            32065 -49175
-            32065 -49618
-          )
-        )
-        (wire
-          (path Front 80
             35332 -54242
-            35332 -53863
           )
+          (type protect)
         )
       )
       (net 3V3
+        (wire
+          (path Back 80
+            39050 -38350
+            39050 -36000
+          )
+        )
+        (wire
+          (path Back 80
+            40400 -39700
+            39050 -38350
+          )
+        )
+        (wire
+          (path Back 80
+            36400 -39971
+            38021 -38350
+            39050 -38350
+          )
+        )
+        (wire
+          (path Back 80
+            36400 -39971
+            36400 -39750
+          )
+          (type protect)
+        )
+        (wire
+          (path Back 80
+            36346 -45915
+            36346 -40247
+            36400 -40193
+            36400 -39971
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            46250 -44750
+            46250 -44851
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            27700 -38950
+            27700 -38932
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            25701 -47889
+            25403 -47889
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            28690 -46423
+            28422 -46423
+            28415 -46430
+            28415 -47528
+            28344 -47599
+            28344 -48017
+            28415 -48088
+            28415 -48801
+            28347 -48869
+            27900 -48869
+            27304 -48273
+            27304 -47953
+            27240 -47889
+            25701 -47889
+          )
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 31733 -49757
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 32598 -43246
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 36219 -45915
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 33832 -51634
+          (type protect)
+        )
         (wire
           (path Back 80
             34435 -48639
             33832 -49242
             33832 -51634
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1602,6 +1550,7 @@
             34828 -48639
             34435 -48639
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1615,6 +1564,7 @@
             32423 -49757
             31733 -49757
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1637,8 +1587,7 @@
             31733 -49757
             31663 -49687
           )
-        )
-        (via "Via[0-1]_35:25_mil" 31733 -49757
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1651,25 +1600,30 @@
             23701 -37030
             22784 -36113
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32700 -39000
             30700 -39000
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            36400 -39750
             35957 -39750
             35207 -39000
             32700 -39000
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32554 -43246
             32598 -43246
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1678,6 +1632,7 @@
             33141 -43789
             32598 -43246
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -1686,8 +1641,7 @@
             36015 -47554
             35548 -47554
           )
-        )
-        (via "Via[0-1]_35:25_mil" 32598 -43246
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1706,34 +1660,11 @@
           (type protect)
         )
         (wire
-          (path Front 80
-            28422 -46423
-            28415 -46430
-            28415 -47528
-            28344 -47599
-            28344 -48017
-            28415 -48088
-            28415 -48801
-            28347 -48869
-            27900 -48869
-            27304 -48273
-            27304 -47953
-            27240 -47889
-            25999 -47889
-          )
-        )
-        (wire
-          (path Back 80
-            36346 -45915
-            36346 -40247
-            36400 -40193
-          )
-        )
-        (wire
           (path Back 80
             36346 -45915
             36219 -45915
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1741,8 +1672,6 @@
             35325 -45915
           )
           (type protect)
-        )
-        (via "Via[0-1]_35:25_mil" 36219 -45915
         )
         (wire
           (path Front 80
@@ -1754,36 +1683,28 @@
           (type protect)
         )
         (wire
-          (path Back 80
-            36400 -39750
-            36400 -40193
-          )
-        )
-        (wire
           (path Front 80
             34232 -51568
             33898 -51568
             33832 -51634
           )
+          (type protect)
         )
         (wire
           (path Front 80
             34232 -51568
             34243 -51579
             34332 -51579
+            34332 -51958
           )
+          (type protect)
         )
         (wire
           (path Front 80
             34232 -51285
             34232 -51568
           )
-        )
-        (wire
-          (path Front 80
-            34332 -51958
-            34332 -51579
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1791,62 +1712,40 @@
             24707 -43400
             24781 -43474
           )
+          (type protect)
         )
         (wire
           (path Front 80
             22850 -43400
             23701 -43400
           )
+          (type protect)
         )
         (wire
           (path Front 80
             38946 -52492
             38946 -53000
-          )
-        )
-        (wire
-          (path Front 80
-            38946 -53000
             38350 -53596
             38350 -54050
           )
+          (type protect)
         )
         (wire
           (path Front 80
             38350 -54050
             38082 -54050
-          )
-        )
-        (wire
-          (path Front 80
-            34332 -51958
-            34332 -52337
-          )
-        )
-        (wire
-          (path Front 80
-            34332 -52337
             36369 -52337
-            38082 -54050
+            34332 -52337
+            34332 -51958
           )
-        )
-        (wire
-          (path Back 80
-            36420 -39750
-            36400 -39750
-          )
-        )
-        (wire
-          (path Back 80
-            36420 -39750
-            36843 -39750
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             22011 -36113
             22784 -36113
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1855,6 +1754,7 @@
             23124 -35773
             22784 -36113
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1863,6 +1763,7 @@
             25456 -43381
             25875 -43800
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1870,61 +1771,44 @@
             24781 -46969
             24781 -43474
           )
-        )
-        (wire
-          (path Front 80
-            25701 -47889
-            25999 -47889
-          )
-        )
-        (wire
-          (path Front 80
-            25403 -47889
-            25701 -47889
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 33832 -51634
+          (type protect)
         )
         (wire
           (path Front 80
             32050 -54181
             32050 -53813
-          )
-        )
-        (wire
-          (path Front 80
-            32050 -53813
             32036 -53799
             32036 -53363
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32036 -53363
-            32036 -52995
-          )
-        )
-        (wire
-          (path Front 80
             32036 -52995
             31278 -52237
             31278 -51172
             31382 -51068
             31650 -51068
+            31650 -50800
           )
+          (type protect)
         )
         (wire
           (path Front 80
             29700 -38950
             28700 -38950
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            30700 -39000
             30332 -39000
             30282 -38950
             29700 -38950
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1932,37 +1816,17 @@
             26700 -37932
             26700 -37200
           )
-        )
-        (wire
-          (path Front 80
-            27700 -38932
-            27700 -38915
-          )
-        )
-        (wire
-          (path Front 80
-            27700 -38950
-            27700 -38932
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             28700 -38950
             28332 -38950
-          )
-        )
-        (wire
-          (path Front 80
-            27700 -38915
             28297 -38915
-            28332 -38950
+            27700 -38915
+            27700 -38932
           )
-        )
-        (wire
-          (path Front 80
-            28690 -46423
-            28422 -46423
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -1982,29 +1846,19 @@
         )
         (wire
           (path Front 80
-            31650 -50800
-            31650 -51068
-          )
-        )
-        (wire
-          (path Front 80
-            39250 -37150
-            40400 -38300
-            40400 -39700
-          )
-        )
-        (wire
-          (path Front 80
             41110 -40835
             41110 -40410
             40400 -39700
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            40842 -41267
             41110 -41267
             41110 -40835
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2016,49 +1870,14 @@
             44467 -40835
             41110 -40835
           )
-        )
-        (wire
-          (path Front 80
-            46250 -44851
-            46250 -45118
-          )
-        )
-        (wire
-          (path Front 80
-            46250 -44750
-            46250 -44851
-          )
-        )
-        (wire
-          (path Front 80
-            30700 -39000
-            30332 -39000
-          )
+          (type protect)
         )
         (wire
           (path Back 80
             26700 -36200
             26700 -37200
           )
-        )
-        (wire
-          (path Back 80
-            39250 -37150
-            36843 -39557
-            36843 -39750
-          )
-        )
-        (wire
-          (path Front 80
-            36400 -39750
-            35957 -39750
-          )
-        )
-        (wire
-          (path Front 80
-            40842 -41267
-            41110 -41267
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2067,13 +1886,16 @@
             45480 -47600
             44700 -47600
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            46250 -44851
             46250 -45118
             46450 -45318
             46450 -46100
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2096,21 +1918,108 @@
             32461 -43624
             32655 -43624
           )
+          (type protect)
         )
       )
       (net GND
+        (wire
+          (path Front 80
+            37050 -36000
+            37493 -36000
+          )
+        )
+        (wire
+          (path Front 80
+            46109 -41246
+            45336 -41246
+          )
+        )
+        (wire
+          (path Front 80
+            45336 -41246
+            43346 -39256
+            40306 -39256
+            37493 -36443
+            37493 -36000
+          )
+        )
+        (wire
+          (path Front 80
+            46109 -41246
+            46756 -41246
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            37050 -36000
+            36607 -36000
+          )
+        )
+        (wire
+          (path Front 80
+            35700 -36200
+            36407 -36200
+            36607 -36000
+          )
+        )
+        (wire
+          (path Front 80
+            35700 -36200
+            34700 -36200
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            46893 -37361
+            46893 -38085
+            46756 -38222
+            46756 -41246
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            35871 -54994
+            35871 -54810
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            45748 -49370
+            45775 -49370
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            31800 -42200
+            31800 -42133
+          )
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 31928 -41381
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 35129 -42418
+          (type protect)
+        )
         (wire
           (path Front 80
             32264 -44489
             32264 -42219
             32279 -42204
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32647 -42204
             32279 -42204
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2118,18 +2027,7 @@
             32208 -42133
             32279 -42204
           )
-        )
-        (wire
-          (path Front 80
-            31800 -42133
-            31800 -42066
-          )
-        )
-        (wire
-          (path Front 80
-            31800 -42200
-            31800 -42133
-          )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2137,6 +2035,7 @@
             30950 -36450
             30700 -36200
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2144,6 +2043,7 @@
             31450 -36450
             31200 -36450
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2151,15 +2051,15 @@
             31200 -40653
             31928 -41381
           )
+          (type protect)
         )
         (wire
           (path Front 80
             31928 -41381
             31800 -41509
-            31800 -42066
+            31800 -42133
           )
-        )
-        (via "Via[0-1]_35:25_mil" 31928 -41381
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2175,28 +2075,34 @@
             20550 -41998
             20550 -41693
           )
+          (type protect)
         )
         (wire
           (path Front 80
             28700 -36200
             27700 -36200
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32326 -54553
             32326 -52344
             31650 -51668
+            31650 -51400
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            35871 -54994
             35603 -54994
             35603 -55262
             35502 -55363
             33136 -55363
             32326 -54553
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2208,12 +2114,14 @@
             31028 -52036
             30786 -51794
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30786 -51794
             25403 -51794
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2221,12 +2129,14 @@
             30786 -49863
             30786 -51794
           )
+          (type protect)
         )
         (wire
           (path Front 80
             20550 -41300
             20550 -41693
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2234,6 +2144,7 @@
             19209 -43034
             20550 -41693
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2242,70 +2153,14 @@
             41900 -43841
             41900 -44450
           )
+          (type protect)
         )
         (wire
           (path Front 80
             37550 -41850
             38500 -41850
           )
-        )
-        (wire
-          (path Front 80
-            35700 -36200
-            34700 -36200
-          )
-        )
-        (wire
-          (path Front 80
-            37069 -36412
-            36857 -36200
-            35700 -36200
-          )
-        )
-        (wire
-          (path Front 80
-            46893 -37361
-            46893 -38085
-          )
-        )
-        (wire
-          (path Front 80
-            46756 -41246
-            46756 -38222
-            46893 -38085
-          )
-        )
-        (wire
-          (path Front 80
-            46756 -41246
-            46882 -41246
-          )
-        )
-        (wire
-          (path Front 80
-            46109 -41246
-            46756 -41246
-          )
-        )
-        (wire
-          (path Front 80
-            46893 -37361
-            46277 -37361
-          )
-        )
-        (wire
-          (path Front 80
-            37069 -36412
-            38209 -35272
-            44188 -35272
-            46277 -37361
-          )
-        )
-        (wire
-          (path Front 80
-            37807 -37150
-            37069 -36412
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2314,44 +2169,33 @@
             47158 -46512
             47158 -41522
             46882 -41246
+            46756 -41246
           )
+          (type protect)
         )
         (wire
           (path Front 80
-            45775 -49370
-            45801 -49370
-          )
-        )
-        (wire
-          (path Front 80
-            45748 -49370
-            45775 -49370
-          )
-        )
-        (wire
-          (path Front 80
-            30442 -45915
+            30639 -45915
             30314 -45915
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30314 -45915
             30196 -46033
             30196 -46112
+            30639 -46112
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30314 -45915
             30196 -45915
+            30196 -45718
           )
-        )
-        (wire
-          (path Front 80
-            30639 -46112
-            30196 -46112
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2359,25 +2203,30 @@
             27893 -45400
             28212 -45081
           )
+          (type protect)
         )
         (wire
           (path Front 80
-            26968 -45400
+            26600 -45400
             27822 -45400
           )
+          (type protect)
         )
         (wire
           (path Front 80
             27822 -45400
             27822 -46423
+            28090 -46423
           )
+          (type protect)
         )
         (wire
           (path Front 80
             39310 -54142
             39218 -54050
-            39172 -54050
+            38950 -54050
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2385,80 +2234,40 @@
             39773 -54605
             39310 -54142
           )
+          (type protect)
         )
         (wire
           (path Front 80
             39310 -54142
             40452 -53000
+            40452 -52492
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            30639 -45718
             30964 -45718
             31082 -45600
             31082 -45521
           )
-        )
-        (wire
-          (path Front 80
-            30861 -45718
-            30964 -45718
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             30639 -45521
             31082 -45521
           )
-        )
-        (wire
-          (path Front 80
-            30639 -45718
-            30836 -45718
-          )
-        )
-        (wire
-          (path Front 80
-            30861 -45718
-            30836 -45718
-          )
-        )
-        (wire
-          (path Front 80
-            40452 -52492
-            40452 -53000
-          )
-        )
-        (wire
-          (path Front 80
-            38950 -54050
-            39172 -54050
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             38350 -54900
             38082 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            35871 -54810
             37992 -54810
-            38082 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            35871 -54810
-            35871 -54626
-          )
-        )
-        (wire
-          (path Front 80
-            35871 -54994
             35871 -54810
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2467,12 +2276,14 @@
             35129 -39256
             35129 -42418
           )
+          (type protect)
         )
         (wire
           (path Front 80
             34700 -36200
             33700 -36200
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2480,6 +2291,7 @@
             32922 -36422
             32700 -36200
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -2487,24 +2299,17 @@
             33478 -36422
             33256 -36422
           )
+          (type protect)
         )
         (wire
           (path Front 80
-            30639 -45915
-            30442 -45915
-          )
-        )
-        (wire
-          (path Front 80
-            45821 -49370
-            45801 -49370
-          )
-        )
-        (wire
-          (path Front 80
-            45821 -49370
+            46600 -54700
+            47585 -53715
+            47585 -50789
             46166 -49370
+            45775 -49370
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2513,95 +2318,56 @@
             40819 -55269
             40718 -55168
             40718 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            46600 -54700
-            47585 -53715
-            47585 -50789
-            46166 -49370
-          )
-        )
-        (wire
-          (path Front 80
             40450 -54900
-            40718 -54900
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            38350 -54900
             38618 -54900
             38618 -55168
             38719 -55269
             39404 -55269
             39773 -54900
           )
+          (type protect)
         )
         (wire
           (path Front 80
             39773 -54900
-            40182 -54900
-          )
-        )
-        (wire
-          (path Front 80
             40450 -54900
-            40182 -54900
           )
-        )
-        (wire
-          (path Front 80
-            40452 -51984
-            39009 -50541
-            33709 -50541
-            33118 -51132
-            32850 -51132
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             40452 -52492
             40452 -51984
-          )
-        )
-        (wire
-          (path Front 80
-            32850 -51400
+            39009 -50541
+            33709 -50541
+            33118 -51132
             32850 -51132
+            32850 -51400
           )
-        )
-        (wire
-          (path Front 80
-            38350 -54900
-            38618 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            38250 -37150
-            37807 -37150
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             37550 -41850
             37182 -41850
-          )
-        )
-        (wire
-          (path Front 80
-            37182 -41850
             35495 -40163
             30844 -40163
             30600 -40407
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30600 -40407
             30600 -42200
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2610,6 +2376,7 @@
             30354 -40161
             30600 -40407
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2617,6 +2384,7 @@
             26391 -38697
             26253 -38697
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2624,12 +2392,15 @@
             27859 -41559
             27859 -40165
           )
+          (type protect)
         )
         (wire
           (path Front 80
             35129 -42418
             34550 -42418
+            34550 -42150
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2637,21 +2408,16 @@
             35974 -43263
             35129 -42418
           )
-        )
-        (via "Via[0-1]_35:25_mil" 35129 -42418
+          (type protect)
         )
         (wire
           (path Front 80
             33350 -42200
             32982 -42200
-          )
-        )
-        (wire
-          (path Front 80
-            32647 -42204
             32978 -42204
-            32982 -42200
+            32647 -42204
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2659,75 +2425,49 @@
             29559 -45081
             28212 -45081
           )
-        )
-        (wire
-          (path Front 80
-            30196 -45915
-            30196 -45718
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             30639 -45718
             30196 -45718
           )
-        )
-        (wire
-          (path Front 80
-            35871 -54994
-            35603 -54994
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             29700 -36200
             28700 -36200
           )
+          (type protect)
         )
         (wire
           (path Front 80
             28212 -45081
             28212 -44830
             27550 -44168
+            27550 -43800
           )
-        )
-        (wire
-          (path Front 80
-            26600 -45400
-            26968 -45400
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             25650 -45500
             25918 -45500
-          )
-        )
-        (wire
-          (path Front 80
-            26600 -45400
             26018 -45400
-            25918 -45500
+            26600 -45400
           )
+          (type protect)
         )
         (wire
           (path Front 80
             35832 -54242
             35832 -54621
-          )
-        )
-        (wire
-          (path Front 80
-            35832 -54621
             35866 -54621
             35871 -54626
+            35871 -54810
           )
-        )
-        (wire
-          (path Front 80
-            28090 -46423
-            27822 -46423
-          )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2736,7 +2476,9 @@
             31203 -44851
             29470 -43118
             29150 -43118
+            29150 -42850
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2744,56 +2486,26 @@
             37712 -45512
             37832 -45632
             37832 -45900
+            38100 -45900
           )
-        )
-        (wire
-          (path Front 80
-            35768 -45718
-            35974 -45512
-          )
-        )
-        (wire
-          (path Front 80
-            27550 -43800
-            27550 -44168
-          )
-        )
-        (wire
-          (path Front 80
-            34550 -42150
-            34550 -42418
-          )
-        )
-        (wire
-          (path Front 80
-            31650 -51400
-            31650 -51668
-          )
-        )
-        (wire
-          (path Front 80
-            29150 -42850
-            29150 -43118
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             35325 -45718
             35768 -45718
+            35974 -45512
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25700 -39250
             25700 -38982
-          )
-        )
-        (wire
-          (path Front 80
-            25700 -38982
             25968 -38982
             26253 -38697
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2803,57 +2515,46 @@
             26253 -36781
             26253 -38697
           )
+          (type protect)
         )
         (wire
           (path Front 80
             30700 -36200
             29700 -36200
           )
+          (type protect)
         )
         (wire
           (path Front 80
             32700 -36200
             31700 -36200
           )
+          (type protect)
         )
         (wire
           (path Front 80
             28100 -48500
             28100 -47150
           )
+          (type protect)
         )
         (wire
           (path Front 80
             28090 -46423
             28090 -46772
             28100 -46782
-          )
-        )
-        (wire
-          (path Front 80
             28100 -47150
-            28100 -46782
           )
-        )
-        (wire
-          (path Front 80
-            38100 -45900
-            37832 -45900
-          )
+          (type protect)
         )
       )
       (net "N-000009"
         (wire
           (path Front 80
-            34832 -51653
+            34832 -51285
             34832 -51958
           )
-        )
-        (wire
-          (path Front 80
-            34832 -51285
-            34832 -51653
-          )
+          (type protect)
         )
       )
       (net "N-000011"
@@ -2888,20 +2589,11 @@
           (path Front 80
             45650 -45750
             45327 -45750
-          )
-        )
-        (wire
-          (path Front 80
-            43750 -47600
-            43750 -47332
-          )
-        )
-        (wire
-          (path Front 80
-            43750 -47332
             45327 -45755
-            45327 -45750
+            43750 -47332
+            43750 -47600
           )
+          (type protect)
         )
       )
       (net "N-000017"
@@ -2916,6 +2608,7 @@
             41000 -45600
             42000 -45600
           )
+          (type protect)
         )
       )
       (net "N-000018"
@@ -2924,6 +2617,7 @@
             42600 -44450
             42600 -45600
           )
+          (type protect)
         )
       )
       (net "N-000021"
@@ -2931,44 +2625,46 @@
           (path Front 80
             39950 -52492
             39950 -53000
-          )
-        )
-        (wire
-          (path Front 80
-            39950 -53000
             39372 -53000
             38681 -53691
             38681 -54631
             38950 -54900
           )
+          (type protect)
         )
       )
       (net "N-000022"
         (wire
           (path Front 80
-            41050 -54900
-            41318 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            41952 -53998
-            41318 -54632
-            41318 -54900
-          )
-        )
-        (wire
-          (path Front 80
-            42333 -53950
+            42494 -53950
             42000 -53950
             41952 -53998
           )
+          (type protect)
         )
         (wire
           (path Front 80
+            42655 -53950
+            42494 -53950
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            41050 -54900
+            41318 -54900
+            41318 -54632
+            41952 -53998
+          )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            40954 -52492
             40954 -53000
             41952 -53998
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -2976,43 +2672,33 @@
             42655 -54111
             42655 -54850
           )
-        )
-        (wire
-          (path Front 80
-            42494 -53950
-            42333 -53950
-          )
-        )
-        (wire
-          (path Front 80
-            42655 -53950
-            42494 -53950
-          )
-        )
-        (wire
-          (path Front 80
-            40954 -52492
-            40954 -53000
-          )
+          (type protect)
         )
       )
       (net "N-000029"
         (wire
           (path Front 80
-            40250 -36150
-            39750 -36650
-            38750 -36650
-            38250 -36150
+            42050 -36000
+            41359 -35309
+            38741 -35309
+            38050 -36000
           )
         )
       )
       (net "N-000032"
+        (via "Via[0-1]_35:25_mil" 27752 -45069
+          (type protect)
+        )
+        (via "Via[0-1]_35:25_mil" 31356 -43907
+          (type protect)
+        )
         (wire
           (path Front 80
             27752 -45069
             25419 -45069
             25318 -44968
           )
+          (type protect)
         )
         (wire
           (path Back 80
@@ -3020,51 +2706,39 @@
             28914 -43907
             27752 -45069
           )
-        )
-        (wire
-          (path Front 80
-            31674 -44046
-            31495 -44046
-            31356 -43907
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             31674 -44489
             31674 -44046
+            31495 -44046
+            31356 -43907
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25318 -44968
             25154 -45132
             25050 -45132
-          )
-        )
-        (wire
-          (path Front 80
-            25318 -44700
-            25318 -44968
-          )
-        )
-        (via "Via[0-1]_35:25_mil" 27752 -45069
-        )
-        (via "Via[0-1]_35:25_mil" 31356 -43907
-        )
-        (wire
-          (path Front 80
             25050 -45500
-            25050 -45132
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25050 -44700
             25318 -44700
+            25318 -44968
           )
+          (type protect)
         )
       )
       (net "N-000034"
+        (via "Via[0-1]_35:25_mil" 32209 -45081
+          (type protect)
+        )
         (wire
           (path Back 80
             32209 -45081
@@ -3085,6 +2759,7 @@
             36537 -40613
             37400 -39750
           )
+          (type protect)
         )
         (wire
           (path Front 80
@@ -3093,30 +2768,26 @@
             32996 -45081
             32209 -45081
           )
-        )
-        (via "Via[0-1]_35:25_mil" 32209 -45081
+          (type protect)
         )
       )
       (net "N-000038"
         (wire
           (path Front 80
+            29150 -42250
             29150 -42518
             30871 -42518
             31870 -43517
             31870 -44489
           )
-        )
-        (wire
-          (path Front 80
-            29150 -42250
-            29150 -42518
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             29150 -40700
             29150 -42250
           )
+          (type protect)
         )
       )
       (net "N-000046"
@@ -3124,14 +2795,10 @@
           (path Front 80
             25650 -44700
             25918 -44700
-          )
-        )
-        (wire
-          (path Front 80
-            26600 -44800
             26018 -44800
-            25918 -44700
+            26600 -44800
           )
+          (type protect)
         )
       )
       (net "N-000047"
@@ -3140,41 +2807,35 @@
             27700 -38350
             27700 -37200
           )
+          (type protect)
         )
       )
       (net "N-000050"
         (wire
           (path Front 80
+            31800 -42900
             31800 -43068
             32067 -43335
             32067 -44489
           )
-        )
-        (wire
-          (path Front 80
-            32850 -40700
-            31624 -40700
-          )
-        )
-        (wire
-          (path Front 80
-            31800 -42900
-            31321 -42421
-            31321 -41003
-            31624 -40700
-          )
-        )
-        (wire
-          (path Front 80
-            31800 -42900
-            31800 -43068
-          )
+          (type protect)
         )
         (wire
           (path Front 80
             31800 -42800
             31800 -42900
           )
+          (type protect)
+        )
+        (wire
+          (path Front 80
+            32850 -40700
+            31624 -40700
+            31321 -41003
+            31321 -42421
+            31800 -42900
+          )
+          (type protect)
         )
       )
       (net "N-000055"
@@ -3182,14 +2843,10 @@
           (path Front 80
             30521 -53337
             30821 -53337
-          )
-        )
-        (wire
-          (path Front 80
-            31436 -53363
             30847 -53363
-            30821 -53337
+            31436 -53363
           )
+          (type protect)
         )
       )
       (net "N-000057"
@@ -3197,14 +2854,10 @@
           (path Front 80
             31450 -54181
             31182 -54181
-          )
-        )
-        (wire
-          (path Front 80
-            30548 -54115
             31116 -54115
-            31182 -54181
+            30548 -54115
           )
+          (type protect)
         )
       )
       (net "N-000060"
@@ -3212,20 +2865,11 @@
           (path Front 80
             43900 -52325
             43900 -52007
-          )
-        )
-        (wire
-          (path Front 80
-            45748 -50630
-            45329 -50630
-          )
-        )
-        (wire
-          (path Front 80
-            45329 -50630
             43952 -52007
-            43900 -52007
+            45329 -50630
+            45748 -50630
           )
+          (type protect)
         )
       )
       (net "N-000062"
@@ -3233,14 +2877,10 @@
           (path Front 80
             43945 -54850
             44267 -54850
-          )
-        )
-        (wire
-          (path Front 80
-            44267 -54850
             45417 -53700
             46600 -53700
           )
+          (type protect)
         )
       )
       (net "N-000063"
@@ -3268,43 +2908,25 @@
           (path Front 80
             26950 -43800
             27218 -43800
-          )
-        )
-        (wire
-          (path Front 80
-            30639 -45324
-            30196 -45324
-          )
-        )
-        (wire
-          (path Front 80
-            30196 -45324
-            28303 -43431
-            27319 -43431
             27218 -43532
-            27218 -43800
+            27319 -43431
+            28303 -43431
+            30196 -45324
+            30639 -45324
           )
+          (type protect)
         )
         (wire
           (path Front 80
             25125 -43800
             25443 -43800
-          )
-        )
-        (wire
-          (path Front 80
-            26950 -43800
-            26682 -43800
-          )
-        )
-        (wire
-          (path Front 80
-            25443 -43800
             25443 -44118
             25557 -44232
             26250 -44232
             26682 -43800
+            26950 -43800
           )
+          (type protect)
         )
       )
     )
