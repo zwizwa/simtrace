@@ -1,4 +1,4 @@
-update=So 22 Mai 2011 15:51:30 CEST
+update=Mi 15 Jun 2011 12:22:56 CEST
 last_client=pcbnew
 [general]
 version=1
@@ -79,8 +79,8 @@ EquName1=devcms
 [pcbnew]
 version=1
 PadDrlX=0
-PadDimH=236
-PadDimV=472
+PadDimH=315
+PadDimV=354
 BoardThickness=630
 SgPcb45=1
 TxtPcbV=800
@@ -92,7 +92,7 @@ VEgarde=100
 DrawLar=150
 EdgeLar=80
 TxtLar=120
-MSegLar=150
+MSegLar=50
 LastNetListRead=SIMtrace.net
 [pcbnew/libraries]
 LibDir=
