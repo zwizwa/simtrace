@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Mi 15 Jun 2011 17:14:31 CEST
+EESchema Schematic File Version 2  date So 19 Jun 2011 11:09:54 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -38,14 +38,23 @@ EELAYER END
 $Descr A4 11700 8267
 Sheet 1 1
 Title "SIMtrace hardware"
-Date "15 jun 2011"
-Rev "0.9.3"
+Date "19 jun 2011"
+Rev "0.9.4"
 Comp "osmocom"
 Comment1 "CC-BY-SA"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L GND #PWR01
+U 1 1 4DFDBB3F
+P 10750 4550
+F 0 "#PWR01" H 10750 4550 30  0001 C CNN
+F 1 "GND" H 10750 4480 30  0001 C CNN
+	1    10750 4550
+	0    -1   -1   0   
+$EndComp
 Wire Wire Line
 	7650 1350 7650 1700
 Wire Wire Line
@@ -744,31 +753,22 @@ F 2 "SM0603" H 950 4400 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 3V3 #PWR01
+L 3V3 #PWR02
 U 1 1 4DC820B7
 P 9600 6750
-F 0 "#PWR01" H 9600 6850 40  0001 C CNN
+F 0 "#PWR02" H 9600 6850 40  0001 C CNN
 F 1 "3V3" H 9600 6875 40  0000 C CNN
 	1    9600 6750
 	0    1    1    0   
 $EndComp
 $Comp
-L 3V3 #PWR02
+L 3V3 #PWR03
 U 1 1 4DC815E7
 P 7700 6650
-F 0 "#PWR02" H 7700 6750 40  0001 C CNN
+F 0 "#PWR03" H 7700 6750 40  0001 C CNN
 F 1 "3V3" H 7700 6775 40  0000 C CNN
 	1    7700 6650
 	-1   0    0    1   
-$EndComp
-$Comp
-L 3V3 #PWR03
-U 1 1 4DC80D76
-P 10750 4550
-F 0 "#PWR03" H 10750 4650 40  0001 C CNN
-F 1 "3V3" H 10750 4675 40  0000 C CNN
-	1    10750 4550
-	0    1    1    0   
 $EndComp
 $Comp
 L 3V3 #PWR04
@@ -813,7 +813,7 @@ P 900 7200
 F 0 "BT1" H 900 7400 50  0000 C CNN
 F 1 "BATTERY" H 900 6900 50  0000 C CNN
 F 2 "PIN_ARRAY_2X1" H 900 7200 60  0001 C CNN
-F 4 "4-5.5V" H 900 7000 50  0000 C CNN "Field1"
+F 4 "4.5-6V" H 900 7000 50  0000 C CNN "Field1"
 	1    900  7200
 	0    1    1    0   
 $EndComp
@@ -1257,7 +1257,7 @@ F 0 "SW2" H 6850 1460 50  0000 C CNN
 F 1 "BOOTLOADER" H 6700 1270 50  0000 C CNN
 F 2 "PUSH_BUTTON" H 6700 1350 60  0001 C CNN
 	1    6700 1350
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 $Comp
 L 3V3 #PWR023
