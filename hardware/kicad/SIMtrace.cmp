@@ -1,9 +1,9 @@
-Cmp-Mod V01 Created by CvPCB (2010-00-09 BZR 23xx)-stable date = Mi 15 Jun 2011 12:18:12 CEST
+Cmp-Mod V01 Created by CvPCB (2010-00-09 BZR 23xx)-stable date = Mo 20 Jun 2011 12:54:15 CEST
 
 BeginCmp
 TimeStamp = /4DC804A6;
 Reference = BT1;
-ValeurCmp = BATTERY;
+ValeurCmp = 4.5-6V;
 IdModule  = PIN_ARRAY_2X1;
 EndCmp
 
@@ -213,7 +213,7 @@ EndCmp
 BeginCmp
 TimeStamp = /4CE84486;
 Reference = IC3;
-ValeurCmp = AT91SAM7S512/256/128/64/321-AU;
+ValeurCmp = AT91SAM7S;
 IdModule  = TQFP_64;
 EndCmp
 
@@ -228,7 +228,7 @@ BeginCmp
 TimeStamp = /4CFAC6EA;
 Reference = J1;
 ValeurCmp = USB-B_MINI;
-IdModule  = USB_MINI-B;
+IdModule  = USB-MINI-B_UX60;
 EndCmp
 
 BeginCmp
@@ -393,13 +393,6 @@ IdModule  = SM0603;
 EndCmp
 
 BeginCmp
-TimeStamp = /4DC68538;
-Reference = R15;
-ValeurCmp = 10K;
-IdModule  = SM0603;
-EndCmp
-
-BeginCmp
 TimeStamp = /4DC7A441;
 Reference = R16;
 ValeurCmp = 10K;
@@ -437,7 +430,7 @@ EndCmp
 BeginCmp
 TimeStamp = /4DC5A250;
 Reference = U1;
-ValeurCmp = FLASH_SPI;
+ValeurCmp = FLASH;
 IdModule  = SOIC8;
 EndCmp
 

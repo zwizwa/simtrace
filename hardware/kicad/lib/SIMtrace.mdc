@@ -1,9 +1,14 @@
-PCBNEW-LibDoc----V1  Mo 20 Jun 2011 11:41:35 CEST
+PCBNEW-LibDoc----V1  Mo 20 Jun 2011 13:12:41 CEST
 #
 $MODULE pin_array_10x2
 Li pin_array_10x2
 Cd Double rangee de contacts 2 x 12 pins
 Kw CONN
+$EndMODULE
+#
+$MODULE USB-MINI-B_UX60
+Li USB-MINI-B_UX60
+Cd Hirose UX60-MB-5ST
 $EndMODULE
 #
 $EndLIBDOC
