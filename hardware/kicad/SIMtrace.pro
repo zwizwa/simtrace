@@ -1,4 +1,4 @@
-update=Mo 20 Jun 2011 18:21:14 CEST
+update=Mo 20 Jun 2011 19:40:20 CEST
 last_client=pcbnew
 [general]
 version=1
