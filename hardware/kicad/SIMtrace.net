@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  Mo 20 Jun 2011 16:53:08 CEST
+# EESchema Netlist Version 1.1 created  Mo 20 Jun 2011 21:35:01 CEST
 (
  ( /4DC804A6 PIN_ARRAY_2X1 BT1 4.5-6V
   ( 1 N-000019 )
@@ -17,12 +17,12 @@
   ( 2 GND )
  )
  ( /4DC79EDF SM0603 C5 33pF
-  ( 1 N-000014 )
-  ( 2 N-000016 )
+  ( 1 N-000059 )
+  ( 2 N-000024 )
  )
  ( /4D020DD3 SM0603 C6 10nF
   ( 1 GND )
-  ( 2 N-000044 )
+  ( 2 N-000042 )
  )
  ( /4D020BDE SM0603 C7 100nF
   ( 1 3V3 )
@@ -34,7 +34,7 @@
  )
  ( /4D020DCD SM0603 C10 1nF
   ( 1 GND )
-  ( 2 N-000033 )
+  ( 2 N-000032 )
  )
  ( /4DC79ED8 SM0603 C11 15pF
   ( 1 /DDM )
@@ -49,7 +49,7 @@
   ( 2 GND )
  )
  ( /4DC6A5DE SM0603 C14 1uF
-  ( 1 N-000064 )
+  ( 1 N-000063 )
   ( 2 GND )
  )
  ( /4D020ED8 SM0603 C15 100nF
@@ -61,11 +61,11 @@
   ( 2 GND )
  )
  ( /4CE9162F SM0603 C17 10pF
-  ( 1 N-000049 )
+  ( 1 N-000039 )
   ( 2 GND )
  )
  ( /4CE91633 SM0603 C18 10pF
-  ( 1 N-000036 )
+  ( 1 N-000035 )
   ( 2 GND )
  )
  ( /4DC664E0 SM0603 C19 100nF
@@ -76,8 +76,8 @@
   ( 1 +1.8V )
   ( 2 GND )
  )
- ( /4DC6A5CB SM0603 C21 10nF
-  ( 1 N-000024 )
+ ( /4DC6A5CB SM0603 C21 1uF
+  ( 1 /VCC_SIM )
   ( 2 GND )
  )
  ( /4DC6A5D9 SM0603 C22 1uF
@@ -88,41 +88,45 @@
   ( 1 N-000065 )
   ( 2 GND )
  )
+ ( /4DFF9964 SM0603 C24 100nF
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+ )
  ( /4DC7A27C SOD123 D1 Schottky
   ( 1 /UDP_PUP )
   ( 2 //RESET )
  )
  ( /4DCB8C13 SOD123 D2 1N5819
   ( 1 /USBVCC )
-  ( 2 N-000064 )
+  ( 2 N-000063 )
  )
  ( /4DCB8C0D SOD123 D3 1N5819
   ( 1 N-000019 )
-  ( 2 N-000064 )
+  ( 2 N-000063 )
  )
  ( /4CF54717 LED-0603 D4 RED
-  ( 1 N-000057 )
+  ( 1 N-000045 )
   ( 2 /LED_R )
  )
  ( /4CF5471F LED-0603 D5 GREEN
-  ( 1 N-000055 )
+  ( 1 N-000043 )
   ( 2 /LED_G )
  )
  ( /4DC79E48 SM0805 FB1 FILTER
-  ( 1 N-000062 )
+  ( 1 N-000060 )
   ( 2 /USBVCC )
  )
  ( /4DC68E1D SM0805 FB2 FILTER
   ( 1 N-000065 )
   ( 2 3V3 )
  )
- ( /4DC6A52E SOT223-6 IC2 TPS73633
-  ( 1 N-000064 )
-  ( 2 3V3 )
-  ( 3 GND )
-  ( 4 N-000024 )
-  ( 5 N-000064 )
-  ( 6 GND )
+ ( /4DFF8B97 SOT26 IC2 AP7332
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+  ( 3 /SIM_PWEN )
+  ( 4 N-000063 )
+  ( 5 N-000063 )
+  ( 6 3V3 )
  )
  ( /4CE84486 TQFP_64 IC3 AT91SAM7S
   ( 1 N-000065 )
@@ -130,7 +134,7 @@
   ( 3 GND )
   ( 4 GND )
   ( 5 GND )
-  ( 6 /VCC_PHONE )
+  ( 6 N-000068 )
   ( 7 3V3 )
   ( 8 +1.8V )
   ( 9 /LED_R )
@@ -143,14 +147,14 @@
   ( 16 /SC_SW )
   ( 17 GND )
   ( 18 3V3 )
-  ( 19 N-000028 )
+  ( 19 N-000027 )
   ( 20 /WP )
   ( 21 /SCK )
   ( 22 /MOSI )
   ( 23 /RST_PHONE )
   ( 24 +1.8V )
   ( 25 /VCC_PHONE )
-  ( 26 ? )
+  ( 26 /VCC_FWD )
   ( 27 /MISO )
   ( 28 /CS )
   ( 29 /DTXD )
@@ -159,7 +163,7 @@
   ( 32 /RST_SIM )
   ( 33 /TDI )
   ( 34 /I/O_SIM )
-  ( 35 /VCC_SIM )
+  ( 35 /SIM_PWEN )
   ( 36 /CLK_SIM )
   ( 37 ? )
   ( 38 /CLK_PHONE )
@@ -179,20 +183,19 @@
   ( 52 /BOOTLOADER )
   ( 53 /TCK )
   ( 54 +1.8V )
-  ( 55 N-000034 )
+  ( 55 N-000033 )
   ( 56 /DDM )
   ( 57 /DDP )
   ( 58 3V3 )
   ( 59 3V3 )
   ( 60 GND )
-  ( 61 N-000049 )
-  ( 62 N-000036 )
-  ( 63 N-000033 )
+  ( 61 N-000039 )
+  ( 62 N-000035 )
+  ( 63 N-000032 )
   ( 64 +1.8V )
  )
  ( /4DC6A187 SSOP20_BDQ IC4 CB3Q3244
   ( 1 /SC_SW )
-  ( 2 /VCC_PHONE )
   ( 4 /RST_PHONE )
   ( 6 /CLK_PHONE )
   ( 9 /I/O_SIM )
@@ -200,14 +203,20 @@
   ( 11 /I/O_PHONE )
   ( 14 /CLK_SIM )
   ( 16 /RST_SIM )
-  ( 18 /VCC_SIM )
   ( 19 /I/O_SW )
   ( 20 3V3 )
  )
+ ( /4DFF9774 SOT353 IC5 FPF2005
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+  ( 3 N-000062 )
+  ( 4 /VCC_FWD )
+  ( 5 /VCC_PHONE )
+ )
  ( /4CFAC6EA USB-MINI-B_UX60 J1 USB-B_MINI
-  ( 1 N-000062 )
-  ( 2 N-000014 )
-  ( 3 N-000016 )
+  ( 1 N-000060 )
+  ( 2 N-000059 )
+  ( 3 N-000024 )
   ( 4 /A-B-DETECT )
   ( 5 GND )
  )
@@ -222,12 +231,12 @@
  )
  ( /4DC683ED PIN_ARRAY_2X1 JP2 ERASE
   ( 1 3V3 )
-  ( 2 N-000034 )
+  ( 2 N-000033 )
  )
  ( /4CFCD6C9 pin_array_10x2 P1 JTAG
   ( 1 3V3 )
   ( 2 3V3 )
-  ( 3 N-000045 )
+  ( 3 N-000041 )
   ( 4 GND )
   ( 5 /TDI )
   ( 6 GND )
@@ -248,11 +257,11 @@
  )
  ( /4CE9ADCF PIN_ARRAY-6X1 P2 DEBUG
   ( 1 GND )
-  ( 2 N-000031 )
+  ( 2 N-000036 )
   ( 3 3V3 )
   ( 4 /DRXD )
   ( 5 /DTXD )
-  ( 6 N-000031 )
+  ( 6 N-000036 )
  )
  ( /4DC51F05 FFC_REBELSIM P3 REBELSIM
   ( 1 /VCC_PHONE )
@@ -276,11 +285,11 @@
  )
  ( /4DC7A1CA SOT23_BC847 Q1 BC847
   ( 1 /UDP_PUP )
-  ( 2 N-000017 )
+  ( 2 N-000025 )
   ( 3 3V3 )
  )
  ( /4DC7A43A SOT23_BC847 Q2 BC847
-  ( 1 N-000021 )
+  ( 1 N-000015 )
   ( 2 GND )
   ( 3 /UDP_PUP )
  )
@@ -293,11 +302,11 @@
   ( 2 3V3 )
  )
  ( /4DC79ECE SM0603 R3 1K5
-  ( 1 N-000016 )
-  ( 2 N-000017 )
+  ( 1 N-000024 )
+  ( 2 N-000025 )
  )
  ( /4CE9A68C SM0603 R4 100K
-  ( 1 N-000045 )
+  ( 1 N-000041 )
   ( 2 3V3 )
  )
  ( /4CE9A69A SM0603 R5 100K
@@ -318,15 +327,15 @@
  )
  ( /4DC79EAD SM0603 R9 27R
   ( 1 /DDM )
-  ( 2 N-000014 )
+  ( 2 N-000059 )
  )
  ( /4DC79EA7 SM0603 R10 27R
   ( 1 /DDP )
-  ( 2 N-000016 )
+  ( 2 N-000024 )
  )
  ( /4D020DC6 SM0603 R11 1k5
-  ( 1 N-000033 )
-  ( 2 N-000044 )
+  ( 1 N-000032 )
+  ( 2 N-000042 )
  )
  ( /4D0206C7 SM0603 R12 100k
   ( 1 3V3 )
@@ -334,23 +343,39 @@
  )
  ( /4CF7BAEE SM0603 R13 150R
   ( 1 3V3 )
-  ( 2 N-000057 )
+  ( 2 N-000045 )
  )
  ( /4DC555D0 SM0603 R14 150R
   ( 1 3V3 )
-  ( 2 N-000055 )
+  ( 2 N-000043 )
  )
  ( /4DC7A441 SM0603 R16 10K
-  ( 1 N-000021 )
-  ( 2 N-000028 )
+  ( 1 N-000015 )
+  ( 2 N-000027 )
  )
  ( /4DC799F2 SM0603 R17 10k
   ( 1 /WP )
   ( 2 GND )
  )
  ( /4DC5A30D SM0603 R18 10k
-  ( 1 N-000011 )
+  ( 1 N-000013 )
   ( 2 3V3 )
+ )
+ ( /4DFF73B0 SM0603 R19 100K
+  ( 1 GND )
+  ( 2 /VCC_PHONE )
+ )
+ ( /4DFF7469 SM0603 R20 10k1%
+  ( 1 /VCC_PHONE )
+  ( 2 N-000068 )
+ )
+ ( /4DFF746C SM0603 R21 10k1%
+  ( 1 GND )
+  ( 2 N-000068 )
+ )
+ ( /4DFF9902 SM0603 R22 100k
+  ( 1 /VCC_PHONE )
+  ( 2 N-000062 )
  )
  ( /4D020733 PUSH_BUTTON SW1 RESET
   ( 1 //RESET )
@@ -367,12 +392,12 @@
   ( 4 GND )
   ( 5 /MOSI )
   ( 6 /SCK )
-  ( 7 N-000011 )
+  ( 7 N-000013 )
   ( 8 3V3 )
  )
  ( /4CE915DE Q_49U3HMS X1 18.432MHz
-  ( 1 N-000049 )
-  ( 2 N-000036 )
+  ( 1 N-000039 )
+  ( 2 N-000035 )
  )
 )
 *
@@ -478,6 +503,11 @@ $component C22
  C1-1
 $endlist
 $component C23
+ SM*
+ C?
+ C1-1
+$endlist
+$component C24
  SM*
  C?
  C1-1
@@ -612,6 +642,30 @@ $component R17
  R?-*
 $endlist
 $component R18
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R19
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R20
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R21
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R22
  R?
  SM0603
  SM0805
