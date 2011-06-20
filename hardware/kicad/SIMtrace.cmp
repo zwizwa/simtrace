@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPCB (2010-00-09 BZR 23xx)-stable date = Mo 20 Jun 2011 12:54:15 CEST
+Cmp-Mod V01 Created by CvPCB (2010-00-09 BZR 23xx)-stable date = Mo 20 Jun 2011 16:53:08 CEST
 
 BeginCmp
 TimeStamp = /4DC804A6;
@@ -220,8 +220,8 @@ EndCmp
 BeginCmp
 TimeStamp = /4DC6A187;
 Reference = IC4;
-ValeurCmp = QS3244;
-IdModule  = SSOP20;
+ValeurCmp = CB3Q3244;
+IdModule  = SSOP20_BDQ;
 EndCmp
 
 BeginCmp

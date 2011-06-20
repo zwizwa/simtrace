@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  Mo 20 Jun 2011 12:54:15 CEST
+# EESchema Netlist Version 1.1 created  Mo 20 Jun 2011 16:53:08 CEST
 (
  ( /4DC804A6 PIN_ARRAY_2X1 BT1 4.5-6V
   ( 1 N-000019 )
@@ -190,7 +190,7 @@
   ( 63 N-000033 )
   ( 64 +1.8V )
  )
- ( /4DC6A187 SSOP20 IC4 QS3244
+ ( /4DC6A187 SSOP20_BDQ IC4 CB3Q3244
   ( 1 /SC_SW )
   ( 2 /VCC_PHONE )
   ( 4 /RST_PHONE )
