@@ -1,4 +1,4 @@
-G04 (created by PCBNEW-RS274X (2010-00-09 BZR 23xx)-stable) date Di 21 Jun 2011 02:42:33 CEST*
+G04 (created by PCBNEW-RS274X (2011-06-08)-testing) date Di 21 Jun 2011 15:46:39 CEST*
 G01*
 G70*
 G90*

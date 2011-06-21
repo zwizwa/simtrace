@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Di 21 Jun 2011 02:34:40 CEST
+EESchema Schematic File Version 2  date Di 21 Jun 2011 15:40:25 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -33,13 +33,14 @@ LIBS:at91sam7sxxx-au
 LIBS:SIMtrace
 LIBS:smartcard
 LIBS:SIMtrace-cache
-EELAYER 24  0
+EELAYER 25  0
 EELAYER END
 $Descr A4 11700 8267
+encoding utf-8
 Sheet 1 1
 Title "SIMtrace hardware"
 Date "20 jun 2011"
-Rev "0.9.9"
+Rev "1.0"
 Comp "osmocom"
 Comment1 "CC-BY-SA"
 Comment2 ""
