@@ -1,12 +1,12 @@
-### Module positions - created on So 22 Mai 2011 15:47:34 CEST ###
+### Module positions - created on Di 21 Jun 2011 02:35:25 CEST ###
 ### Printed by PcbNew version pcbnew (2010-00-09 BZR 23xx)-stable
 ## Unit = inches, Angle = deg.
 ## Side : Front
 # Ref    Val                  PosX       PosY        Rot     Side
-C1       2.2uF               -3.4360     2.0223     180.0    Front
+C1       2.2uF               -3.4350     2.0250     180.0    Front
 C3       100nF               -3.0103     1.6304      90.0    Front
-C4       100nF               -3.1100     2.4900     270.0    Front
-C5       33pF                -2.0100     2.1650      90.0    Front
+C4       100nF               -3.1330     2.4909     270.0    Front
+C5       33pF                -2.0950     2.1650      90.0    Front
 C6       10nF                -3.6150     1.8900      90.0    Front
 C7       100nF               -2.4950     1.9700       0.0    Front
 C9       100nF               -2.9400     1.6300      90.0    Front
@@ -14,39 +14,42 @@ C10      1nF                 -3.7400     1.9300     180.0    Front
 C11      15pF                -2.5200     1.5950      90.0    Front
 C12      2.2uF               -3.4350     2.0950     180.0    Front
 C13      15pF                -2.4250     1.5950      90.0    Front
-C14      1uF                 -2.2000     2.8700     180.0    Front
+C14      1uF                 -2.2000     2.8650     180.0    Front
 C15      100nF               -3.2150     1.6300      90.0    Front
 C16      100nF               -3.4350     2.2300     180.0    Front
 C17      10pF                -3.0950     1.6300      90.0    Front
-C18      10pF                -3.3600     1.6350     270.0    Front
+C18      10pF                -3.3600     1.6300     270.0    Front
 C19      100nF               -2.9900     2.4900     270.0    Front
-C20      100nF               -2.8200     1.6250      90.0    Front
-C21      10nF                -2.4100     2.8700     180.0    Front
+C20      100nF               -2.7735     1.6285      90.0    Front
+C21      1uF                 -2.4102     2.8657       0.0    Front
 C22      1uF                 -2.4100     2.7850       0.0    Front
-C23      100nF               -3.5500     1.7600       0.0    Front
+C23      100nF               -3.5499     1.7563     180.0    Front
+C24      100nF               -2.4500     2.4300     270.0    Front
 D4       RED                 -3.2497     2.7915     180.0    Front
 D5       GREEN               -3.2524     2.7137     180.0    Front
 FB1      FILTER              -1.8850     2.6500     270.0    Front
-FB2      FILTER              -3.7250     1.7600       0.0    Front
-IC4      QS3244              -4.1050     1.6150     180.0    Front
-Q1       BC847               -1.6700     1.9900      90.0    Front
-Q2       BC847               -2.0500     1.7850     180.0    Front
+FB2      FILTER              -3.7255     1.7553     180.0    Front
+IC4      CB3Q3244            -4.1050     1.6150     180.0    Front
+IC5      FPF2005             -2.2950     2.4400       0.0    Front
 R1       100K                -1.6800     1.8550     180.0    Front
-R2       10K                 -1.8050     2.1700      90.0    Front
-R3       1K5                 -1.9000     2.1700      90.0    Front
+R2       10K                 -1.9000     2.0950      90.0    Front
+R3       1K5                 -2.0000     2.1700      90.0    Front
 R4       100K                -3.5050     1.2450     270.0    Front
 R5       100K                -3.4050     1.2450     270.0    Front
 R6       100K                -3.3050     1.2450     270.0    Front
-R7       100K                -3.2050     1.2500     270.0    Front
-R8       100K                -3.0050     1.2500     270.0    Front
+R7       100K                -3.2050     1.2450     270.0    Front
+R8       100K                -3.0050     1.2450     270.0    Front
 R9       27R                 -2.2300     2.1100       0.0    Front
 R10      27R                 -2.2300     2.0350       0.0    Front
 R11      1k5                 -3.7400     1.8500       0.0    Front
 R12      100k                -2.1608     1.5067       0.0    Front
-R13      150R                -3.1000     2.7981     180.0    Front
-R14      150R                -3.1014     2.7163     180.0    Front
-R15      10K                 -3.7050     1.2750      90.0    Front
-R16      10K                 -2.0450     1.9400       0.0    Front
-R17      10k                 -2.7179     2.8794       0.0    Front
-R18      10k                 -2.8218     2.5085     180.0    Front
+R13      150R                -3.1000     2.7950     180.0    Front
+R14      150R                -3.1000     2.7150     180.0    Front
+R16      10K                 -2.1255     1.9337     180.0    Front
+R17      10k                 -2.8763     2.5200       0.0    Front
+R18      10k                 -2.9572     2.7836     270.0    Front
+R19      100K                -4.2750     1.3400       0.0    Front
+R20      10k1%               -4.1300     1.3400       0.0    Front
+R21      10k1%               -3.9850     1.3400     180.0    Front
+R22      100k                -2.3000     2.3300     180.0    Front
 ## End
