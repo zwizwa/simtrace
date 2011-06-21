@@ -1,4 +1,9 @@
-EESchema-DOCLIB  Version 2.0  Date: Mo 20 Jun 2011 21:10:42 CEST
+EESchema-DOCLIB  Version 2.0  Date: Di 21 Jun 2011 13:52:49 CEST
+#
+$CMP FFC
+D ymbole general de connecteur
+K CONN
+$ENDCMP
 #
 $CMP ISO7816_NC
 D smart card with normally closed presence switch
