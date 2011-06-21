@@ -1,4 +1,4 @@
-update=Mo 20 Jun 2011 23:42:03 CEST
+update=Di 21 Jun 2011 02:08:11 CEST
 last_client=pcbnew
 [general]
 version=1
@@ -108,3 +108,4 @@ LibName9=led
 LibName10=dip_sockets
 LibName11=lib/SIMtrace
 LibName12=lib/smartcard
+LibName13=lib/logo
