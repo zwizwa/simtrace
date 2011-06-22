@@ -1,85 +1,46 @@
-# EESchema Netlist Version 1.1 created  Di 21 Jun 2011 14:36:57 CEST
+# EESchema Netlist Version 1.1 created  Di 21 Jun 2011 22:38:14 CEST
 (
- ( /4E0085A5 $noname  SIM1 ISO7816_CARD {Lib=ISO7816_CARD}
-  (   C1 /VCC )
-  (   C2 /RST )
-  (   C3 /CLK )
-  (   C4 ? )
-  (   C5 /GND )
-  (   C6 /VPP )
-  (   C7 /I/O )
-  (   C8 ? )
+ ( /4E0084D9 FFC P1 FFC
+  ( 1 /VCC )
+  ( 2 /RST )
+  ( 3 /CLK )
+  ( 4 /I/O )
+  ( 5 /VPP )
+  ( 6 /GND )
  )
- ( /4E0084E2 $noname  P3 FFC {Lib=FFC}
-  (    1 /VCC )
-  (    2 /RST )
-  (    3 /CLK )
-  (    4 /I/O )
-  (    5 /VPP )
-  (    6 /GND )
+ ( /4E0084DD FFC P2 FFC
+  ( 1 /VCC )
+  ( 2 /RST )
+  ( 3 /CLK )
+  ( 4 /I/O )
+  ( 5 /VPP )
+  ( 6 /GND )
  )
- ( /4E0084DD $noname  P2 FFC {Lib=FFC}
-  (    1 /VCC )
-  (    2 /RST )
-  (    3 /CLK )
-  (    4 /I/O )
-  (    5 /VPP )
-  (    6 /GND )
+ ( /4E0084E2 FFC P3 FFC
+  ( 1 /VCC )
+  ( 2 /RST )
+  ( 3 /CLK )
+  ( 4 /I/O )
+  ( 5 /VPP )
+  ( 6 /GND )
  )
- ( /4E0084D9 $noname  P1 FFC {Lib=FFC}
-  (    1 /VCC )
-  (    2 /RST )
-  (    3 /CLK )
-  (    4 /I/O )
-  (    5 /VPP )
-  (    6 /GND )
+ ( /4E0084D4 FFC P4 FFC
+  ( 1 /VCC )
+  ( 2 /RST )
+  ( 3 /CLK )
+  ( 4 /I/O )
+  ( 5 /VPP )
+  ( 6 /GND )
  )
- ( /4E0084D4 $noname  P4 FFC {Lib=FFC}
-  (    1 /VCC )
-  (    2 /RST )
-  (    3 /CLK )
-  (    4 /I/O )
-  (    5 /VPP )
-  (    6 /GND )
+ ( /4E0085A5 SIM SIM1 ISO7816_CARD
+  ( C1 /VCC )
+  ( C2 /RST )
+  ( C3 /CLK )
+  ( C4 ? )
+  ( C5 /GND )
+  ( C6 /VPP )
+  ( C7 /I/O )
+  ( C8 ? )
  )
 )
 *
-{ Pin List by Nets
-Net 1 "/VCC" "VCC"
- P1 1
- P3 1
- SIM1 C1
- P2 1
- P4 1
-Net 2 "/RST" "RST"
- SIM1 C2
- P4 2
- P2 2
- P3 2
- P1 2
-Net 3 "/CLK" "CLK"
- P1 3
- P3 3
- P2 3
- SIM1 C3
- P4 3
-Net 4 "/GND" "GND"
- SIM1 C5
- P1 6
- P3 6
- P2 6
- P4 6
-Net 5 "/VPP" "VPP"
- SIM1 C6
- P3 5
- P4 5
- P1 5
- P2 5
-Net 6 "/I/O" "I/O"
- P4 4
- SIM1 C7
- P1 4
- P2 4
- P3 4
-}
-#End

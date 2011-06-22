@@ -1,0 +1,38 @@
+Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Di 21 Jun 2011 22:38:14 CEST
+
+BeginCmp
+TimeStamp = /4E0084D9;
+Reference = P1;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0084DD;
+Reference = P2;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0084E2;
+Reference = P3;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0084D4;
+Reference = P4;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0085A5;
+Reference = SIM1;
+ValeurCmp = ISO7816_CARD;
+IdModule  = SIM;
+EndCmp
+
+EndListe
