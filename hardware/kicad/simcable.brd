@@ -1,0 +1,412 @@
+PCBNEW-BOARD Version 1 date Mi 22 Jun 2011 13:31:37 CEST
+
+# Created by Pcbnew(2011-06-08)-testing
+
+$GENERAL
+encoding utf-8
+LayerCount 2
+Ly 1FFF8001
+EnabledLayers 1FFF8001
+Links 24
+NoConn 24
+Di 53700 37853 64394 46173
+Ndraw 0
+Ntrack 0
+Nzone 0
+BoardThickness 630
+Nmodule 5
+Nnets 7
+$EndGENERAL
+
+$SHEETDESCR
+Sheet A4 11700 8267
+Title ""
+Date "22 jun 2011"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndSHEETDESCR
+
+$SETUP
+InternalUnit 0.000100 INCH
+Layers 2
+Layer[0] Back signal
+Layer[15] Front signal
+TrackWidth 80
+TrackClearence 100
+ZoneClearence 200
+TrackMinWidth 80
+DrawSegmWidth 150
+EdgeSegmWidth 150
+ViaSize 350
+ViaDrill 250
+ViaMinSize 350
+ViaMinDrill 200
+MicroViaSize 200
+MicroViaDrill 50
+MicroViasAllowed 0
+MicroViaMinSize 200
+MicroViaMinDrill 50
+TextPcbWidth 120
+TextPcbSize 600 800
+EdgeModWidth 150
+TextModSize 600 600
+TextModWidth 120
+PadSize 600 600
+PadDrill 320
+Pad2MaskClearance 100
+AuxiliaryAxisOrg 0 0
+PcbPlotParams (pcbplotparams (layerselection 3178497) (usegerberextensions true) (excludeedgelayer true) (linewidth 60) (plotframeref false) (viasonmask false) (mode 1) (useauxorigin false) (hpglpennumber 1) (hpglpenspeed 20) (hpglpendiameter 15) (hpglpenoverlay 0) (pscolor true) (psnegative false) (psa4output false) (plotreference true) (plotvalue true) (plotothertext true) (plotinvisibletext false) (padsonsilk false) (subtractmaskfromsilk false) (outputformat 1) (mirror false) (drillshape 1) (scaleselection 1) (outputdirectory ""))
+$EndSETUP
+
+$EQUIPOT
+Na 0 ""
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 1 "/CLK"
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 2 "/GND"
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 3 "/I/O"
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 4 "/RST"
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 5 "/VCC"
+St ~
+$EndEQUIPOT
+$EQUIPOT
+Na 6 "/VPP"
+St ~
+$EndEQUIPOT
+$NCLASS
+Name "Default"
+Desc "This is the default net class."
+Clearance 100
+TrackWidth 80
+ViaDia 350
+ViaDrill 250
+uViaDia 200
+uViaDrill 50
+AddNet ""
+AddNet "/CLK"
+AddNet "/GND"
+AddNet "/I/O"
+AddNet "/RST"
+AddNet "/VCC"
+AddNet "/VPP"
+$EndNCLASS
+$MODULE SIM
+Po 54300 39100 0 15 4E010072 4E010165 ~~
+Li SIM
+Sc 4E010165
+AR /4E0085A5
+Op 0 0 0
+T0 8583 2953 600 600 0 120 N I 21 N "SIM1"
+T1 6890 2913 600 600 900 120 N I 21 N "ISO7816_CARD"
+DS 9843 0 9843 4724 150 21
+DS 9843 4724 8661 5906 150 21
+DS 0 5906 0 0 150 21
+DS 8661 5906 0 5906 150 21
+DS 0 0 9843 0 150 21
+$PAD
+Sh "C1" R 1969 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 5 "/VCC"
+Po 2165 1417
+$EndPAD
+$PAD
+Sh "C2" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 4 "/RST"
+Po 1969 2417
+$EndPAD
+$PAD
+Sh "C3" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 1 "/CLK"
+Po 1969 3417
+$EndPAD
+$PAD
+Sh "C4" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 1969 4417
+$EndPAD
+$PAD
+Sh "C5" R 1969 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 2 "/GND"
+Po 4764 1417
+$EndPAD
+$PAD
+Sh "C6" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 6 "/VPP"
+Po 4969 2417
+$EndPAD
+$PAD
+Sh "C7" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 3 "/I/O"
+Po 4969 3417
+$EndPAD
+$PAD
+Sh "C8" R 1575 787 0 0 0
+Dr 0 0 0
+At SMD N 00888000
+Ne 0 ""
+Po 4969 4417
+$EndPAD
+$EndMODULE  SIM
+$MODULE FFC
+Po 59400 40200 2700 0 4E00FFB1 4E010166 ~~
+Li FFC
+Sc 4E010166
+AR /4E0084D9
+Op 0 0 0
+T0 0 -1850 600 600 2700 120 M I 20 N "P1"
+T1 0 1752 600 600 2700 120 M I 20 N "FFC"
+$PAD
+Sh "1" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 5 "/VCC"
+Po 0 984
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "2" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 4 "/RST"
+Po 0 591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "3" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 1 "/CLK"
+Po 0 197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "4" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 3 "/I/O"
+Po 0 -197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "5" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 6 "/VPP"
+Po 0 -591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "6" R 1181 315 0 0 2700
+Dr 0 0 0
+At SMD N 00440001
+Ne 2 "/GND"
+Po 0 -984
+.LocalClearance 79
+$EndPAD
+$EndMODULE  FFC
+$MODULE FFC
+Po 62200 42000 1800 0 4E00FFB1 4E010168 ~~
+Li FFC
+Sc 4E010168
+AR /4E0084DD
+Op 0 0 0
+T0 0 -1850 600 600 1800 120 M I 20 N "P2"
+T1 0 1752 600 600 1800 120 M I 20 N "FFC"
+$PAD
+Sh "1" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 5 "/VCC"
+Po 0 984
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "2" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 4 "/RST"
+Po 0 591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "3" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 1 "/CLK"
+Po 0 197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "4" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 3 "/I/O"
+Po 0 -197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "5" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 6 "/VPP"
+Po 0 -591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "6" R 1181 315 0 0 1800
+Dr 0 0 0
+At SMD N 00440001
+Ne 2 "/GND"
+Po 0 -984
+.LocalClearance 79
+$EndPAD
+$EndMODULE  FFC
+$MODULE FFC
+Po 59400 43850 900 0 4E00FFB1 4E01016A ~~
+Li FFC
+Sc 4E01016A
+AR /4E0084E2
+Op 0 0 0
+T0 0 -1850 600 600 900 120 M I 20 N "P3"
+T1 0 1752 600 600 900 120 M I 20 N "FFC"
+$PAD
+Sh "1" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 5 "/VCC"
+Po 0 984
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "2" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 4 "/RST"
+Po 0 591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "3" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 1 "/CLK"
+Po 0 197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "4" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 3 "/I/O"
+Po 0 -197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "5" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 6 "/VPP"
+Po 0 -591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "6" R 1181 315 0 0 900
+Dr 0 0 0
+At SMD N 00440001
+Ne 2 "/GND"
+Po 0 -984
+.LocalClearance 79
+$EndPAD
+$EndMODULE  FFC
+$MODULE FFC
+Po 56250 42050 0 0 4E00FFB1 4E01016C ~~
+Li FFC
+Sc 4E01016C
+AR /4E0084D4
+Op 0 0 0
+T0 0 -1850 600 600 0 120 M I 20 N "P4"
+T1 0 1752 600 600 0 120 M I 20 N "FFC"
+$PAD
+Sh "1" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 5 "/VCC"
+Po 0 984
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "2" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 4 "/RST"
+Po 0 591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "3" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 1 "/CLK"
+Po 0 197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "4" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 3 "/I/O"
+Po 0 -197
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "5" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 6 "/VPP"
+Po 0 -591
+.LocalClearance 79
+$EndPAD
+$PAD
+Sh "6" R 1181 315 0 0 0
+Dr 0 0 0
+At SMD N 00440001
+Ne 2 "/GND"
+Po 0 -984
+.LocalClearance 79
+$EndPAD
+$EndMODULE  FFC
+$TRACK
+$EndTRACK
+$ZONE
+$EndZONE
+$EndBOARD
