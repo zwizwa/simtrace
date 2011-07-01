@@ -1,19 +1,11 @@
-Cmp-Mod V01 Genere par PcbNew le Di 21 Jun 2011 15:43:44 CEST
+Cmp-Mod V01 Genere par PcbNew le Fr 01 Jul 2011 23:28:20 CEST
 
 BeginCmp
 TimeStamp = 4DCD07C6
 Path = /4DC51F05
 Reference = P3;
-ValeurCmp = REBEL;
+ValeurCmp = FFC;
 IdModule  = FFC_REBELSIM;
-EndCmp
-
-BeginCmp
-TimeStamp = 4DCD07C7
-Path = /4DCBE233
-Reference = J2;
-ValeurCmp = SERIAL;
-IdModule  = JACK_2.5;
 EndCmp
 
 BeginCmp
@@ -76,7 +68,7 @@ BeginCmp
 TimeStamp = 4DCD07D7
 Path = /4DC5A30D
 Reference = R18;
-ValeurCmp = 10k;
+ValeurCmp = 10K;
 IdModule  = SM0603;
 EndCmp
 
@@ -84,7 +76,7 @@ BeginCmp
 TimeStamp = 4DCD07D9
 Path = /4DC799F2
 Reference = R17;
-ValeurCmp = 10k;
+ValeurCmp = 10K;
 IdModule  = SM0603;
 EndCmp
 
@@ -116,7 +108,7 @@ BeginCmp
 TimeStamp = 4DCD07E3
 Path = /4D0206C7
 Reference = R12;
-ValeurCmp = 100k;
+ValeurCmp = 100K;
 IdModule  = SM0603;
 EndCmp
 
@@ -124,7 +116,7 @@ BeginCmp
 TimeStamp = 4DCD07E5
 Path = /4D020DC6
 Reference = R11;
-ValeurCmp = 1k5;
+ValeurCmp = 1K5;
 IdModule  = SM0603;
 EndCmp
 
@@ -473,14 +465,6 @@ IdModule  = PUSH_BUTTON;
 EndCmp
 
 BeginCmp
-TimeStamp = 4DD21AF7
-Path = /4CFAC6EA
-Reference = J1;
-ValeurCmp = USB;
-IdModule  = USB-MINI-B_UX60;
-EndCmp
-
-BeginCmp
 TimeStamp = 4DCD07D6
 Path = /4DC8FA06
 Reference = P4;
@@ -500,7 +484,7 @@ BeginCmp
 TimeStamp = 4DFFA0F3
 Path = /4DFF9902
 Reference = R22;
-ValeurCmp = 100k;
+ValeurCmp = 100K;
 IdModule  = SM0603;
 EndCmp
 
@@ -550,6 +534,30 @@ Path = /4DFF8B97
 Reference = IC2;
 ValeurCmp = LDO;
 IdModule  = SOT26;
+EndCmp
+
+BeginCmp
+TimeStamp = 4E0D9441
+Path = /4E0D8A18
+Reference = P5;
+ValeurCmp = SAM;
+IdModule  = SAM_FCI;
+EndCmp
+
+BeginCmp
+TimeStamp = 4DCD07C7
+Path = /4DCBE233
+Reference = J2;
+ValeurCmp = JACK_2.5;
+IdModule  = JACK2.5_SJ1-2503A;
+EndCmp
+
+BeginCmp
+TimeStamp = 4E0E2AAE
+Path = /4CFAC6EA
+Reference = J1;
+ValeurCmp = USB;
+IdModule  = USB-MINI-B_54819-0519;
 EndCmp
 
 EndListe
