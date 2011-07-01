@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Fr 01 Jul 2011 10:59:40 CEST
+EESchema Schematic File Version 2  date Fr 01 Jul 2011 11:31:02 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -771,6 +771,7 @@ U 2 1 4E0D8A18
 P 9950 4800
 F 0 "P5" H 9800 4950 60  0000 C CNN
 F 1 "SAM" H 10100 4950 60  0000 C CNN
+F 2 "SAM_FCI" H 9950 4800 60  0001 C CNN
 	2    9950 4800
 	1    0    0    -1  
 $EndComp
@@ -780,6 +781,7 @@ U 1 1 4E0D8A0F
 P 9950 5200
 F 0 "P5" H 9800 5450 60  0000 C CNN
 F 1 "SAM" H 10100 5450 60  0000 C CNN
+F 2 "SAM_FCI" H 9950 5200 60  0001 C CNN
 	1    9950 5200
 	1    0    0    -1  
 $EndComp

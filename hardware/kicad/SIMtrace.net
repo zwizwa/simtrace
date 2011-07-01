@@ -1,435 +1,533 @@
-# EESchema Netlist Version 1.1 created  Do 23 Jun 2011 12:55:43 CEST
+# EESchema Netlist Version 1.1 created  Fr 01 Jul 2011 11:30:45 CEST
 (
- ( /4DFF9964 SM0603  C24 100nF {Lib=C}
-  (    1 /VCC_SIM )
-  (    2 GND )
- )
- ( /4DFF9902 SM0603  R22 100K {Lib=R}
-  (    1 /VCC_PHONE )
-  (    2 N-000062 )
- )
- ( /4DFF9774 SOT353  IC5 FPF2005 {Lib=FPF200X}
-  (    1 /VCC_SIM )
-  (    2 GND )
-  (    3 N-000062 )
-  (    4 /VCC_FWD )
-  (    5 /VCC_PHONE )
- )
- ( /4DFF8B97 SOT26  IC2 AP7332 {Lib=AP7332}
-  (    1 /VCC_SIM )
-  (    2 GND )
-  (    3 /SIM_PWEN )
-  (    4 N-000063 )
-  (    5 N-000063 )
-  (    6 3V3 )
- )
- ( /4DFF746C SM0603  R21 10k1% {Lib=R}
-  (    1 GND )
-  (    2 N-000068 )
- )
- ( /4DFF7469 SM0603  R20 10k1% {Lib=R}
-  (    1 /VCC_PHONE )
-  (    2 N-000068 )
- )
- ( /4DFF73B0 SM0603  R19 100K {Lib=R}
-  (    1 GND )
-  (    2 /VCC_PHONE )
- )
- ( /4DCBE233 JACK_2.5  J2 JACK_2.5 {Lib=JACK_2.5}
-  (    1 GND )
-  (    2 /DRXD )
-  (    3 /DTXD )
- )
- ( /4DCB8C13 SOD123  D2 1N5819 {Lib=ZENER}
-  (    1 /USBVCC )
-  (    2 N-000063 )
- )
- ( /4DCB8C0D SOD123  D3 1N5819 {Lib=ZENER}
-  (    1 N-000019 )
-  (    2 N-000063 )
- )
- ( /4DC8FA06 SIM_AMPHENOL  P4 SIM {Lib=ISO7816_NO}
-  (   C1 /VCC_SIM )
-  (   C2 /RST_SIM )
-  (   C3 /CLK_SIM )
-  (   C4 ? )
-  (   C5 GND )
-  (   C6 ? )
-  (   C7 /I/O_SIM )
-  (   C8 ? )
-  (  SW1 /SW_SIM )
-  (  SW2 GND )
- )
- ( /4DC8F97A SM0603  C12 2.2uF {Lib=C}
-  (    1 +1.8V )
-  (    2 GND )
- )
- ( /4DC8F975 SM0603  C1 2.2uF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4DC804A6 PIN_ARRAY_2X1  BT1 4.5-6V {Lib=BATTERY}
-  (    1 N-000019 )
-  (    2 GND )
- )
- ( /4DC7A441 SM0603  R16 10K {Lib=R}
-  (    1 N-000015 )
-  (    2 N-000027 )
- )
- ( /4DC7A43A SOT23_BC847  Q2 BC847 {Lib=BC847}
-  (    1 N-000015 )
-  (    2 GND )
-  (    3 /UDP_PUP )
- )
- ( /4DC7A27C SOD123  D1 Schottky {Lib=ZENER}
-  (    1 /UDP_PUP )
-  (    2 //RESET )
- )
- ( /4DC7A1CA SOT23_BC847  Q1 BC847 {Lib=BC847}
-  (    1 /UDP_PUP )
-  (    2 N-000025 )
-  (    3 3V3 )
- )
- ( /4DC79EDF SM0603  C5 33pF {Lib=C}
-  (    1 N-000059 )
-  (    2 N-000024 )
- )
- ( /4DC79EDC SM0603  C13 15pF {Lib=C}
-  (    1 /DDP )
-  (    2 GND )
- )
- ( /4DC79ED8 SM0603  C11 15pF {Lib=C}
-  (    1 /DDM )
-  (    2 GND )
- )
- ( /4DC79ED1 SM0603  R1 100K {Lib=R}
-  (    1 3V3 )
-  (    2 /UDP_PUP )
- )
- ( /4DC79ECE SM0603  R3 1K5 {Lib=R}
-  (    1 N-000024 )
-  (    2 N-000025 )
- )
- ( /4DC79EAD SM0603  R9 27R {Lib=R}
-  (    1 /DDM )
-  (    2 N-000059 )
- )
- ( /4DC79EA7 SM0603  R10 27R {Lib=R}
-  (    1 /DDP )
-  (    2 N-000024 )
- )
- ( /4DC79E9A SM0603  R2 10K {Lib=R}
-  (    1 /A-B-DETECT )
-  (    2 3V3 )
- )
- ( /4CFAC6EA USB-MINI-B_UX60  J1 USB-B_MINI {Lib=USB-B_MINI}
-  (    1 N-000060 )
-  (    2 N-000059 )
-  (    3 N-000024 )
-  (    4 /A-B-DETECT )
-  (    5 GND )
- )
- ( /4DC79E48 SM0805  FB1 FILTER {Lib=FILTER}
-  (    1 N-000060 )
-  (    2 /USBVCC )
- )
- ( /4DC799F2 SM0603  R17 10K {Lib=R}
-  (    1 /WP )
-  (    2 GND )
- )
- ( /4DC6A5DE SM0603  C14 1uF {Lib=C}
-  (    1 N-000063 )
-  (    2 GND )
- )
- ( /4DC6A5D9 SM0603  C22 1uF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4DC6A5CB SM0603  C21 1uF {Lib=C}
-  (    1 /VCC_SIM )
-  (    2 GND )
- )
- ( /4DC6A187 SSOP20_BDQ  IC4 CB3Q3244 {Lib=QS3244}
-  (    1 /SC_SW )
-  (    4 /RST_PHONE )
-  (    6 /CLK_PHONE )
-  (    9 /I/O_SIM )
-  (   10 GND )
-  (   11 /I/O_PHONE )
-  (   14 /CLK_SIM )
-  (   16 /RST_SIM )
-  (   19 /I/O_SW )
-  (   20 3V3 )
- )
- ( /4DC68E45 SM0603  C23 100nF {Lib=C}
-  (    1 N-000065 )
-  (    2 GND )
- )
- ( /4DC68E1D SM0805  FB2 FILTER {Lib=FILTER}
-  (    1 N-000065 )
-  (    2 3V3 )
- )
- ( /4DC6852C PUSH_BUTTON  SW2 BOOTLOADER {Lib=SW_PUSH}
-  (    1 /BOOTLOADER )
-  (    2 GND )
- )
- ( /4DC683ED PIN_ARRAY_2X1  JP2 ERASE {Lib=JUMPER}
-  (    1 3V3 )
-  (    2 N-000033 )
- )
- ( /4DC68259 PIN_ARRAY_2X1  JP1 TEST {Lib=JUMPER}
-  (    1 /TEST )
-  (    2 3V3 )
- )
- ( /4DC664E0 SM0603  C19 100nF {Lib=C}
-  (    1 +1.8V )
-  (    2 GND )
- )
- ( /4DC664DD SM0603  C16 100nF {Lib=C}
-  (    1 +1.8V )
-  (    2 GND )
- )
- ( /4DC66392 SM0603  C4 100nF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4DC5A30D SM0603  R18 10K {Lib=R}
-  (    1 N-000013 )
-  (    2 3V3 )
- )
- ( /4DC5A250 SOIC8  U1 FLASH {Lib=FLASH_SPI}
-  (    1 /CS )
-  (    2 /MISO )
-  (    3 /WP )
-  (    4 GND )
-  (    5 /MOSI )
-  (    6 /SCK )
-  (    7 N-000013 )
-  (    8 3V3 )
- )
- ( /4DC555D0 SM0603  R14 150R {Lib=R}
-  (    1 3V3 )
-  (    2 N-000043 )
- )
- ( /4CF7BAEE SM0603  R13 150R {Lib=R}
-  (    1 3V3 )
-  (    2 N-000045 )
- )
- ( /4DC51F05 FFC_REBELSIM  P3 REBELSIM {Lib=REBELSIM}
-  (    1 /VCC_PHONE )
-  (    2 /RST_PHONE )
-  (    3 /CLK_PHONE )
-  (    4 /I/O_PHONE )
-  (    5 ? )
-  (    6 GND )
- )
- ( /4D037E30 SM0603  C3 100nF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4D020EDF SM0603  C20 100nF {Lib=C}
-  (    1 +1.8V )
-  (    2 GND )
- )
- ( /4D020ED8 SM0603  C15 100nF {Lib=C}
-  (    1 +1.8V )
-  (    2 GND )
- )
- ( /4D020DD3 SM0603  C6 10nF {Lib=C}
-  (    1 GND )
-  (    2 N-000042 )
- )
- ( /4D020DCD SM0603  C10 1nF {Lib=C}
-  (    1 GND )
-  (    2 N-000032 )
- )
- ( /4D020DC6 SM0603  R11 1K5 {Lib=R}
-  (    1 N-000032 )
-  (    2 N-000042 )
- )
- ( /4D020BEB SM0603  C9 100nF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4D020BDE SM0603  C7 100nF {Lib=C}
-  (    1 3V3 )
-  (    2 GND )
- )
- ( /4D020733 PUSH_BUTTON  SW1 RESET {Lib=SW_PUSH}
-  (    1 //RESET )
-  (    2 GND )
- )
- ( /4D0206C7 SM0603  R12 100K {Lib=R}
-  (    1 3V3 )
-  (    2 //RESET )
- )
- ( /4CFCD6C9 pin_array_10x2  P1 JTAG {Lib=JTAG}
-  (    1 3V3 )
-  (    2 3V3 )
-  (    3 N-000041 )
-  (    4 GND )
-  (    5 /TDI )
-  (    6 GND )
-  (    7 /TMS )
-  (    8 GND )
-  (    9 /TCK )
-  (   10 GND )
-  (   11 /TCK )
-  (   12 GND )
-  (   13 /TDO )
-  (   14 GND )
-  (   15 //RESET )
-  (   16 GND )
-  (   17 ? )
-  (   18 GND )
-  (   19 ? )
-  (   20 GND )
- )
- ( /4CF5471F LED-0603  D5 GREEN {Lib=LED}
-  (    1 N-000043 )
-  (    2 /LED_G )
- )
- ( /4CF54717 LED-0603  D4 RED {Lib=LED}
-  (    1 N-000045 )
-  (    2 /LED_R )
- )
- ( /4CE84486 TQFP_64  IC3 AT91SAM7S {Lib=AT91SAM7S512/256/128/64/321-AU}
-  (    1 N-000065 )
-  (    2 GND )
-  (    3 GND )
-  (    4 GND )
-  (    5 GND )
-  (    6 N-000068 )
-  (    7 3V3 )
-  (    8 +1.8V )
-  (    9 /LED_R )
-  (   10 /LED_G )
-  (   11 /I/O_PHONE )
-  (   12 +1.8V )
-  (   13 /I/O_SW )
-  (   14 /I/O_PHONE )
-  (   15 /CLK_PHONE )
-  (   16 /SC_SW )
-  (   17 GND )
-  (   18 3V3 )
-  (   19 N-000027 )
-  (   20 /WP )
-  (   21 /SCK )
-  (   22 /MOSI )
-  (   23 /RST_PHONE )
-  (   24 +1.8V )
-  (   25 /VCC_PHONE )
-  (   26 /VCC_FWD )
-  (   27 /MISO )
-  (   28 /CS )
-  (   29 /DTXD )
-  (   30 /DRXD )
-  (   31 /SW_SIM )
-  (   32 /RST_SIM )
-  (   33 /TDI )
-  (   34 /I/O_SIM )
-  (   35 /SIM_PWEN )
-  (   36 /CLK_SIM )
-  (   37 ? )
-  (   38 /CLK_PHONE )
-  (   39 //RESET )
-  (   40 /TEST )
-  (   41 /A-B-DETECT )
-  (   42 ? )
-  (   43 ? )
-  (   44 /CLK_SIM )
-  (   45 3V3 )
-  (   46 GND )
-  (   47 /I/O_SIM )
-  (   48 ? )
-  (   49 /TDO )
-  (   50 ? )
-  (   51 /TMS )
-  (   52 /BOOTLOADER )
-  (   53 /TCK )
-  (   54 +1.8V )
-  (   55 N-000033 )
-  (   56 /DDM )
-  (   57 /DDP )
-  (   58 3V3 )
-  (   59 3V3 )
-  (   60 GND )
-  (   61 N-000039 )
-  (   62 N-000035 )
-  (   63 N-000032 )
-  (   64 +1.8V )
- )
- ( /4CE9ADCF PIN_ARRAY-6X1  P2 DEBUG {Lib=DEBUG}
-  (    1 GND )
-  (    2 N-000036 )
-  (    3 3V3 )
-  (    4 /DRXD )
-  (    5 /DTXD )
-  (    6 N-000036 )
- )
- ( /4CE9A6AE SM0603  R8 100K {Lib=R}
-  (    1 /TDO )
-  (    2 3V3 )
- )
- ( /4CE9A6A9 SM0603  R7 100K {Lib=R}
-  (    1 /TCK )
-  (    2 3V3 )
- )
- ( /4CE9A6A5 SM0603  R6 100K {Lib=R}
-  (    1 /TMS )
-  (    2 3V3 )
- )
- ( /4CE9A69A SM0603  R5 100K {Lib=R}
-  (    1 /TDI )
-  (    2 3V3 )
- )
- ( /4CE9A68C SM0603  R4 100K {Lib=R}
-  (    1 N-000041 )
-  (    2 3V3 )
- )
- ( /4CE91633 SM0603  C18 10pF {Lib=C}
-  (    1 N-000035 )
-  (    2 GND )
- )
- ( /4CE9162F SM0603  C17 10pF {Lib=C}
-  (    1 N-000039 )
-  (    2 GND )
- )
- ( /4CE915DE Q_49U3HMS  X1 18.432MHz {Lib=CRYSTAL}
-  (    1 N-000039 )
-  (    2 N-000035 )
+ ( /4DC804A6 PIN_ARRAY_2X1 BT1 4.5-6V
+  ( 1 N-000013 )
+  ( 2 GND )
+ )
+ ( /4DC8F975 SM0603 C1 2.2uF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4D037E30 SM0603 C3 100nF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4DC66392 SM0603 C4 100nF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4DC79EDF SM0603 C5 33pF
+  ( 1 N-000059 )
+  ( 2 N-000065 )
+ )
+ ( /4D020DD3 SM0603 C6 10nF
+  ( 1 GND )
+  ( 2 N-000045 )
+ )
+ ( /4D020BDE SM0603 C7 100nF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4D020BEB SM0603 C9 100nF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4D020DCD SM0603 C10 1nF
+  ( 1 GND )
+  ( 2 N-000036 )
+ )
+ ( /4DC79ED8 SM0603 C11 15pF
+  ( 1 /DDM )
+  ( 2 GND )
+ )
+ ( /4DC8F97A SM0603 C12 2.2uF
+  ( 1 +1.8V )
+  ( 2 GND )
+ )
+ ( /4DC79EDC SM0603 C13 15pF
+  ( 1 /DDP )
+  ( 2 GND )
+ )
+ ( /4DC6A5DE SM0603 C14 1uF
+  ( 1 N-000016 )
+  ( 2 GND )
+ )
+ ( /4D020ED8 SM0603 C15 100nF
+  ( 1 +1.8V )
+  ( 2 GND )
+ )
+ ( /4DC664DD SM0603 C16 100nF
+  ( 1 +1.8V )
+  ( 2 GND )
+ )
+ ( /4CE9162F SM0603 C17 10pF
+  ( 1 N-000033 )
+  ( 2 GND )
+ )
+ ( /4CE91633 SM0603 C18 10pF
+  ( 1 N-000039 )
+  ( 2 GND )
+ )
+ ( /4DC664E0 SM0603 C19 100nF
+  ( 1 +1.8V )
+  ( 2 GND )
+ )
+ ( /4D020EDF SM0603 C20 100nF
+  ( 1 +1.8V )
+  ( 2 GND )
+ )
+ ( /4DC6A5CB SM0603 C21 1uF
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+ )
+ ( /4DC6A5D9 SM0603 C22 1uF
+  ( 1 3V3 )
+  ( 2 GND )
+ )
+ ( /4DC68E45 SM0603 C23 100nF
+  ( 1 N-000063 )
+  ( 2 GND )
+ )
+ ( /4DFF9964 SM0603 C24 100nF
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+ )
+ ( /4DC7A27C SOD123 D1 Schottky
+  ( 1 /UDP_PUP )
+  ( 2 //RESET )
+ )
+ ( /4DCB8C13 SOD123 D2 1N5819
+  ( 1 /USBVCC )
+  ( 2 N-000016 )
+ )
+ ( /4DCB8C0D SOD123 D3 1N5819
+  ( 1 N-000013 )
+  ( 2 N-000016 )
+ )
+ ( /4CF54717 LED-0603 D4 RED
+  ( 1 N-000052 )
+  ( 2 /LED_R )
+ )
+ ( /4CF5471F LED-0603 D5 GREEN
+  ( 1 N-000050 )
+  ( 2 /LED_G )
+ )
+ ( /4DC79E48 SM0805 FB1 FILTER
+  ( 1 N-000060 )
+  ( 2 /USBVCC )
+ )
+ ( /4DC68E1D SM0805 FB2 FILTER
+  ( 1 N-000063 )
+  ( 2 3V3 )
+ )
+ ( /4DFF8B97 SOT26 IC2 AP7332
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+  ( 3 /SIM_PWEN )
+  ( 4 N-000016 )
+  ( 5 N-000016 )
+  ( 6 3V3 )
+ )
+ ( /4CE84486 TQFP_64 IC3 AT91SAM7S
+  ( 1 N-000063 )
+  ( 2 GND )
+  ( 3 GND )
+  ( 4 GND )
+  ( 5 GND )
+  ( 6 N-000018 )
+  ( 7 3V3 )
+  ( 8 +1.8V )
+  ( 9 /LED_R )
+  ( 10 /LED_G )
+  ( 11 /I/O_PHONE )
+  ( 12 +1.8V )
+  ( 13 /I/O_SW )
+  ( 14 /I/O_PHONE )
+  ( 15 /CLK_PHONE )
+  ( 16 /SC_SW )
+  ( 17 GND )
+  ( 18 3V3 )
+  ( 19 N-000031 )
+  ( 20 /WP )
+  ( 21 /SCK )
+  ( 22 /MOSI )
+  ( 23 /RST_PHONE )
+  ( 24 +1.8V )
+  ( 25 /VCC_PHONE )
+  ( 26 /VCC_FWD )
+  ( 27 /MISO )
+  ( 28 /CS )
+  ( 29 /DTXD )
+  ( 30 /DRXD )
+  ( 31 /SW_SIM )
+  ( 32 /RST_SIM )
+  ( 33 /TDI )
+  ( 34 /I/O_SIM )
+  ( 35 /SIM_PWEN )
+  ( 36 /CLK_SIM )
+  ( 37 ? )
+  ( 38 /CLK_PHONE )
+  ( 39 //RESET )
+  ( 40 /TEST )
+  ( 41 /A-B-DETECT )
+  ( 42 ? )
+  ( 43 /SW_SAM )
+  ( 44 /CLK_SIM )
+  ( 45 3V3 )
+  ( 46 GND )
+  ( 47 /I/O_SIM )
+  ( 48 ? )
+  ( 49 /TDO )
+  ( 50 ? )
+  ( 51 /TMS )
+  ( 52 /BOOTLOADER )
+  ( 53 /TCK )
+  ( 54 +1.8V )
+  ( 55 N-000028 )
+  ( 56 /DDM )
+  ( 57 /DDP )
+  ( 58 3V3 )
+  ( 59 3V3 )
+  ( 60 GND )
+  ( 61 N-000033 )
+  ( 62 N-000039 )
+  ( 63 N-000036 )
+  ( 64 +1.8V )
+ )
+ ( /4DC6A187 SSOP20_BDQ IC4 CB3Q3244
+  ( 1 /SC_SW )
+  ( 4 /RST_PHONE )
+  ( 6 /CLK_PHONE )
+  ( 9 /I/O_SIM )
+  ( 10 GND )
+  ( 11 /I/O_PHONE )
+  ( 14 /CLK_SIM )
+  ( 16 /RST_SIM )
+  ( 19 /I/O_SW )
+  ( 20 3V3 )
+ )
+ ( /4DFF9774 SOT353 IC5 FPF2005
+  ( 1 /VCC_SIM )
+  ( 2 GND )
+  ( 3 N-000061 )
+  ( 4 /VCC_FWD )
+  ( 5 /VCC_PHONE )
+ )
+ ( /4CFAC6EA USB-MINI-B_UX60 J1 USB-B_MINI
+  ( 1 N-000060 )
+  ( 2 N-000059 )
+  ( 3 N-000065 )
+  ( 4 /A-B-DETECT )
+  ( 5 GND )
+ )
+ ( /4DCBE233 JACK_2.5 J2 JACK_2.5
+  ( 1 GND )
+  ( 2 /DRXD )
+  ( 3 /DTXD )
+ )
+ ( /4DC68259 PIN_ARRAY_2X1 JP1 TEST
+  ( 1 /TEST )
+  ( 2 3V3 )
+ )
+ ( /4DC683ED PIN_ARRAY_2X1 JP2 ERASE
+  ( 1 3V3 )
+  ( 2 N-000028 )
+ )
+ ( /4CFCD6C9 pin_array_10x2 P1 JTAG
+  ( 1 3V3 )
+  ( 2 3V3 )
+  ( 3 N-000044 )
+  ( 4 GND )
+  ( 5 /TDI )
+  ( 6 GND )
+  ( 7 /TMS )
+  ( 8 GND )
+  ( 9 /TCK )
+  ( 10 GND )
+  ( 11 /TCK )
+  ( 12 GND )
+  ( 13 /TDO )
+  ( 14 GND )
+  ( 15 //RESET )
+  ( 16 GND )
+  ( 17 ? )
+  ( 18 GND )
+  ( 19 ? )
+  ( 20 GND )
+ )
+ ( /4CE9ADCF PIN_ARRAY-6X1 P2 DEBUG
+  ( 1 GND )
+  ( 2 N-000040 )
+  ( 3 3V3 )
+  ( 4 /DRXD )
+  ( 5 /DTXD )
+  ( 6 N-000040 )
+ )
+ ( /4DC51F05 FFC_REBELSIM P3 REBELSIM
+  ( 1 /VCC_PHONE )
+  ( 2 /RST_PHONE )
+  ( 3 /CLK_PHONE )
+  ( 4 /I/O_PHONE )
+  ( 5 ? )
+  ( 6 GND )
+ )
+ ( /4DC8FA06 SIM_AMPHENOL P4 SIM
+  ( C1 /VCC_SIM )
+  ( C2 /RST_SIM )
+  ( C3 /CLK_SIM )
+  ( C4 ? )
+  ( C5 GND )
+  ( C6 ? )
+  ( C7 /I/O_SIM )
+  ( C8 ? )
+  ( SW1 /SW_SIM )
+  ( SW2 GND )
+ )
+ ( /4E0D8A18 SAM_FCI P5 SAM
+  ( C1 /VCC_SIM )
+  ( C2 /RST_SIM )
+  ( C3 /CLK_SIM )
+  ( C4 ? )
+  ( C5 GND )
+  ( C6 ? )
+  ( C7 /I/O_SIM )
+  ( C8 ? )
+  ( SW1 /SW_SAM )
+  ( SW2 GND )
+ )
+ ( /4DC7A1CA SOT23_BC847 Q1 BC847
+  ( 1 /UDP_PUP )
+  ( 2 N-000021 )
+  ( 3 3V3 )
+ )
+ ( /4DC7A43A SOT23_BC847 Q2 BC847
+  ( 1 N-000025 )
+  ( 2 GND )
+  ( 3 /UDP_PUP )
+ )
+ ( /4DC79ED1 SM0603 R1 100K
+  ( 1 3V3 )
+  ( 2 /UDP_PUP )
+ )
+ ( /4DC79E9A SM0603 R2 10K
+  ( 1 /A-B-DETECT )
+  ( 2 3V3 )
+ )
+ ( /4DC79ECE SM0603 R3 1K5
+  ( 1 N-000065 )
+  ( 2 N-000021 )
+ )
+ ( /4CE9A68C SM0603 R4 100K
+  ( 1 N-000044 )
+  ( 2 3V3 )
+ )
+ ( /4CE9A69A SM0603 R5 100K
+  ( 1 /TDI )
+  ( 2 3V3 )
+ )
+ ( /4CE9A6A5 SM0603 R6 100K
+  ( 1 /TMS )
+  ( 2 3V3 )
+ )
+ ( /4CE9A6A9 SM0603 R7 100K
+  ( 1 /TCK )
+  ( 2 3V3 )
+ )
+ ( /4CE9A6AE SM0603 R8 100K
+  ( 1 /TDO )
+  ( 2 3V3 )
+ )
+ ( /4DC79EAD SM0603 R9 27R
+  ( 1 /DDM )
+  ( 2 N-000059 )
+ )
+ ( /4DC79EA7 SM0603 R10 27R
+  ( 1 /DDP )
+  ( 2 N-000065 )
+ )
+ ( /4D020DC6 SM0603 R11 1K5
+  ( 1 N-000036 )
+  ( 2 N-000045 )
+ )
+ ( /4D0206C7 SM0603 R12 100K
+  ( 1 3V3 )
+  ( 2 //RESET )
+ )
+ ( /4CF7BAEE SM0603 R13 150R
+  ( 1 3V3 )
+  ( 2 N-000052 )
+ )
+ ( /4DC555D0 SM0603 R14 150R
+  ( 1 3V3 )
+  ( 2 N-000050 )
+ )
+ ( /4DC7A441 SM0603 R16 10K
+  ( 1 N-000025 )
+  ( 2 N-000031 )
+ )
+ ( /4DC799F2 SM0603 R17 10K
+  ( 1 /WP )
+  ( 2 GND )
+ )
+ ( /4DC5A30D SM0603 R18 10K
+  ( 1 N-000008 )
+  ( 2 3V3 )
+ )
+ ( /4DFF73B0 SM0603 R19 100K
+  ( 1 GND )
+  ( 2 /VCC_PHONE )
+ )
+ ( /4DFF7469 SM0603 R20 10k1%
+  ( 1 /VCC_PHONE )
+  ( 2 N-000018 )
+ )
+ ( /4DFF746C SM0603 R21 10k1%
+  ( 1 GND )
+  ( 2 N-000018 )
+ )
+ ( /4DFF9902 SM0603 R22 100K
+  ( 1 /VCC_PHONE )
+  ( 2 N-000061 )
+ )
+ ( /4D020733 PUSH_BUTTON SW1 RESET
+  ( 1 //RESET )
+  ( 2 GND )
+ )
+ ( /4DC6852C PUSH_BUTTON SW2 BOOTLOADER
+  ( 1 /BOOTLOADER )
+  ( 2 GND )
+ )
+ ( /4DC5A250 SOIC8 U1 FLASH
+  ( 1 /CS )
+  ( 2 /MISO )
+  ( 3 /WP )
+  ( 4 GND )
+  ( 5 /MOSI )
+  ( 6 /SCK )
+  ( 7 N-000008 )
+  ( 8 3V3 )
+ )
+ ( /4CE915DE Q_49U3HMS X1 18.432MHz
+  ( 1 N-000033 )
+  ( 2 N-000039 )
  )
 )
 *
 { Allowed footprints by component:
+$component C1
+ SM*
+ C?
+ C1-1
+$endlist
+$component C3
+ SM*
+ C?
+ C1-1
+$endlist
+$component C4
+ SM*
+ C?
+ C1-1
+$endlist
+$component C5
+ SM*
+ C?
+ C1-1
+$endlist
+$component C6
+ SM*
+ C?
+ C1-1
+$endlist
+$component C7
+ SM*
+ C?
+ C1-1
+$endlist
+$component C9
+ SM*
+ C?
+ C1-1
+$endlist
+$component C10
+ SM*
+ C?
+ C1-1
+$endlist
+$component C11
+ SM*
+ C?
+ C1-1
+$endlist
+$component C12
+ SM*
+ C?
+ C1-1
+$endlist
+$component C13
+ SM*
+ C?
+ C1-1
+$endlist
+$component C14
+ SM*
+ C?
+ C1-1
+$endlist
+$component C15
+ SM*
+ C?
+ C1-1
+$endlist
+$component C16
+ SM*
+ C?
+ C1-1
+$endlist
+$component C17
+ SM*
+ C?
+ C1-1
+$endlist
+$component C18
+ SM*
+ C?
+ C1-1
+$endlist
+$component C19
+ SM*
+ C?
+ C1-1
+$endlist
+$component C20
+ SM*
+ C?
+ C1-1
+$endlist
+$component C21
+ SM*
+ C?
+ C1-1
+$endlist
+$component C22
+ SM*
+ C?
+ C1-1
+$endlist
+$component C23
+ SM*
+ C?
+ C1-1
+$endlist
 $component C24
  SM*
  C?
  C1-1
 $endlist
-$component R22
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component R21
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component R20
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component R19
- R?
- SM0603
- SM0805
- R?-*
+$component D1
+ D?
+ SO*
+ SM*
 $endlist
 $component D2
  D?
@@ -441,41 +539,23 @@ $component D3
  SO*
  SM*
 $endlist
-$component C12
- SM*
- C?
- C1-1
+$component D4
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
 $endlist
-$component C1
- SM*
- C?
- C1-1
-$endlist
-$component R16
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component D1
- D?
- SO*
- SM*
-$endlist
-$component C5
- SM*
- C?
- C1-1
-$endlist
-$component C13
- SM*
- C?
- C1-1
-$endlist
-$component C11
- SM*
- C?
- C1-1
+$component D5
+ LED-3MM
+ LED-5MM
+ LED-10MM
+ LED-0603
+ LED-0805
+ LED-1206
+ LEDV
 $endlist
 $component R1
  R?
@@ -483,7 +563,43 @@ $component R1
  SM0805
  R?-*
 $endlist
+$component R2
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
 $component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R4
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R5
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R7
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R8
  R?
  SM0603
  SM0805
@@ -501,60 +617,13 @@ $component R10
  SM0805
  R?-*
 $endlist
-$component R2
+$component R11
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component R17
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component C14
- SM*
- C?
- C1-1
-$endlist
-$component C22
- SM*
- C?
- C1-1
-$endlist
-$component C21
- SM*
- C?
- C1-1
-$endlist
-$component C23
- SM*
- C?
- C1-1
-$endlist
-$component C19
- SM*
- C?
- C1-1
-$endlist
-$component C16
- SM*
- C?
- C1-1
-$endlist
-$component C4
- SM*
- C?
- C1-1
-$endlist
-$component R18
- R?
- SM0603
- SM0805
- R?-*
-$endlist
-$component R14
+$component R12
  R?
  SM0603
  SM0805
@@ -566,421 +635,53 @@ $component R13
  SM0805
  R?-*
 $endlist
-$component C3
- SM*
- C?
- C1-1
-$endlist
-$component C20
- SM*
- C?
- C1-1
-$endlist
-$component C15
- SM*
- C?
- C1-1
-$endlist
-$component C6
- SM*
- C?
- C1-1
-$endlist
-$component C10
- SM*
- C?
- C1-1
-$endlist
-$component R11
+$component R14
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component C9
- SM*
- C?
- C1-1
-$endlist
-$component C7
- SM*
- C?
- C1-1
-$endlist
-$component R12
+$component R16
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component D5
- LED-3MM
- LED-5MM
- LED-10MM
- LED-0603
- LED-0805
- LED-1206
- LEDV
-$endlist
-$component D4
- LED-3MM
- LED-5MM
- LED-10MM
- LED-0603
- LED-0805
- LED-1206
- LEDV
-$endlist
-$component R8
+$component R17
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component R7
+$component R18
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component R6
+$component R19
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component R5
+$component R20
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component R4
+$component R21
  R?
  SM0603
  SM0805
  R?-*
 $endlist
-$component C18
- SM*
- C?
- C1-1
-$endlist
-$component C17
- SM*
- C?
- C1-1
+$component R22
+ R?
+ SM0603
+ SM0805
+ R?-*
 $endlist
 $endfootprintlist
 }
-{ Pin List by Nets
-Net 1 "GND" "GND"
- P2 1
- IC3 4
- IC3 5
- IC3 17
- IC3 46
- C11 2
- IC3 60
- IC3 3
- C13 2
- J1 5
- IC5 2
- IC2 2
- C12 2
- P4 SW2
- R21 1
- P4 C5
- R19 1
- R17 2
- P1 12
- P1 18
- P1 16
- P1 14
- P1 20
- P1 10
- P1 8
- P1 6
- C3 2
- C20 2
- C15 2
- C6 1
- C10 1
- C9 2
- C7 2
- IC3 2
- C17 2
- C18 2
- SW1 2
- P1 4
- U1 4
- P3 6
- C19 2
- C16 2
- C4 2
- C23 2
- SW2 2
- J2 1
- C14 2
- C22 2
- C21 2
- IC4 10
- C24 2
- Q2 2
- BT1 2
- C1 2
-Net 4 "/TEST" "TEST"
- JP1 1
- IC3 40
-Net 5 "/SC_SW" "SC_SW"
- IC3 16
- IC4 1
-Net 6 "/RST_SIM" "RST_SIM"
- P4 C2
- IC3 32
- IC4 16
-Net 7 "/I/O_SIM" "I/O_SIM"
- IC3 34
- IC3 47
- IC4 9
- P4 C7
-Net 8 "/CLK_SIM" "CLK_SIM"
- IC4 14
- P4 C3
- IC3 44
- IC3 36
-Net 9 "/MOSI" "MOSI"
- U1 5
- IC3 22
-Net 10 "/SCK" "SCK"
- IC3 21
- U1 6
-Net 11 "/MISO" "MISO"
- IC3 27
- U1 2
-Net 12 "/CS" "CS"
- IC3 28
- U1 1
-Net 13 "" ""
- U1 7
- R18 1
-Net 15 "" ""
- R16 1
- Q2 1
-Net 16 "/UDP_PUP" "UDP_PUP"
- R1 2
- Q2 3
- Q1 1
- D1 1
-Net 18 "/USBVCC" "USBVCC"
- D2 1
- FB1 2
-Net 19 "" ""
- D3 1
- BT1 1
-Net 22 "//RESET" "/RESET"
- IC3 39
- P1 15
- R12 2
- SW1 1
- D1 2
-Net 23 "/DDP" "DDP"
- R10 1
- IC3 57
- C13 1
-Net 24 "" ""
- C5 2
- R3 1
- R10 2
- J1 3
-Net 25 "" ""
- Q1 2
- R3 2
-Net 27 "" ""
- IC3 19
- R16 2
-Net 28 "/DTXD" "DTXD"
- J2 3
- IC3 29
- P2 5
-Net 29 "/BOOTLOADER" "BOOTLOADER"
- SW2 1
- IC3 52
-Net 30 "/I/O_SW" "I/O_SW"
- IC4 19
- IC3 13
-Net 32 "" ""
- IC3 63
- C10 2
- R11 1
-Net 33 "" ""
- JP2 2
- IC3 55
-Net 35 "" ""
- X1 2
- IC3 62
- C18 1
-Net 36 "" ""
- P2 2
- P2 6
-Net 37 "/TDO" "TDO"
- R8 1
- P1 13
- IC3 49
-Net 39 "" ""
- X1 1
- C17 1
- IC3 61
-Net 41 "" ""
- R4 1
- P1 3
-Net 42 "" ""
- C6 2
- R11 2
-Net 43 "" ""
- R14 2
- D5 1
-Net 44 "/LED_G" "LED_G"
- IC3 10
- D5 2
-Net 45 "" ""
- R13 2
- D4 1
-Net 46 "/LED_R" "LED_R"
- D4 2
- IC3 9
-Net 47 "/WP" "WP"
- R17 1
- U1 3
- IC3 20
-Net 48 "/A-B-DETECT" "A-B-DETECT"
- J1 4
- R2 1
- IC3 41
-Net 49 "/TMS" "TMS"
- IC3 51
- R6 1
- P1 7
-Net 50 "/SW_SIM" "SW_SIM"
- P4 SW1
- IC3 31
-Net 51 "/I/O_PHONE" "I/O_PHONE"
- IC3 14
- IC3 11
- IC4 11
- P3 4
-Net 52 "/RST_PHONE" "RST_PHONE"
- P3 2
- IC3 23
- IC4 4
-Net 53 "/CLK_PHONE" "CLK_PHONE"
- IC3 15
- IC3 38
- IC4 6
- P3 3
-Net 54 "/VCC_SIM" "VCC_SIM"
- C21 1
- IC5 1
- IC2 1
- C24 1
- P4 C1
-Net 55 "/SIM_PWEN" "SIM_PWEN"
- IC3 35
- IC2 3
-Net 56 "3V3" "3V3"
- R1 1
- Q1 3
- R12 1
- P1 1
- P1 2
- IC3 58
- IC3 18
- IC4 20
- R4 2
- IC3 59
- R14 1
- FB2 2
- IC3 7
- C7 1
- C9 1
- R13 1
- U1 8
- IC2 6
- C1 1
- C3 1
- R2 2
- C22 1
- C4 1
- IC3 45
- JP2 1
- R18 2
- JP1 2
- R8 2
- R7 2
- R6 2
- P2 3
- R5 2
-Net 57 "/TDI" "TDI"
- P1 5
- IC3 33
- R5 1
-Net 58 "/TCK" "TCK"
- R7 1
- IC3 53
- P1 11
- P1 9
-Net 59 "" ""
- C5 1
- R9 2
- J1 2
-Net 60 "" ""
- J1 1
- FB1 1
-Net 61 "/DDM" "DDM"
- C11 1
- R9 1
- IC3 56
-Net 62 "" ""
- IC5 3
- R22 2
-Net 63 "" ""
- C14 1
- IC2 4
- IC2 5
- D3 2
- D2 2
-Net 64 "/VCC_PHONE" "VCC_PHONE"
- P3 1
- IC5 5
- R20 1
- IC3 25
- R19 2
- R22 1
-Net 65 "" ""
- C23 1
- IC3 1
- FB2 1
-Net 66 "/DRXD" "DRXD"
- P2 4
- J2 2
- IC3 30
-Net 67 "/VCC_FWD" "VCC_FWD"
- IC3 26
- IC5 4
-Net 68 "" ""
- IC3 6
- R20 2
- R21 2
-Net 69 "+1.8V" "+1.8V"
- C16 1
- C19 1
- C20 1
- C15 1
- IC3 8
- C12 1
- IC3 12
- IC3 24
- IC3 54
- IC3 64
-}
-#End
