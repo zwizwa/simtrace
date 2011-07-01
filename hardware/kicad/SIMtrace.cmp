@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Fr 01 Jul 2011 11:30:45 CEST
+Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Fr 01 Jul 2011 13:03:37 CEST
 
 BeginCmp
 TimeStamp = /4DC804A6;
@@ -241,15 +241,15 @@ EndCmp
 BeginCmp
 TimeStamp = /4CFAC6EA;
 Reference = J1;
-ValeurCmp = USB-B_MINI;
-IdModule  = USB-MINI-B_UX60;
+ValeurCmp = USB;
+IdModule  = USB-MINI-B_54819-0519;
 EndCmp
 
 BeginCmp
 TimeStamp = /4DCBE233;
 Reference = J2;
 ValeurCmp = JACK_2.5;
-IdModule  = JACK_2.5;
+IdModule  = JACK2.5_SJ1-2503A;
 EndCmp
 
 BeginCmp

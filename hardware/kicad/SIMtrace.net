@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  Fr 01 Jul 2011 11:30:45 CEST
+# EESchema Netlist Version 1.1 created  Fr 01 Jul 2011 13:03:37 CEST
 (
  ( /4DC804A6 PIN_ARRAY_2X1 BT1 4.5-6V
   ( 1 N-000013 )
@@ -213,14 +213,14 @@
   ( 4 /VCC_FWD )
   ( 5 /VCC_PHONE )
  )
- ( /4CFAC6EA USB-MINI-B_UX60 J1 USB-B_MINI
+ ( /4CFAC6EA USB-MINI-B_54819-0519 J1 USB
   ( 1 N-000060 )
   ( 2 N-000059 )
   ( 3 N-000065 )
   ( 4 /A-B-DETECT )
   ( 5 GND )
  )
- ( /4DCBE233 JACK_2.5 J2 JACK_2.5
+ ( /4DCBE233 JACK2.5_SJ1-2503A J2 JACK_2.5
   ( 1 GND )
   ( 2 /DRXD )
   ( 3 /DTXD )
