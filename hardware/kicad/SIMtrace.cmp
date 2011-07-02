@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Fr 01 Jul 2011 13:03:37 CEST
+Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Sa 02 Jul 2011 17:52:11 CEST
 
 BeginCmp
 TimeStamp = /4DC804A6;
@@ -186,14 +186,14 @@ BeginCmp
 TimeStamp = /4CF54717;
 Reference = D4;
 ValeurCmp = RED;
-IdModule  = LED-0603;
+IdModule  = LED-0805;
 EndCmp
 
 BeginCmp
 TimeStamp = /4CF5471F;
 Reference = D5;
 ValeurCmp = GREEN;
-IdModule  = LED-0603;
+IdModule  = LED-0805;
 EndCmp
 
 BeginCmp
