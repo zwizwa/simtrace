@@ -1,4 +1,4 @@
-PCBNEW-BOARD Version 1 date Sa 02 Jul 2011 11:10:49 CEST
+PCBNEW-BOARD Version 1 date Sa 02 Jul 2011 11:18:35 CEST
 
 # Created by Pcbnew(2011-06-08)-testing
 
@@ -52,14 +52,14 @@ MicroViaMinSize 200
 MicroViaMinDrill 50
 TextPcbWidth 120
 TextPcbSize 600 800
-EdgeModWidth 59
+EdgeModWidth 150
 TextModSize 600 600
 TextModWidth 120
-PadSize 1181 315
-PadDrill 0
+PadSize 600 600
+PadDrill 320
 Pad2MaskClearance 100
 AuxiliaryAxisOrg 0 0
-PcbPlotParams (pcbplotparams (layerselection 3178497) (usegerberextensions true) (excludeedgelayer true) (linewidth 60) (plotframeref false) (viasonmask false) (mode 1) (useauxorigin false) (hpglpennumber 1) (hpglpenspeed 20) (hpglpendiameter 15) (hpglpenoverlay 0) (pscolor true) (psnegative false) (psa4output false) (plotreference true) (plotvalue true) (plotothertext true) (plotinvisibletext false) (padsonsilk false) (subtractmaskfromsilk false) (outputformat 1) (mirror false) (drillshape 1) (scaleselection 1) (outputdirectory ""))
+PcbPlotParams (pcbplotparams (layerselection 281051137) (usegerberextensions true) (excludeedgelayer false) (linewidth 60) (plotframeref false) (viasonmask false) (mode 1) (useauxorigin false) (hpglpennumber 1) (hpglpenspeed 20) (hpglpendiameter 15) (hpglpenoverlay 0) (pscolor true) (psnegative false) (psa4output false) (plotreference true) (plotvalue true) (plotothertext true) (plotinvisibletext false) (padsonsilk false) (subtractmaskfromsilk false) (outputformat 2) (mirror false) (drillshape 1) (scaleselection 1) (outputdirectory ../pcb/board/))
 $EndSETUP
 
 $EQUIPOT
@@ -526,6 +526,7 @@ Dr 0 0 0
 At SMD N 00440001
 Ne 12 "N-000020"
 Po 0 984
+Le 16777216
 $EndPAD
 $PAD
 Sh "2" R 1181 315 0 0 900
@@ -705,6 +706,7 @@ Dr 0 0 0
 At SMD N 00440001
 Ne 24 "N-000032"
 Po 0 984
+Le -1
 $EndPAD
 $PAD
 Sh "2" R 1181 315 0 0 2700
