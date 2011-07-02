@@ -1,36 +1,57 @@
-Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Di 21 Jun 2011 22:38:14 CEST
-
-BeginCmp
-TimeStamp = /4E0084D9;
-Reference = P1;
-ValeurCmp = FFC;
-IdModule  = FFC;
-EndCmp
-
-BeginCmp
-TimeStamp = /4E0084DD;
-Reference = P2;
-ValeurCmp = FFC;
-IdModule  = FFC;
-EndCmp
+Cmp-Mod V01 Created by CvPCB (2011-06-08)-testing date = Sa 02 Jul 2011 10:33:03 CEST
 
 BeginCmp
 TimeStamp = /4E0084E2;
-Reference = P3;
+Reference = P_DOWN2;
 ValeurCmp = FFC;
 IdModule  = FFC;
 EndCmp
 
 BeginCmp
 TimeStamp = /4E0084D4;
-Reference = P4;
+Reference = P_LEFT3;
 ValeurCmp = FFC;
 IdModule  = FFC;
 EndCmp
 
 BeginCmp
+TimeStamp = /4E0084DD;
+Reference = P_RIGHT4;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0084D9;
+Reference = P_UP1;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0ED4A7;
+Reference = SIM_DOWN2;
+ValeurCmp = ISO7816_CARD;
+IdModule  = SIM;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0ED4DA;
+Reference = SIM_LEFT3;
+ValeurCmp = ISO7816_CARD;
+IdModule  = SIM;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E0ED4DB;
+Reference = SIM_RIGHT4;
+ValeurCmp = ISO7816_CARD;
+IdModule  = SIM;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E0085A5;
-Reference = SIM1;
+Reference = SIM_UP1;
 ValeurCmp = ISO7816_CARD;
 IdModule  = SIM;
 EndCmp

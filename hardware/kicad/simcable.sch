@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Di 21 Jun 2011 14:36:44 CEST
+EESchema Schematic File Version 2  date Sa 02 Jul 2011 10:31:49 CEST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -30,14 +30,13 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:smartcard
-LIBS:SIMtrace-cache
 EELAYER 25  0
 EELAYER END
 $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title "SIM card for FFC"
-Date "21 jun 2011"
+Date "2 jul 2011"
 Rev "v1.0"
 Comp ""
 Comment1 ""
@@ -45,171 +44,268 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+NoConn ~ 9500 2850
+NoConn ~ 8400 2850
+Wire Wire Line
+	9500 2750 10000 2750
+Wire Wire Line
+	10000 2950 9600 2950
+Wire Wire Line
+	9600 2950 9600 2550
+Wire Wire Line
+	9600 2550 9500 2550
+Wire Wire Line
+	8400 2650 8150 2650
+Wire Wire Line
+	8150 2650 8150 2200
+Wire Wire Line
+	8150 2200 9850 2200
+Wire Wire Line
+	9850 2200 9850 2550
+Wire Wire Line
+	9850 2550 10000 2550
+Wire Wire Line
+	6350 2550 6050 2550
+Wire Wire Line
+	6050 2550 6050 2950
+Wire Wire Line
+	6050 2950 5800 2950
+Wire Wire Line
+	5800 2750 6350 2750
+Wire Wire Line
+	7450 2650 7600 2650
+Wire Wire Line
+	7600 2650 7600 2200
+Wire Wire Line
+	7600 2200 5900 2200
+Wire Wire Line
+	5900 2200 5900 2550
+Wire Wire Line
+	5900 2550 5800 2550
+Wire Wire Line
+	3600 2700 3600 2550
+Wire Wire Line
+	3600 2550 4600 2550
+Wire Wire Line
+	4600 2550 4600 1800
+Wire Wire Line
+	4600 1800 4400 1800
+Wire Wire Line
+	3800 2700 3800 2450
+Wire Wire Line
+	3800 2450 4500 2450
+Wire Wire Line
+	4500 2450 4500 2000
+Wire Wire Line
+	4500 2000 4400 2000
+Wire Wire Line
+	3100 2400 4100 2400
+Wire Wire Line
+	3100 2400 3100 1800
+Wire Wire Line
+	3100 1800 3300 1800
+Wire Wire Line
+	3900 2700 3900 2300
+Wire Wire Line
+	3900 2300 3200 2300
+Wire Wire Line
+	3200 2300 3200 2000
+Wire Wire Line
+	3200 2000 3300 2000
+Wire Wire Line
+	2000 2300 2000 2450
+Wire Wire Line
+	2000 2450 2550 2450
+Wire Wire Line
+	2550 2450 2550 3050
+Wire Wire Line
+	2550 3050 2400 3050
+Wire Wire Line
+	1800 2300 1800 2500
+Wire Wire Line
+	1800 2500 1100 2500
+Wire Wire Line
+	1100 2500 1100 3150
+Wire Wire Line
+	1100 3150 1300 3150
+Wire Wire Line
+	1600 2300 1600 2400
+Wire Wire Line
+	1600 2400 1200 2400
+Wire Wire Line
+	1200 2400 1200 2950
+Wire Wire Line
+	1200 2950 1300 2950
+Wire Wire Line
+	1300 3050 1150 3050
+Wire Wire Line
+	1150 3050 1150 2450
+Wire Wire Line
+	1150 2450 1700 2450
+Wire Wire Line
+	1700 2450 1700 2300
+Wire Wire Line
+	2400 2950 2500 2950
+Wire Wire Line
+	2500 2950 2500 2400
+Wire Wire Line
+	2500 2400 2100 2400
+Wire Wire Line
+	2100 2400 2100 2300
+Wire Wire Line
+	2400 3150 2600 3150
+Wire Wire Line
+	2600 3150 2600 2500
+Wire Wire Line
+	2600 2500 1900 2500
+Wire Wire Line
+	1900 2500 1900 2300
+Wire Wire Line
+	3300 1900 3150 1900
+Wire Wire Line
+	3150 1900 3150 2350
+Wire Wire Line
+	3150 2350 4000 2350
+Wire Wire Line
+	4000 2350 4000 2700
+Wire Wire Line
+	4100 2400 4100 2700
+Wire Wire Line
+	4400 1900 4550 1900
+Wire Wire Line
+	4550 1900 4550 2500
+Wire Wire Line
+	4550 2500 3700 2500
+Wire Wire Line
+	3700 2500 3700 2700
+Wire Wire Line
+	5800 2450 5850 2450
+Wire Wire Line
+	5850 2450 5850 2150
+Wire Wire Line
+	5850 2150 7550 2150
+Wire Wire Line
+	7550 2150 7550 2550
+Wire Wire Line
+	7550 2550 7450 2550
+Wire Wire Line
+	5800 2650 5950 2650
+Wire Wire Line
+	5950 2650 5950 2250
+Wire Wire Line
+	5950 2250 7650 2250
+Wire Wire Line
+	7650 2250 7650 2750
+Wire Wire Line
+	7650 2750 7450 2750
+Wire Wire Line
+	5800 2850 6000 2850
+Wire Wire Line
+	6000 2850 6000 2650
+Wire Wire Line
+	6000 2650 6350 2650
+Wire Wire Line
+	10000 2450 9900 2450
+Wire Wire Line
+	9900 2450 9900 2150
+Wire Wire Line
+	9900 2150 8200 2150
+Wire Wire Line
+	8200 2150 8200 2550
+Wire Wire Line
+	8200 2550 8400 2550
+Wire Wire Line
+	10000 2650 9800 2650
+Wire Wire Line
+	9800 2650 9800 2250
+Wire Wire Line
+	9800 2250 8100 2250
+Wire Wire Line
+	8100 2250 8100 2750
+Wire Wire Line
+	8100 2750 8400 2750
+Wire Wire Line
+	9500 2650 9650 2650
+Wire Wire Line
+	9650 2650 9650 2850
+Wire Wire Line
+	9650 2850 10000 2850
+NoConn ~ 7450 2850
+NoConn ~ 6350 2850
+NoConn ~ 4400 2100
+NoConn ~ 3300 2100
 $Comp
-L ISO7816_CARD SIM1
-U 1 1 4E0085A5
-P 5900 4000
-F 0 "SIM1" H 5900 4250 60  0000 C CNN
-F 1 "ISO7816_CARD" H 5900 3750 60  0000 C CNN
-	1    5900 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L FFC P3
+L FFC P_DOWN2
 U 1 1 4E0084E2
-P 5900 5250
-F 0 "P3" H 5950 5600 60  0000 C CNN
-F 1 "FFC" V 6100 5250 60  0000 C CNN
-	1    5900 5250
+P 3850 3050
+F 0 "P_DOWN2" H 3900 3400 60  0000 C CNN
+F 1 "FFC" V 4050 3050 60  0000 C CNN
+	1    3850 3050
 	0    1    1    0   
 $EndComp
+NoConn ~ 1300 3250
+NoConn ~ 2400 3250
 $Comp
-L FFC P2
-U 1 1 4E0084DD
-P 7550 4000
-F 0 "P2" H 7600 4350 60  0000 C CNN
-F 1 "FFC" V 7750 4000 60  0000 C CNN
-	1    7550 4000
+L ISO7816_CARD SIM_RIGHT4
+U 1 1 4E0ED4DB
+P 8950 2700
+F 0 "SIM_RIGHT4" H 8950 2950 60  0000 C CNN
+F 1 "ISO7816_CARD" H 8950 2450 60  0000 C CNN
+	1    8950 2700
 	1    0    0    -1  
 $EndComp
 $Comp
-L FFC P1
+L ISO7816_CARD SIM_LEFT3
+U 1 1 4E0ED4DA
+P 6900 2700
+F 0 "SIM_LEFT3" H 6900 2950 60  0000 C CNN
+F 1 "ISO7816_CARD" H 6900 2450 60  0000 C CNN
+	1    6900 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L ISO7816_CARD SIM_DOWN2
+U 1 1 4E0ED4A7
+P 3850 1950
+F 0 "SIM_DOWN2" H 3850 2200 60  0000 C CNN
+F 1 "ISO7816_CARD" H 3850 1700 60  0000 C CNN
+	1    3850 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L ISO7816_CARD SIM_UP1
+U 1 1 4E0085A5
+P 1850 3100
+F 0 "SIM_UP1" H 1850 3350 60  0000 C CNN
+F 1 "ISO7816_CARD" H 1850 2850 60  0000 C CNN
+	1    1850 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L FFC P_RIGHT4
+U 1 1 4E0084DD
+P 10350 2700
+F 0 "P_RIGHT4" H 10400 3050 60  0000 C CNN
+F 1 "FFC" V 10550 2700 60  0000 C CNN
+	1    10350 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L FFC P_UP1
 U 1 1 4E0084D9
-P 5900 2750
-F 0 "P1" H 5950 3100 60  0000 C CNN
-F 1 "FFC" V 6100 2750 60  0000 C CNN
-	1    5900 2750
+P 1850 1950
+F 0 "P_UP1" H 1900 2300 60  0000 C CNN
+F 1 "FFC" V 2050 1950 60  0000 C CNN
+	1    1850 1950
 	0    -1   -1   0   
 $EndComp
 $Comp
-L FFC P4
+L FFC P_LEFT3
 U 1 1 4E0084D4
-P 4200 4000
-F 0 "P4" H 4250 4350 60  0000 C CNN
-F 1 "FFC" V 4400 4000 60  0000 C CNN
-	1    4200 4000
+P 5450 2700
+F 0 "P_LEFT3" H 5500 3050 60  0000 C CNN
+F 1 "FFC" V 5650 2700 60  0000 C CNN
+	1    5450 2700
 	-1   0    0    1   
 $EndComp
-NoConn ~ 5350 4150
-NoConn ~ 6450 4150
-Text Label 5650 3150 3    60   ~ 0
-VCC
-Text Label 5750 3150 3    60   ~ 0
-RST
-Text Label 5850 3150 3    60   ~ 0
-CLK
-Text Label 5950 3150 3    60   ~ 0
-I/O
-Text Label 6050 3150 3    60   ~ 0
-VPP
-Text Label 6150 3150 3    60   ~ 0
-GND
-Text Label 5650 4800 1    60   ~ 0
-GND
-Text Label 5750 4800 1    60   ~ 0
-VPP
-Text Label 5850 4800 1    60   ~ 0
-I/O
-Text Label 5950 4800 1    60   ~ 0
-CLK
-Text Label 6050 4800 1    60   ~ 0
-RST
-Text Label 6150 4800 1    60   ~ 0
-VCC
-Text Label 7000 4250 0    60   ~ 0
-GND
-Text Label 7000 4150 0    60   ~ 0
-VPP
-Text Label 7000 4050 0    60   ~ 0
-I/O
-Text Label 7000 3950 0    60   ~ 0
-CLK
-Text Label 7000 3850 0    60   ~ 0
-RST
-Text Label 7000 3750 0    60   ~ 0
-VCC
-Text Label 6500 4050 0    60   ~ 0
-I/O
-Text Label 6500 3950 0    60   ~ 0
-VPP
-Text Label 6500 3850 0    60   ~ 0
-GND
-Text Label 5150 4050 0    60   ~ 0
-CLK
-Text Label 5150 3950 0    60   ~ 0
-RST
-Text Label 5150 3850 0    60   ~ 0
-VCC
-Wire Wire Line
-	7200 4250 6950 4250
-Wire Wire Line
-	7200 4050 6950 4050
-Wire Wire Line
-	7200 3850 6950 3850
-Wire Wire Line
-	6050 3100 6050 3350
-Wire Wire Line
-	5850 3100 5850 3350
-Wire Wire Line
-	5650 3100 5650 3350
-Wire Wire Line
-	6700 4050 6450 4050
-Wire Wire Line
-	6450 3950 6700 3950
-Wire Wire Line
-	5100 3950 5350 3950
-Wire Wire Line
-	5650 4900 5650 4600
-Wire Wire Line
-	5850 4900 5850 4600
-Wire Wire Line
-	6050 4900 6050 4600
-Wire Wire Line
-	4550 4250 4800 4250
-Wire Wire Line
-	4550 4050 4800 4050
-Wire Wire Line
-	4550 3850 4800 3850
-Wire Wire Line
-	4550 3750 4800 3750
-Wire Wire Line
-	4550 3950 4800 3950
-Wire Wire Line
-	4550 4150 4800 4150
-Wire Wire Line
-	6150 4900 6150 4600
-Wire Wire Line
-	5950 4900 5950 4600
-Wire Wire Line
-	5750 4900 5750 4600
-Wire Wire Line
-	5100 3850 5350 3850
-Wire Wire Line
-	5100 4050 5350 4050
-Wire Wire Line
-	6450 3850 6700 3850
-Wire Wire Line
-	5750 3100 5750 3350
-Wire Wire Line
-	5950 3100 5950 3350
-Wire Wire Line
-	6150 3100 6150 3350
-Wire Wire Line
-	7200 3950 6950 3950
-Wire Wire Line
-	7200 3750 6950 3750
-Wire Wire Line
-	7200 4150 6950 4150
-Text Label 4600 4250 0    60   ~ 0
-VCC
-Text Label 4600 4150 0    60   ~ 0
-RST
-Text Label 4600 4050 0    60   ~ 0
-CLK
-Text Label 4600 3950 0    60   ~ 0
-I/O
-Text Label 4600 3850 0    60   ~ 0
-VPP
-Text Label 4600 3750 0    60   ~ 0
-GND
 $EndSCHEMATC
