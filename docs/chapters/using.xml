@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_using">
+    <title>Sniffing your SIM</title>
+
+    <section id="launching_simtrace">
+        <title>Launching SIMtrace</title>
+        <para></para>
+        <screen>
+$ <command>simtrace</command>
+        </screen>
+    </section>
+
+    <section id="launching_wireshark">
+        <title>Launching Wireshark</title>
+        <para></para>
+        <screen>
+$ <command>wireshark</command>
+        </screen>
+    </section>
+</chapter>
