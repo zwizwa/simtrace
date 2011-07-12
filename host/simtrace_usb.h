@@ -1,1 +1,1 @@
-../../../openpcd/firmware/include/simtrace_usb.h
+../../openpcd/firmware/include/simtrace_usb.h
