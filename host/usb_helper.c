@@ -28,26 +28,6 @@
 
 #include <usb.h>
 
-const char *
-hexdump(const void *data, unsigned int len)
-{
-	static char string[65535];
-	unsigned char *d = (unsigned char *) data;
-	unsigned int i, left, ofs;
-
-	string[0] = '\0';
-	ofs = snprintf(string, sizeof(string)-1, "(%u): ", len);
-	
-	left = sizeof(string) - ofs;
-	for (i = 0; len--; i += 3) {
-		if (i >= sizeof(string) -4)
-			break;
-		snprintf(string+ofs+i, 4, " %02x", *d++);
-	}
-	string[sizeof(string)-1] = '\0';
-	return string;
-}
-
 static struct usb_device *find_usb_device (uint16_t vendor_id, uint16_t product_id)
 {
 	struct usb_bus *bus;

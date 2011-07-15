@@ -21,8 +21,6 @@
 
 #include <stdint.h>
 
-const char *hexdump(const void *data, unsigned int len);
-
 struct usb_dev_handle *usb_find_open(uint16_t vendor_id, uint16_t product_id);
 
 #endif

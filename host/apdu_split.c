@@ -136,7 +136,7 @@ static void apdu_split_inbyte(struct apdu_split *as, uint8_t ch)
 		break;
 	case APDU_S_SW2:
 		apdu_buf_append(as, ch);
-		//printf("APDU: %s\n", hexdump(as->apdu_buf, as->apdu_len));
+		//printf("APDU: %s\n", osmo_hexdump(as->apdu_buf, as->apdu_len));
 		as->apdu_out_cb(as->apdu_buf, as->apdu_len, as->user_data);
 		set_state(as, APDU_S_CLA);
 		break;

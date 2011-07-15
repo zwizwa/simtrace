@@ -40,6 +40,7 @@
 
 #include <osmocom/core/gsmtap.h>
 #include <osmocom/core/gsmtap_util.h>
+#include <osmocom/core/utils.h>
 
 static struct usb_dev_handle *udev;
 static struct apdu_split *as;
@@ -76,7 +77,7 @@ static int gsmtap_send_sim(const uint8_t *apdu, unsigned int len)
 
 static void apdu_out_cb(uint8_t *buf, unsigned int len, void *user_data)
 {
-	printf("APDU: %s\n", hexdump(buf, len));
+	printf("APDU: %s\n", osmo_hexdump(buf, len));
 	gsmtap_send_sim(buf, len);
 }
 
@@ -189,7 +190,7 @@ int main(int argc, char **argv)
 			exit(1);
 		}
 		if (rc > 0) {
-			//printf("URB: %s\n", hexdump(buf, rc));
+			//printf("URB: %s\n", osmo_hexdump(buf, rc));
 			process_usb_msg(buf, rc);
 			msg_count++;
 			byte_count += rc;
