@@ -140,7 +140,7 @@ int main(int argc, char **argv)
 	char *gsmtap_host = "127.0.0.1";
 	int rc, c;
 	int skip_atr = 0;
-	unsigned int msg_count, byte_count;
+	unsigned int msg_count, byte_count = 0;
 
 	print_welcome();
 
