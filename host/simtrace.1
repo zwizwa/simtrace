@@ -1,0 +1,55 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH SIMTRACE 1 "July 17, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+SIMtrace \- GSM SIM and smartcard tracing
+.SH SYNOPSIS
+.B simtrace
+.RI [ options ]
+.br
+.SH DESCRIPTION
+This manual page documents briefly the
+.B simtrace 
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+\fBsimtrace\fP is a utility that communicates with the sysmocom SIMtrace
+hardware and forwards messages coming from the USB device to IP using
+the GSMtap protcol. The wireshark utility contains a protocol analyzer.
+.SH OPTIONS
+This program follows the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-iIP, \-\-gsmtap-ip=IP
+The destination IP address for the SIM PDUs encapsulated in the GSMtap
+protocol.
+.TP
+.B \-a, \-\-skip\-atr
+Skip the ATR of the SIMcard.
+.TP
+
+.SH AUTHORS
+SIMtrace was written by 
+Harald Welte
+.PP
+This manual page was written by Holger Freyther
+for the Debian project (but may be used by others).
