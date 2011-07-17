@@ -3,7 +3,7 @@ LDFLAGS=-lusb `pkg-config --libs libosmocore` -losmocore
 all: simtrace
 
 simtrace: main.o usb_helper.o usb.o apdu_split.o
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) `pkg-config --cflags libosmocore` -o $@ -c $^
