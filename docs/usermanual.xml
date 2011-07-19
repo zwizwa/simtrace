@@ -6,6 +6,7 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
 "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
 <!ENTITY chapter-introduction SYSTEM "chapters/introduction.xml">
+<!ENTITY chapter-installation SYSTEM "chapters/installation.xml">
 <!ENTITY chapter-using SYSTEM "chapters/using.xml">
 <!ENTITY chapter-building SYSTEM "chapters/building.xml">
 <!ENTITY chapter-appendix SYSTEM "chapters/appendix.xml">
@@ -39,6 +40,7 @@
 
   <!-- Main chapters-->
   &chapter-introduction;
+  &chapter-installation;
   &chapter-using;
   &chapter-building;
 
