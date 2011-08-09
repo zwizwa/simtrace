@@ -59,6 +59,6 @@ $ <command>sudo</command> <command>zypper</command> install wireshark simtrace
 
     <section id="installation_from_source">
         <title>Installation from Source</title>
-        <para></para>
+        <para>Please see the <xref linkend="chapter_building"/></para>
     </section>
 </chapter>

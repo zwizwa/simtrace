@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter id="chapter_building">
     <title>Getting and Building the Software</title>
-    <section id="building_dependencies">
-        <title>Installing Dependencies</title>
-        <para></para>
+    <section id="building_intros">
+        <title>Building software</title>
+        <para>There are three parts that can be built. It is the firmware
+        for the SIMtrace hardware, the SIMtrace software and the modified
+        version of wireshark. All of these have different source trees and
+        dependencies.</para>
+    </section>
+
+    <section id="building_simtrace">
+        <title>Building SIMtrace</title>
+
+        <section id="libosmocore">
+            <title>Building the Osmocom libosmocore library</title>
+            <screen>
+$ <command>git</command> clone git://git.osmocom.org/libosmocore
+$ <command>cd</command> libosmocore
+$ <command>autoreconf</command> --install --force
+$ <command>./configure</command>
+$ <command>sudo</command> <command>make</command> install
+</screen>
+        </section>
+
+        <section id="libusb">
+            <title>Installing libusb</title>
+            <para>You will need to install the libusb header files
+            to be able to compile <command>simtrace</command></para>.
+        </section>
+
+        <section id="simtrace">
+            <title>Building <command>simtrace</command></title>
+            <screen>
+$ wget https://api.opensuse.org/public/source/home:zecke23/simtrace/simtrace_0.0.1.tar.gz
+$ tar xzf simtrace_0.0.1.tar.gz
+$ cd simtrace-0.0.1 
+$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make
+cc  `pkg-config --cflags libosmocore` -o main.o -c main.c
+cc  `pkg-config --cflags libosmocore` -o usb_helper.o -c usb_helper.c
+cc  `pkg-config --cflags libosmocore` -o usb.o -c usb.c
+cc  `pkg-config --cflags libosmocore` -o apdu_split.o -c apdu_split.c
+cc -o simtrace main.o usb_helper.o usb.o apdu_split.o -lusb `pkg-config --libs libosmocore` -losmocore
+            </screen>
+        </section>
     </section>
 </chapter>
