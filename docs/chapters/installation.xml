@@ -6,7 +6,7 @@
     host utility to fully operate. The installation might be possible from
     binary packages or will require building from source. The following
     sections provide some hints how to achieve this on the various Linux
-    distributions</para>
+    distributions. All these operations must be executed as root.</para>
 
     <section id="install_ubuntu_natty">
         <title>Installation Ubuntu Natty</title>
@@ -41,20 +41,74 @@ $ <command>sudo</command> <command>apt-get</command> install wireshark simtrace
         via the <command>zypper</command> application and then the binary packages
         can be installed.</para>
 
-        <screen>
-$ <command>sudo</command> <command>zypper</command> ar http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.3/home:zecke23.repo
-$ <command>sudo</command> <command>zypper</command> install wireshark simtrace
-        </screen>
+        <section>
+            <title>openSUSE 11.3</title>
+            <screen>
+$ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.3/home:zecke23.repo
+$ <command>zypper</command> refresh
+$ <command>zypper</command> install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>openSUSE 11.4</title>
+            <screen>
+$ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.4/home:zecke23.repo
+$ <command>zypper</command> refresh
+$ <command>zypper</command> install wireshark simtrace
+            </screen>
+        </section>
     </section>
 
     <section id="install_fedora">
         <title>Installation Fedora</title>
-        <para></para>
+        <section>
+            <title>Fedora 14</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_14/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>Fedora 15</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_15/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
     </section>
 
     <section id="install_centos">
         <title>Installation CentOS</title>
-        <para></para>
+        <section>
+            <title>CentOS 5</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/CentOS_CentOS-5/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>Fedora 15</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/CentOS_CentOS-6/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+    </section>
+
+    <section id="install_mandriva">
+        <title>Mandriva 2010.1</title>
+        <screen>
+$ urpmi.addmedia home:zecke23 http://download.opensuse.org/repositories/home:zecke23/Mandriva_2010.1/
+$ urpmi.update -a
+$ urpmi wireshark simtrace
+        </screen>
     </section>
 
     <section id="installation_from_source">
