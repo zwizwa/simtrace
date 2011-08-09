@@ -2,7 +2,43 @@
 <chapter id="chapter_introduction">
     <title>Introduction</title>
     <section id="intro_overview">
+        <title>History</title>
+        <para>SIMtrace was created out of necessity. Harald Welte wanted
+        to see the communication between a GSM Mobile Station (or
+        what we call a cellphone) and the SIM. He was not able to
+        find an existing solution, or the existing ones had mayor
+        drawbacks that made using them very time consuming and slow.
+        The Atmel AT91SAM7 came to the rescue. This microcontroller
+        has hardware support for the  ISO7816 T0/T1 Smart Card
+        specification. Using this hardware with the clock coming from
+        the normal connection we are able to read bytes coming from
+        and going to the SIM.
+        The next step in the project was taken by Kevin Redon
+        that started to modify an existing AT91SAM7 design, started
+        to use the Free Software KiCAD CAD Software. In 2011 the project
+        went from having Schematics to having routed circuits, prototypes
+        and the final product. The first production run was in August.</para>
+    </section>
+    <section id="intro_picture">
         <title>Overview</title>
-        <para></para>
+        <para>The setup of SIMtrace consists out of a Hardware and a
+        Software part. The SIM card needs to be put into the SIMtrace
+        Hardware, the flex cable needs to be connected to the SIMtrace
+        Hardware and the SIM end needs to be placed in the SIM socket
+        of the phone. The SIMtrace hardware can be seen as a USB device
+        from the host, the SIMtrace software will try to find this device
+        and claim it. The SIMtrace software will receive packets from the
+        SIMtrace hardware and can forward them using the GSMTAP protocol
+        to the IANA assigned GSMTAP port (4729). A modified version of Wireshark
+        can be used to analyze the data.</para>
+
+         <figure><title>Schematic Overview</title>
+         <mediaobject>
+           <imageobject>
+             <imagedata fileref="images/setup_overview.png" width="6cm"/>
+           </imageobject>
+           <textobject><phrase>SIMtrace being connected</phrase></textobject>
+         </mediaobject>
+         </figure>
     </section>
 </chapter>

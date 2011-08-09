@@ -4,7 +4,9 @@
     <para><application>SIMtrace</application> will need a patched version of
     <application>wireshark</application> and the <command>simtrace</command>
     host utility to fully operate. The installation might be possible from
-    binary packages or will require building from source.</para>
+    binary packages or will require building from source. The following
+    sections provide some hints how to achieve this on the various Linux
+    distributions</para>
 
     <section id="install_ubuntu_natty">
         <title>Installation Ubuntu Natty</title>
