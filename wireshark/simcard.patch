@@ -1546,31 +1546,23 @@ Index: wireshark/epan/dissectors/packet-gsm_sim.c
 +}
 Index: wireshark/epan/dissectors/packet-gsmtap.c
 ===================================================================
---- wireshark.orig/epan/dissectors/packet-gsmtap.c	2010-11-18 16:11:48.000000000 +0100
-+++ wireshark/epan/dissectors/packet-gsmtap.c	2010-11-18 17:04:37.000000000 +0100
-@@ -46,6 +46,7 @@
- #define GSMTAP_TYPE_UM			0x01
- #define GSMTAP_TYPE_ABIS		0x02
- #define GSMTAP_TYPE_UM_BURST	0x03	/* raw burst bits */
-+#define GSMTAP_TYPE_SIMCARD		0x04
- 
- #define GSMTAP_BURST_UNKNOWN		0x00
- #define GSMTAP_BURST_FCCH			0x01
-@@ -125,6 +126,7 @@
- 	GSMTAP_SUB_UM,
- 	GSMTAP_SUB_UM_LAPDM,
- 	GSMTAP_SUB_ABIS,
+--- wireshark/epan/dissectors/packet-gsmtap.c	(revision 38494)
++++ wireshark/epan/dissectors/packet-gsmtap.c	(working copy)
+@@ -171,6 +171,7 @@
+ 	GSMTAP_SUB_PDU,
+ 	GSMTAP_SUB_HACK,
+ 	GSMTAP_SUB_PHY_ATTRIBUTES,
 +	GSMTAP_SUB_SIM,
  
  	GSMTAP_SUB_MAX
  };
-@@ -236,6 +238,13 @@
+@@ -334,6 +335,13 @@
  
  	col_set_str(pinfo->cinfo, COL_PROTOCOL, "GSMTAP");
  
 +	/* Some GSMTAP types are completely unrelated to the Um air interface */
 +	switch (type) {
-+	case GSMTAP_TYPE_SIMCARD:
++	case GSMTAP_TYPE_SIM:
 +		call_dissector(sub_handles[GSMTAP_SUB_SIM], payload_tvb, pinfo, tree);
 +		return;
 +	}
@@ -1578,14 +1570,14 @@ Index: wireshark/epan/dissectors/packet-gsmtap.c
  	if (arfcn & GSMTAP_ARFCN_F_UPLINK) {
  		col_append_str(pinfo->cinfo, COL_RES_NET_SRC, "MS");
  		col_append_str(pinfo->cinfo, COL_RES_NET_DST, "BTS");
-@@ -393,6 +402,7 @@
- 	sub_handles[GSMTAP_SUB_UM] = find_dissector("gsm_a_ccch");
- 	sub_handles[GSMTAP_SUB_UM_LAPDM] = find_dissector("lapdm");
+@@ -557,6 +565,7 @@
+ 	sub_handles[GSMTAP_SUB_LLC] = find_dissector("llcgprs");
+ 	sub_handles[GSMTAP_SUB_SNDCP] = find_dissector("sndcp");
  	sub_handles[GSMTAP_SUB_ABIS] = find_dissector("gsm_a_dtap");
 +	sub_handles[GSMTAP_SUB_SIM] = find_dissector("gsm_sim");
- 	gsmtap_handle = create_dissector_handle(dissect_gsmtap, proto_gsmtap);
- 	dissector_add("udp.port", GSMTAP_UDP_PORT, gsmtap_handle);
- }
+ 	sub_handles[GSMTAP_SUB_CDMA_CODE] = find_dissector("wimax_cdma_code_burst_handler"); 
+ 	sub_handles[GSMTAP_SUB_FCH] = find_dissector("wimax_fch_burst_handler"); 
+ 	sub_handles[GSMTAP_SUB_FFB] = find_dissector("wimax_ffb_burst_handler"); 
 Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 ===================================================================
 --- /dev/null	1970-01-01 00:00:00.000000000 +0000
@@ -2317,3 +2309,4 @@ Index: wireshark/epan/dissectors/packet-card_app_toolkit.c
 +		/* preferences have been changed */
 +	}
 +}
+
