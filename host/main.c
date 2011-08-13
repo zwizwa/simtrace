@@ -84,7 +84,7 @@ static void apdu_out_cb(uint8_t *buf, unsigned int len, void *user_data)
 
 static int process_usb_msg(uint8_t *buf, int len)
 {
-	struct simtrace_hdr *sh = buf;
+	struct simtrace_hdr *sh = (struct simtrace_hdr *)buf;
 	uint8_t *payload = buf += sizeof(*sh);
 	int payload_len = len - sizeof(*sh);
 
