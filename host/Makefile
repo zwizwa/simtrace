@@ -1,12 +1,12 @@
-LDFLAGS=-lusb `pkg-config --libs libosmocore` -losmocore
+LDFLAGS=`pkg-config --libs libusb-1.0` `pkg-config --libs libosmocore` -losmocore
 
 all: simtrace
 
-simtrace: main.o usb_helper.o usb.o apdu_split.o
+simtrace: main.o apdu_split.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) `pkg-config --cflags libosmocore` -o $@ -c $^
+	$(CC) $(CFLAGS) `pkg-config --cflags libusb-1.0` `pkg-config --cflags libosmocore` -o $@ -c $^
 
 install: simtrace
 	install -d $(DESTDIR)/usr/bin/
