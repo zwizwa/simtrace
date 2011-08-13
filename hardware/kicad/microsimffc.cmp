@@ -1,0 +1,59 @@
+Cmp-Mod V01 Created by CvPCB (2011-07-19)-testing date = Sa 13 Aug 2011 15:54:00 CEST
+
+BeginCmp
+TimeStamp = /4E158ACC;
+Reference = FFC1;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E159114;
+Reference = FFC2;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E15911B;
+Reference = FFC3;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E159134;
+Reference = FFC4;
+ValeurCmp = FFC;
+IdModule  = FFC;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E158AC1;
+Reference = SIM1;
+ValeurCmp = ISO7816_CARD;
+IdModule  = microSIM_card;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E159115;
+Reference = SIM2;
+ValeurCmp = ISO7816_CARD;
+IdModule  = microSIM_card;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E15911A;
+Reference = SIM3;
+ValeurCmp = ISO7816_CARD;
+IdModule  = microSIM_card;
+EndCmp
+
+BeginCmp
+TimeStamp = /4E159135;
+Reference = SIM4;
+ValeurCmp = ISO7816_CARD;
+IdModule  = microSIM_card;
+EndCmp
+
+EndListe

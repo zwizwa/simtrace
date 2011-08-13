@@ -1,0 +1,367 @@
+EESchema Schematic File Version 2  date Do 07 Jul 2011 13:03:38 CEST
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:smartcard
+EELAYER 25  0
+EELAYER END
+$Descr A4 11700 8267
+encoding utf-8
+Sheet 1 1
+Title "noname.sch"
+Date "7 jul 2011"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Label 4450 1850 0    60   ~ 0
+I-O2
+Text Label 4450 1950 0    60   ~ 0
+VPP2
+Text Label 4450 2050 0    60   ~ 0
+GND2
+Text Label 3450 1850 0    60   ~ 0
+CLK2
+Text Label 3450 1950 0    60   ~ 0
+RST2
+Text Label 3450 2050 0    60   ~ 0
+VCC2
+Text Label 2550 1850 0    60   ~ 0
+I-O1
+Text Label 2550 1950 0    60   ~ 0
+VPP1
+Text Label 2550 2050 0    60   ~ 0
+GND1
+$Comp
+L ISO7816_CARD SIM4
+U 1 1 4E159135
+P 7850 1250
+F 0 "SIM4" H 7850 1500 60  0000 C CNN
+F 1 "ISO7816_CARD" H 7850 1000 60  0000 C CNN
+	1    7850 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L FFC FFC4
+U 1 1 4E159134
+P 7850 2450
+F 0 "FFC4" H 7900 2800 60  0000 C CNN
+F 1 "FFC" V 8050 2450 60  0000 C CNN
+	1    7850 2450
+	0    -1   1    0   
+$EndComp
+Text Label 7250 1850 0    60   ~ 0
+CLK4
+Text Label 7250 1950 0    60   ~ 0
+RST4
+Text Label 7250 2050 0    60   ~ 0
+VCC4
+Wire Wire Line
+	8650 1200 8650 1950
+Wire Wire Line
+	7900 1850 8600 1850
+Wire Wire Line
+	7900 1850 7900 2100
+Wire Wire Line
+	7700 2100 7700 1950
+Wire Wire Line
+	7700 1950 7050 1950
+Wire Wire Line
+	7100 1300 7100 1850
+Wire Wire Line
+	8400 1300 8600 1300
+Wire Wire Line
+	8100 2100 8100 2050
+Wire Wire Line
+	8100 2050 8700 2050
+Wire Wire Line
+	8700 2050 8700 1100
+Wire Wire Line
+	8700 1100 8400 1100
+Wire Wire Line
+	7300 1200 7050 1200
+Wire Wire Line
+	7300 1100 7000 1100
+Wire Wire Line
+	7000 1100 7000 2050
+Wire Wire Line
+	7000 2050 7600 2050
+Wire Wire Line
+	7600 2050 7600 2100
+Wire Wire Line
+	7100 1300 7300 1300
+Wire Wire Line
+	8650 1200 8400 1200
+Wire Wire Line
+	7100 1850 7800 1850
+Wire Wire Line
+	7800 1850 7800 2100
+Wire Wire Line
+	7050 1200 7050 1950
+Wire Wire Line
+	8600 1300 8600 1850
+Wire Wire Line
+	8000 2100 8000 1950
+Wire Wire Line
+	8000 1950 8650 1950
+Text Label 8250 1850 0    60   ~ 0
+I-O4
+Text Label 8250 1950 0    60   ~ 0
+VPP4
+Text Label 8250 2050 0    60   ~ 0
+GND4
+NoConn ~ 8400 1400
+NoConn ~ 7300 1400
+NoConn ~ 5400 1400
+NoConn ~ 6500 1400
+Text Label 6350 2050 0    60   ~ 0
+GND3
+Text Label 6350 1950 0    60   ~ 0
+VPP3
+Text Label 6350 1850 0    60   ~ 0
+I-O3
+Wire Wire Line
+	6100 1950 6750 1950
+Wire Wire Line
+	6100 1950 6100 2100
+Wire Wire Line
+	6700 1300 6700 1850
+Wire Wire Line
+	5150 1200 5150 1950
+Wire Wire Line
+	5900 2100 5900 1850
+Wire Wire Line
+	5900 1850 5200 1850
+Wire Wire Line
+	6500 1200 6750 1200
+Wire Wire Line
+	5400 1300 5200 1300
+Wire Wire Line
+	5700 2100 5700 2050
+Wire Wire Line
+	5700 2050 5100 2050
+Wire Wire Line
+	5100 2050 5100 1100
+Wire Wire Line
+	5100 1100 5400 1100
+Wire Wire Line
+	5150 1200 5400 1200
+Wire Wire Line
+	6500 1100 6800 1100
+Wire Wire Line
+	6800 1100 6800 2050
+Wire Wire Line
+	6800 2050 6200 2050
+Wire Wire Line
+	6200 2050 6200 2100
+Wire Wire Line
+	6700 1300 6500 1300
+Wire Wire Line
+	5200 1300 5200 1850
+Wire Wire Line
+	5150 1950 5800 1950
+Wire Wire Line
+	5800 1950 5800 2100
+Wire Wire Line
+	6000 2100 6000 1850
+Wire Wire Line
+	6000 1850 6700 1850
+Wire Wire Line
+	6750 1200 6750 1950
+Text Label 5350 2050 0    60   ~ 0
+VCC3
+Text Label 5350 1950 0    60   ~ 0
+RST3
+Text Label 5350 1850 0    60   ~ 0
+CLK3
+$Comp
+L FFC FFC3
+U 1 1 4E15911B
+P 5950 2450
+F 0 "FFC3" H 6000 2800 60  0000 C CNN
+F 1 "FFC" V 6150 2450 60  0000 C CNN
+	1    5950 2450
+	0    -1   1    0   
+$EndComp
+$Comp
+L ISO7816_CARD SIM3
+U 1 1 4E15911A
+P 5950 1250
+F 0 "SIM3" H 5950 1500 60  0000 C CNN
+F 1 "ISO7816_CARD" H 5950 1000 60  0000 C CNN
+	1    5950 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L ISO7816_CARD SIM2
+U 1 1 4E159115
+P 4050 1250
+F 0 "SIM2" H 4050 1500 60  0000 C CNN
+F 1 "ISO7816_CARD" H 4050 1000 60  0000 C CNN
+	1    4050 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L FFC FFC2
+U 1 1 4E159114
+P 4050 2450
+F 0 "FFC2" H 4100 2800 60  0000 C CNN
+F 1 "FFC" V 4250 2450 60  0000 C CNN
+	1    4050 2450
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4850 1200 4850 1950
+Wire Wire Line
+	4100 1850 4800 1850
+Wire Wire Line
+	4100 1850 4100 2100
+Wire Wire Line
+	3900 2100 3900 1950
+Wire Wire Line
+	3900 1950 3250 1950
+Wire Wire Line
+	3300 1300 3300 1850
+Wire Wire Line
+	4600 1300 4800 1300
+Wire Wire Line
+	4300 2100 4300 2050
+Wire Wire Line
+	4300 2050 4900 2050
+Wire Wire Line
+	4900 2050 4900 1100
+Wire Wire Line
+	4900 1100 4600 1100
+Wire Wire Line
+	3500 1200 3250 1200
+Wire Wire Line
+	3500 1100 3200 1100
+Wire Wire Line
+	3200 1100 3200 2050
+Wire Wire Line
+	3200 2050 3800 2050
+Wire Wire Line
+	3800 2050 3800 2100
+Wire Wire Line
+	3300 1300 3500 1300
+Wire Wire Line
+	4850 1200 4600 1200
+Wire Wire Line
+	3300 1850 4000 1850
+Wire Wire Line
+	4000 1850 4000 2100
+Wire Wire Line
+	3250 1200 3250 1950
+Wire Wire Line
+	4800 1300 4800 1850
+Wire Wire Line
+	4200 2100 4200 1950
+Wire Wire Line
+	4200 1950 4850 1950
+NoConn ~ 4600 1400
+NoConn ~ 3500 1400
+NoConn ~ 1600 1400
+NoConn ~ 2700 1400
+Wire Wire Line
+	2300 1950 2950 1950
+Wire Wire Line
+	2300 1950 2300 2100
+Wire Wire Line
+	2900 1300 2900 1850
+Wire Wire Line
+	1350 1200 1350 1950
+Wire Wire Line
+	2100 2100 2100 1850
+Wire Wire Line
+	2100 1850 1400 1850
+Wire Wire Line
+	2700 1200 2950 1200
+Wire Wire Line
+	1600 1300 1400 1300
+Wire Wire Line
+	1900 2100 1900 2050
+Wire Wire Line
+	1900 2050 1300 2050
+Wire Wire Line
+	1300 2050 1300 1100
+Wire Wire Line
+	1300 1100 1600 1100
+Wire Wire Line
+	1350 1200 1600 1200
+Wire Wire Line
+	2700 1100 3000 1100
+Wire Wire Line
+	3000 1100 3000 2050
+Wire Wire Line
+	3000 2050 2400 2050
+Wire Wire Line
+	2400 2050 2400 2100
+Wire Wire Line
+	2900 1300 2700 1300
+Wire Wire Line
+	1400 1300 1400 1850
+Wire Wire Line
+	1350 1950 2000 1950
+Wire Wire Line
+	2000 1950 2000 2100
+Wire Wire Line
+	2200 2100 2200 1850
+Wire Wire Line
+	2200 1850 2900 1850
+Wire Wire Line
+	2950 1200 2950 1950
+Text Label 1550 2050 0    60   ~ 0
+VCC1
+Text Label 1550 1950 0    60   ~ 0
+RST1
+Text Label 1550 1850 0    60   ~ 0
+CLK1
+$Comp
+L FFC FFC1
+U 1 1 4E158ACC
+P 2150 2450
+F 0 "FFC1" H 2200 2800 60  0000 C CNN
+F 1 "FFC" V 2350 2450 60  0000 C CNN
+	1    2150 2450
+	0    -1   1    0   
+$EndComp
+$Comp
+L ISO7816_CARD SIM1
+U 1 1 4E158AC1
+P 2150 1250
+F 0 "SIM1" H 2150 1500 60  0000 C CNN
+F 1 "ISO7816_CARD" H 2150 1000 60  0000 C CNN
+	1    2150 1250
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
