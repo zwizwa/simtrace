@@ -56,7 +56,9 @@
                 </callout>
                 <callout arearefs="debug" id="link_debug">
                     <para>debug (P3): same as serial, but using the FTDI
-                    serial cable.</para>
+                    serial cable. Make sure to disconnect the power pin
+                    of the FTDI cable before connecting it to the connector.
+                    </para>
                 </callout>
                 <callout arearefs="jtag" id="link_jtag">
                     <para>jtag (P1): JTAG 20 pin connector to do hardware
