@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_hw">
+    <title>Getting and Building the Software</title>
+    <section id="pcb_populated">
+        <title>Populated PCB</title>
+        <para>The version v1.0p is the first production that had an
+        automatic SMT run. Due some production issues the labeling of
+        components didn't make it to the PCB but can be found in this
+        manual. The difference between the v1.0 and v1.0p hardware is
+        in the footprint of some components to utilize the existing
+        stock of the factory. This was mostly done for the LED and the
+        shottky diodes.</para>
+
+        <figure><title>SIMtrace v1.0 PCB</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/simtrace_hw.jpg" width="15cm"/>
+          </imageobject>
+          <textobject><phrase>SIMtrace v1.0 PCB</phrase></textobject>
+        </mediaobject>
+        </figure>
+    </section>
+
+    <section id="pcb_surface">
+        <title>PCB Surface</title>
+        <para>
+        <figure><title>SIMtrace v1.0 Surface</title>
+        <mediaobjectco>
+          <imageobjectco>
+            <areaspec id="surface"  units="calspair">
+                <area linkends="link_usb" coords="8800,0 8800,6100" id="usb"/>
+                <area linkends="link_serial" coords="8800,7000 8800,8000" id="serial"/>
+                <area linkends="link_debug" coords="8800,9000 8800,9500" id="debug"/>
+                <area linkends="link_jtag" coords="5000,8900 5000,9000" id="jtag"/>
+                <area linkends="link_bt1" coords="8900,0 9100,3500" id="bt1"/>
+                <area linkends="link_ffc" coords="500,3000 700,9000" id="ffc"/>
+                <area linkends="link_sim" coords="500,500 700,2000" id="sim"/>
+                <area linkends="link_reset" coords="200,9000 500,9000" id="reset"/>
+                <area linkends="link_bootloader" coords="1700,9000 1900,9000" id="bootloader"/>
+                <area linkends="link_test" coords="6500,8700 7000,8900" id="test"/>
+                <area linkends="link_erase" coords="7100,8700 7600,8900" id="erase"/>
+            </areaspec>
+            <imageobject>
+                <imagedata fileref="images/simtrace_surface.png" width="15cm" />
+            </imageobject>
+            <calloutlist>
+                <callout arearefs="usb" id="link_usb">
+                    <para>USB: USB mini-B connector. The main connector. The host software communicates (sniffing,...) through USB with the board. It can also be used to flash the micro-controller (using DFU).</para>
+                </callout>
+                <callout arearefs="serial" id="link_serial">
+                    <para>serial: 2.5 mm jack serial cable, as used by osmocomBB. port used to debug the device (printf goes there).</para>
+                </callout>
+                <callout arearefs="debug" id="link_debug">
+                    <para>debug (P3): same as serial, but using the FTDI serial cable.</para>
+                </callout>
+                <callout arearefs="jtag" id="link_jtag">
+                    <para>jtag (P1): JTAG 20 pin connector to do hardware assisted debugging.</para>
+                </callout>
+                <callout arearefs="bt1" id="link_bt1">
+                    <para>BT1: battery connector (4.5-6V DC). normally the USB provides power, but the battery port can be used for autonomous use of SIMtrace. The sniffing can be saved in the flash (U1).</para>
+                </callout>
+                <callout arearefs="ffc" id="link_ffc">
+                    <para>FFC_SIM (P3): to connect the flat flexible cable with SIM end for the phone.</para>
+                </callout>
+                <callout arearefs="sim" id="link_sim">
+                    <para>SIM (P4): put your SIM in there (instead of in the phone)</para>
+                </callout>
+                <callout arearefs="reset" id="link_reset">
+                    <para>reset (SW1): to reset the board (not erasing the firmware). If your are too lazy to unplug and re-plug the USB.</para>
+                </callout>
+                <callout arearefs="bootloader" id="link_bootloader">
+                    <para>bootloader (SW2): used to start the bootloader so to flash the device using DFU. press when plugging in the USB.</para>
+                </callout>
+                <callout arearefs="test" id="link_test">
+                    <para>test (JP1): short circuit using a jumper to flash using SAM-BA.</para>
+                </callout>
+                <callout arearefs="erase" id="link_erase">
+                    <para>erase (JP2): short circuit using a jumper to erase completely erase the firmware.</para>
+                </callout>
+            </calloutlist>
+            </imageobjectco>
+        </mediaobjectco>
+        </figure>
+        </para>
+    </section>
+</chapter>
