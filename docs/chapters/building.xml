@@ -56,6 +56,7 @@ cc -o simtrace main.o usb_helper.o usb.o apdu_split.o -lusb `pkg-config --libs l
             <title>Getting Wireshark</title>
             <screen>
 $ svn co https://anonsvn.wireshark.org/wireshark/trunk-1.6 wireshark-1.6
+...
 A    wireshark-1.6/isprint.h
  U   wireshark-1.6
 Checked out revision 38543.
@@ -81,6 +82,7 @@ patching file epan/dissectors/Makefile.common
 $ autoreconf --install
 $ ./configure
 $ make
+...
 $ sudo ./wireshark
             </screen>
         </section>
