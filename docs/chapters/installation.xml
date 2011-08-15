@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_installation">
+    <title>Installation</title>
+    <para><application>SIMtrace</application> will need a patched version of
+    <application>wireshark</application> and the <command>simtrace</command>
+    host utility to fully operate. The installation might be possible from
+    binary packages or will require building from source. The following
+    sections provide some hints how to achieve this on the various Linux
+    distributions. All these operations must be executed as root.</para>
+
+    <section id="install_ubuntu_natty">
+        <title>Installation Ubuntu Natty</title>
+        <para>Ubuntu Natty users can use the holger+lp/osmocom PPA to install
+<application>SIMtrace</application> and upgrade wireshark. The PPA needs to
+        be added to the system, the package database needs to be refreshed
+        and the applications can be installed afterwards.</para>
+
+        <screen>
+$ <command>sudo</command> <command>add-apt-repository</command> ppa:holger+lp/osmocom
+[sudo] password for username:
+Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /etc/apt/secring.gpg --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyserver hkp://keyserver.ubuntu.com:80/ --recv 84C86214C00BAF820F43585CCABF944FA2AD19FA
+gpg: requesting key A2AD19FA from hkp server keyserver.ubuntu.com
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+        </screen>
+
+        <para>The next step is to update the package database and install or upgrade
+        the <application>wireshark</application> application.</para>
+
+        <screen>
+$ <command>sudo</command> <command>apt-get</command> update
+...
+$ <command>sudo</command> <command>apt-get</command> install wireshark simtrace
+...
+        </screen>
+    </section>
+
+    <section id="install_opensuse">
+        <title>Installation OpenSUSE</title>
+        <para>The installation on OpenSUSE uses zypper. The repository must be added
+        via the <command>zypper</command> application and then the binary packages
+        can be installed.</para>
+
+        <section>
+            <title>openSUSE 11.3</title>
+            <screen>
+$ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.3/home:zecke23.repo
+$ <command>zypper</command> refresh
+$ <command>zypper</command> install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>openSUSE 11.4</title>
+            <screen>
+$ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.4/home:zecke23.repo
+$ <command>zypper</command> refresh
+$ <command>zypper</command> install wireshark simtrace
+            </screen>
+        </section>
+    </section>
+
+    <section id="install_fedora">
+        <title>Installation Fedora</title>
+        <section>
+            <title>Fedora 14</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_14/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>Fedora 15</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_15/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+    </section>
+
+    <section id="install_centos">
+        <title>Installation CentOS</title>
+        <section>
+            <title>CentOS 5</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/CentOS_CentOS-5/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+
+        <section>
+            <title>Fedora 15</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/CentOS_CentOS-6/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+    </section>
+
+    <section id="install_mandriva">
+        <title>Mandriva 2010.1</title>
+        <screen>
+$ urpmi.addmedia home:zecke23 http://download.opensuse.org/repositories/home:zecke23/Mandriva_2010.1/
+$ urpmi.update -a
+$ urpmi wireshark simtrace
+        </screen>
+    </section>
+
+    <section id="installation_from_source">
+        <title>Installation from Source</title>
+        <para>Please see the <xref linkend="chapter_building"/></para>
+    </section>
+</chapter>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_building">
+    <title>Getting and Building the Software</title>
+    <section id="building_intros">
+        <title>Building software</title>
+        <para>There are three parts that can be built. It is the firmware
+        for the SIMtrace hardware, the SIMtrace software and the modified
+        version of wireshark. All of these have different source trees and
+        dependencies.</para>
+    </section>
+
+    <section id="building_simtrace">
+        <title>Building SIMtrace</title>
+
+        <section id="libosmocore">
+            <title>Building the Osmocom libosmocore library</title>
+            <screen>
+$ <command>git</command> clone git://git.osmocom.org/libosmocore
+$ <command>cd</command> libosmocore
+$ <command>autoreconf</command> --install --force
+$ <command>./configure</command>
+$ <command>sudo</command> <command>make</command> install
+</screen>
+        </section>
+
+        <section id="libusb">
+            <title>Installing libusb</title>
+            <para>You will need to install the libusb header files
+            to be able to compile <command>simtrace</command></para>.
+        </section>
+
+        <section id="simtrace">
+            <title>Building <command>simtrace</command></title>
+            <screen>
+$ wget https://api.opensuse.org/public/source/home:zecke23/simtrace/simtrace_0.0.1.tar.gz
+$ tar xzf simtrace_0.0.1.tar.gz
+$ cd simtrace-0.0.1 
+$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make
+cc  `pkg-config --cflags libosmocore` -o main.o -c main.c
+cc  `pkg-config --cflags libosmocore` -o usb_helper.o -c usb_helper.c
+cc  `pkg-config --cflags libosmocore` -o usb.o -c usb.c
+cc  `pkg-config --cflags libosmocore` -o apdu_split.o -c apdu_split.c
+cc -o simtrace main.o usb_helper.o usb.o apdu_split.o -lusb `pkg-config --libs libosmocore` -losmocore
+            </screen>
+        </section>
+    </section>
+
+    <section id="building_wireshark">
+        <title>Building Wireshark</title>
+        <para>SIMtrace provides a patch against <command>wireshark</command>
+        version 1.6. It is the easiest to checkout a copy using the 1.6 branch
+        of wireshark and applying the <filename>simcard.patch</filename> on top
+        of it. And then use the usual way of building wireshark</para>
+
+        <section id="getting_wireshark">
+            <title>Getting Wireshark</title>
+            <screen>
+$ svn co https://anonsvn.wireshark.org/wireshark/trunk-1.6 wireshark-1.6
+...
+A    wireshark-1.6/isprint.h
+ U   wireshark-1.6
+Checked out revision 38543.
+            </screen>
+        </section>
+
+        <section id="getting_simcard.patch">
+            <title>SIMCard patch</title>
+            <para>You will need to download and apply the patch.</para>
+            <screen>
+$ cd wireshark-1.6
+$ wget http://cgit.osmocom.org/cgit/simtrace/tree/wireshark/simcard-for-wireshark-1.6.patch
+$ cat ../simcard-for-wireshark-1.6.patch | patch -p 0
+patching file epan/dissectors/packet-gsm_sim.c
+patching file epan/dissectors/packet-gsmtap.c
+patching file epan/dissectors/Makefile.common
+            </screen>
+        </section>
+
+        <section id="building_and_installing">
+            <title>Building and Installing</title>
+            <screen>
+$ autoreconf --install
+$ ./configure
+$ make
+...
+$ sudo ./wireshark
+            </screen>
+        </section>
+    </section>
+</chapter>

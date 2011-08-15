@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_sniff">
+    <title>Sniffing your SIM</title>
+
+    <section id="hw_setup">
+        <title>Connecting your device</title>
+        <para>You will need to put your SIM into the SIMtrace hardware, connect
+        one of the four flex cables to the SIMtrace hardware, put the other side
+        into the SIM socket of your phone. Use USB to connect the SIMtrace hardware
+        to the PC. On your PC you should be able to see the USB device now.</para>
+
+        <figure><title>Connecting the SIMtrace Hardware</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/simtrace_hw_setup.png" width="15cm"/>
+          </imageobject>
+          <textobject><phrase>SIMtrace being connected</phrase></textobject>
+        </mediaobject>
+        </figure>
+    </section>
+
+    <section id="launching_simtrace">
+        <title>Launching SIMtrace</title>
+        <screen>
+$ <command>./simtrace</command>
+simtrace - GSM SIM and smartcard tracing
+(C) 2010 by Harald Welte &lt;laforge@gnumonks.org&gt;
+        </screen>
+        <para>Launching the <command>simtrace</command> will try to find
+        the SIMtrace hardware and then try to claim the USB device. The
+        application will send the received data encapsulated in the GSMTAP
+        format on localhost and the IANA assigned GSMTAP port.</para>
+    </section>
+
+    <section id="launching_wireshark">
+        <title>Launching Wireshark</title>
+        <para>The <command>wireshark</command> application will start a GUI
+        and given the right permissions you should be able listen to the
+        localhost interface and filter for the GSMTAP port on 4729. You should
+        be able to see the decoded messages like in the figure below.</para>
+
+         <figure><title>GSMTAP in Wireshark</title>
+         <mediaobject>
+           <imageobject>
+             <imagedata fileref="images/wireshark-sim.png" width="16cm"/>
+           </imageobject>
+           <textobject><phrase>SIMtrace sending data</phrase></textobject>
+         </mediaobject>
+         </figure>
+    </section>
+
+    <section id="known_firmware_issues">
+        <title>Known Firmware Issues</title>
+        <para>The current firmware has two known bugs that limit the usage
+        of the device. The first one is with enumeration on USB 3.0 controllers
+        and the second one with baudrate selection of some SIM cards.</para>
+
+        <para>The firmware does not properly enumerate on systems with USB 3.0
+        controllers. The issue has not been analyzed and the workaround is to
+        use a USB &lt; 3.0 port or put a USB &lt; 3.0 hub between.</para>
+
+        <para>The firmware has issues with selecting the right baudrate of
+        some SIMcards. The microcontroller will call the parity error interrupt
+        handler and the watchdog will reset the device. There is no workaround
+        for this issue yet.</para>
+    </section>
+
+    <section id="other_modes">
+        <title>Other modes</title>
+        <para>The hardware is capable to be used as an ordinary card reader,
+        provide Man-In-The-Middle (MITM) attacks, or operate as a SIM. The
+        firmware currently does not have support for these modes.</para>
+    </section>
+</chapter>

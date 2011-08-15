@@ -1,0 +1,9 @@
+This should be our user manual, it is created using docbook and
+can be compiled by either. Patches for additional sections are
+more than welcome.
+
+$ make
+
+or
+
+$ dblatex usermanual.tex

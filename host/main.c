@@ -19,6 +19,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
 #include <time.h>
@@ -31,17 +32,17 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include <usb.h>
+#include <libusb.h>
 
-#include "usb_helper.h"
 #include "simtrace.h"
 #include "simtrace_usb.h"
 #include "apdu_split.h"
 
 #include <osmocom/core/gsmtap.h>
 #include <osmocom/core/gsmtap_util.h>
+#include <osmocom/core/utils.h>
 
-static struct usb_dev_handle *udev;
+static struct libusb_device_handle *devh;
 static struct apdu_split *as;
 static struct gsmtap_inst *g_gti;
 
@@ -76,13 +77,13 @@ static int gsmtap_send_sim(const uint8_t *apdu, unsigned int len)
 
 static void apdu_out_cb(uint8_t *buf, unsigned int len, void *user_data)
 {
-	printf("APDU: %s\n", hexdump(buf, len));
+	printf("APDU: %s\n", osmo_hexdump(buf, len));
 	gsmtap_send_sim(buf, len);
 }
 
 static int process_usb_msg(uint8_t *buf, int len)
 {
-	struct simtrace_hdr *sh = buf;
+	struct simtrace_hdr *sh = (struct simtrace_hdr *)buf;
 	uint8_t *payload = buf += sizeof(*sh);
 	int payload_len = len - sizeof(*sh);
 
@@ -138,9 +139,10 @@ int main(int argc, char **argv)
 {
 	char buf[16*265];
 	char *gsmtap_host = "127.0.0.1";
-	int rc, c;
+	int rc, c, ret = 1;
 	int skip_atr = 0;
-	unsigned int msg_count, byte_count;
+	int xfer_len;
+	unsigned int msg_count, byte_count = 0;
 
 	print_welcome();
 
@@ -164,35 +166,56 @@ int main(int argc, char **argv)
 		}
 	}
 
+	rc = libusb_init(NULL);
+	if (rc < 0) {
+		fprintf(stderr, "libusb initialization failed\n");
+		goto close_exit;
+	}
+
 	g_gti = gsmtap_source_init(gsmtap_host, GSMTAP_UDP_PORT, 0);
 	if (!g_gti) {
 		perror("unable to open GSMTAP");
-		exit(1);
+		goto close_exit;
 	}
 	gsmtap_source_add_sink(g_gti);
 
-	udev = usb_find_open(SIMTRACE_USB_VENDOR, SIMTRACE_USB_PRODUCT);
-	if (!udev) {
-		perror("opening USB device");
-		exit(1);
+	devh = libusb_open_device_with_vid_pid(NULL, SIMTRACE_USB_VENDOR, SIMTRACE_USB_PRODUCT);
+	if (!devh) {
+		fprintf(stderr, "can't open USB device\n");
+		goto close_exit;
+	}
+
+	rc = libusb_claim_interface(devh, 0);
+	if (rc < 0) {
+		fprintf(stderr, "can't claim interface; rc=%d\n", rc);
+		goto close_exit;
 	}
 
 	as = apdu_split_init(&apdu_out_cb, NULL);
 	if (!as)
-		exit(1);
+		goto release_exit;
 
 	printf("Entering main loop\n");
 	while (1) {
-		rc = usb_bulk_read(udev, SIMTRACE_IN_EP, buf, sizeof(buf), 100000);
-		if (rc < 0 && rc != -EAGAIN) {
-			fprintf(stderr, "Error submitting BULK IN urb: %s\n", usb_strerror());
-			exit(1);
+		rc = libusb_bulk_transfer(devh, SIMTRACE_IN_EP, buf, sizeof(buf), &xfer_len, 100000);
+		if (rc < 0 && rc != LIBUSB_ERROR_TIMEOUT) {
+			fprintf(stderr, "BULK IN transfer error; rc=%d\n", rc);
+			goto release_exit;
 		}
-		if (rc > 0) {
-			//printf("URB: %s\n", hexdump(buf, rc));
-			process_usb_msg(buf, rc);
+		if (xfer_len > 0) {
+			//printf("URB: %s\n", osmo_hexdump(buf, rc));
+			process_usb_msg(buf, xfer_len);
 			msg_count++;
-			byte_count += rc;
+			byte_count += xfer_len;
 		}
 	}
+	ret = 0;
+
+release_exit:
+	libusb_release_interface(devh, 0);
+close_exit:
+	if (devh)
+		libusb_close(devh);
+	libusb_exit(NULL);
+	return ret;
 }
