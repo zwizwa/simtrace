@@ -8,7 +8,7 @@
 <!ENTITY chapter-introduction SYSTEM "chapters/introduction.xml">
 <!ENTITY chapter-installation SYSTEM "chapters/installation.xml">
 <!ENTITY chapter-hw-details SYSTEM "chapters/hardware_details.xml">
-<!ENTITY chapter-using SYSTEM "chapters/using.xml">
+<!ENTITY chapter-using-sniff SYSTEM "chapters/using_sniff.xml">
 <!ENTITY chapter-building SYSTEM "chapters/building.xml">
 <!ENTITY chapter-appendix SYSTEM "chapters/appendix.xml">
 ]>
@@ -55,7 +55,7 @@
   &chapter-introduction;
   &chapter-installation;
   &chapter-hw-details;
-  &chapter-using;
+  &chapter-using-sniff;
   &chapter-building;
 
   &chapter-appendix;
