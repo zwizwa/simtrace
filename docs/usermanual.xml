@@ -28,6 +28,12 @@
             <authorinitials>z</authorinitials>
             <revremark>Copy HW Info from the Wiki</revremark>
         </revision>
+        <revision>
+            <revnumber>0.0.3</revnumber>
+            <date>15 August 2011</date>
+            <authorinitials>z</authorinitials>
+            <revremark>Document building wireshark</revremark>
+        </revision>
     </revhistory>
 
     <title>SIMtrace Usermanual</title>

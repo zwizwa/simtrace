@@ -44,4 +44,45 @@ cc -o simtrace main.o usb_helper.o usb.o apdu_split.o -lusb `pkg-config --libs l
             </screen>
         </section>
     </section>
+
+    <section id="building_wireshark">
+        <title>Building Wireshark</title>
+        <para>SIMtrace provides a patch against <command>wireshark</command>
+        version 1.6. It is the easiest to checkout a copy using the 1.6 branch
+        of wireshark and applying the <filename>simcard.patch</filename> on top
+        of it. And then use the usual way of building wireshark</para>
+
+        <section id="getting_wireshark">
+            <title>Getting Wireshark</title>
+            <screen>
+$ svn co https://anonsvn.wireshark.org/wireshark/trunk-1.6 wireshark-1.6
+A    wireshark-1.6/isprint.h
+ U   wireshark-1.6
+Checked out revision 38543.
+            </screen>
+        </section>
+
+        <section id="getting_simcard.patch">
+            <title>SIMCard patch</title>
+            <para>You will need to download and apply the patch.</para>
+            <screen>
+$ cd wireshark-1.6
+$ wget http://cgit.osmocom.org/cgit/simtrace/tree/wireshark/simcard-for-wireshark-1.6.patch
+$ cat ../simcard-for-wireshark-1.6.patch | patch -p 0
+patching file epan/dissectors/packet-gsm_sim.c
+patching file epan/dissectors/packet-gsmtap.c
+patching file epan/dissectors/Makefile.common
+            </screen>
+        </section>
+
+        <section id="building_and_installing">
+            <title>Building and Installing</title>
+            <screen>
+$ autoreconf --install
+$ ./configure
+$ make
+$ sudo ./wireshark
+            </screen>
+        </section>
+    </section>
 </chapter>
