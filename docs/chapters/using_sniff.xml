@@ -64,4 +64,11 @@ simtrace - GSM SIM and smartcard tracing
         handler and the watchdog will reset the device. There is no workaround
         for this issue yet.</para>
     </section>
+
+    <section id="other_modes">
+        <title>Other modes</title>
+        <para>The hardware is capable to be used as an ordinary card reader,
+        provide Man-In-The-Middle (MITM) attacks, or operate as a SIM. The
+        firmware currently does not have support for these modes.</para>
+    </section>
 </chapter>
