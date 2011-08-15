@@ -1,0 +1,47 @@
+Index: epan/dissectors/packet-gsmtap.c
+===================================================================
+--- epan/dissectors/packet-gsmtap.c	(revision 38543)
++++ epan/dissectors/packet-gsmtap.c	(working copy)
+@@ -145,6 +145,7 @@
+ 	GSMTAP_SUB_UM,
+ 	GSMTAP_SUB_UM_LAPDM,
+ 	GSMTAP_SUB_ABIS,
++	GSMTAP_SUB_SIM,
+ 
+ 	GSMTAP_SUB_MAX
+ };
+@@ -299,6 +300,13 @@
+ 
+ 	col_set_str(pinfo->cinfo, COL_PROTOCOL, "GSMTAP");
+ 
++	/* Some GSMTAP types are completely unrelated to the Um air interface */
++	switch (type) {
++	case GSMTAP_TYPE_SIM:
++		call_dissector(sub_handles[GSMTAP_SUB_SIM], payload_tvb, pinfo, tree);
++		return;
++	}
++
+ 	if (arfcn & GSMTAP_ARFCN_F_UPLINK) {
+ 		col_append_str(pinfo->cinfo, COL_RES_NET_SRC, "MS");
+ 		col_append_str(pinfo->cinfo, COL_RES_NET_DST, "BTS");
+@@ -475,6 +483,7 @@
+ 	sub_handles[GSMTAP_SUB_UM] = find_dissector("gsm_a_ccch");
+ 	sub_handles[GSMTAP_SUB_UM_LAPDM] = find_dissector("lapdm");
+ 	sub_handles[GSMTAP_SUB_ABIS] = find_dissector("gsm_a_dtap");
++	sub_handles[GSMTAP_SUB_SIM] = find_dissector("gsm_sim");
+ 	gsmtap_handle = create_dissector_handle(dissect_gsmtap, proto_gsmtap);
+ 	dissector_add_uint("udp.port", GSMTAP_UDP_PORT, gsmtap_handle);
+ }
+Index: epan/dissectors/Makefile.common
+===================================================================
+--- epan/dissectors/Makefile.common	(revision 38543)
++++ epan/dissectors/Makefile.common	(working copy)
+@@ -67,6 +67,8 @@
+ 	packet-dcerpc-dnsserver.c 	\
+ 	packet-dcerpc-eventlog.c \
+ 	packet-dcerpc-lsa.c \
++	packet-gsm_sim.c	\
++	packet-card_app_toolkit.c	\
+ 	packet-dcerpc-winreg.c
+ 
+ #
