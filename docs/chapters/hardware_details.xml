@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter id="chapter_hw">
-    <title>Getting and Building the Software</title>
+    <title>Hardware Details</title>
+    <section id="hw_design">
+        <title>HW Design</title>
+        <para>The Free Software KiCAD EDA was used to design the
+        hardware and can be used to look at the schematics and the
+        PCB routing. The hardware design can be found in the git
+        repository of the SIMtrace sources. For the v1.0 hardware
+        you will have to look at the v1.0_production branch.
+        </para>
+    </section>
+
     <section id="pcb_populated">
         <title>Populated PCB</title>
         <para>The version v1.0p is the first production that had an
