@@ -16,29 +16,87 @@
     <section id="getting_the_firmware">
         <title>Getting and Building the Firmware</title>
 
-        <subsection>
-            <para>The SIMtrace firmware is based on the OpenPCD RFID Reader Firmware and the
-            SIMtrace firmware code is located in the OpenPCD repository. You can use the
-            <command>git</command> to clone the repository.
-            <screen>
+        <para>The SIMtrace firmware is based on the OpenPCD RFID Reader Firmware and the
+        SIMtrace firmware code is located in the OpenPCD repository. You can use the
+        <command>git</command> to clone the repository.
+        <screen>
 $ git clone git://git.gnumonks.org/openpcd.git
-            </screen>
-            </para>
-        </subsection>
+        </screen>
+        </para>
     
-        <subsection>
-            <para>The firmware consists out of two separate binaries that will be concatted
-            and flashed into the NOR flash of the microcontroller. The main part is the dfu
-            program that will handle basic USB functionality and respond to Device Firmware
-            Update (DFU) requests to allow to update the firmware in the NOR or execute
-            software in RAM.
-            <screen>
+        <para>The firmware consists out of two separate binaries that will be concatted
+        and flashed into the NOR flash of the microcontroller. The main part is the dfu
+        program that will handle basic USB functionality and respond to Device Firmware
+        Update (DFU) requests to allow to update the firmware in the NOR or execute
+        software in RAM.
+        <screen>
 $ cd openpcd/firmware
 $ make -f Makefile.dfu BOARD=SIMTRACE
 $ make BOARD=SIMTRACE DEBUG=1 TARGET=main_simtrace
 $ cat dfu.bin main_simtrace.bin > main_simtrace.samba
 $ cd ../..
-            </screen></para>
-        </subsection>
+        </screen></para>
+    </section>
+    <section id="firmware_details">
+        <title>Firmware Details</title>
+        <para>
+        The handling for the DFU part can be found in the <filename>src/dfu</filename>
+        directory, it also provides low-level USB routines to work with USB Device
+        Port (UDP). These functions will be called from the main payload.
+        </para>
+        <para>The operating system part is in <filename>src/os</filename> it provides
+        basic hardware control and services to be used by the main application, this
+        includes USB enumeration, Watchdog programming, running the mainloop, interrupt
+        dispatching. The main application for SIMtrace can be found in
+        <filename>src/simtrace</filename> and this includes programming the two USART,
+        configuring the bus switch according to the mode.
+        </para>
+    </section>
+
+    <section id="firmware_programming_sam_ba">
+        <title>Initial Firmware Programming</title>
+        <para>In case the NOR Flash of the SAM7 Microcontroller is either blank or has
+        become corrupted the Microcontrollers support entering a mode called SAM-BA which
+        then allows flashing the device using the <filename>sam</filename> application. The
+        SAM-BA mode can be easily entered by following the below procedure.
+        <procedure>
+            <title>Entering SAM-BA Mode</title>
+            <step><para>Unplug the SIMtrace Hardware from USB.</para></step>
+            <step><para>Short TEST to VCC (3.3V) pin by using the Jumper. Leave PA0, PA1, PA2 unconnected.</para></step>
+            <step><para>Power up the SIMtrace Hardware from USB.</para></step>
+            <step><para>Wait for 20 seconds.</para></step>
+            <step><para>Unplug the SIMtrace Hardware from USB.</para></step>
+            <step><para>Open/Remove the Jumper.</para></step>
+        </procedure>
+
+        <note><title>v1.0p Hardware Owners</title>
+            <para>Sometimes the SAM-BA mode is not entered. This is the case when the
+            two LEDs are on when powering up the SIMtrace Hardware with the Jumper set.
+            The reason for this is unknown but there are several workarounds:
+            <itemizedlist>
+                <listitem>Press the RESET button while powering up.</listitem>
+                <listitem>Touch PA0 (pin 48, on the right upper corner)
+                with a piece of metal.</listitem>
+                <listitem>Short PA0 and PA1 (pin 48 and 47, next to each other on
+                the right upper corner).</listitem>
+            </itemizedlist>
+
+            As soon as the two LEDs go off, the SAM-BA mode is properly entered.
+            </para>
+        </note>
+        </para>
+        <para>The <command>sam</command> application can be compiled to either use libusb or
+        normal files to program the device, depending on the drivers used you will
+        need to configure the application one way or another. The programming can then
+        be done using the below command.
+        <screen>
+$ ./sam7 --exec set_clock --exec unlock_regions --exec "flash ../openpcd/firmware/main_simtrace.samba"
+        </screen>
+        <note><title>Silent failures</title>
+        <para>The <command>sam</command> can silently fail when not finding or being
+        able to configure the device properly. It is best to enter the interactive mode
+        by not providing any <command>--exec</command> commands.</para>
+        </note>
+        </para>
     </section>
 </chapter>
