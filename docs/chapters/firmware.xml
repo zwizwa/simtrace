@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="chapter_firmware">
+    <title>Getting and Building the Firmware</title>
+    <section id="building_fw_intro">
+        <title>Introduction</title>
+        <para>The Firmware is the Software that is running on the
+        Microcontroller of the SIMtrace hardware. The Firmware itself
+        consists out of a couple of components for different parts of
+        the system. Besides the source code for the firmware you will
+        also need to have an ARM Cross-Compile Toolchain, a copy of the
+        SAM7 utilities to initially program the device or recover from
+        a fatal error and dfu-util to update the main part of the firmware
+        using the Device Firmware Update (DFU) mode.</para>
+    </section>
+
+    <section id="getting_the_firmware">
+        <title>Getting and Building the Firmware</title>
+
+        <subsection>
+            <para>The SIMtrace firmware is based on the OpenPCD RFID Reader Firmware and the
+            SIMtrace firmware code is located in the OpenPCD repository. You can use the
+            <command>git</command> to clone the repository.
+            <screen>
+$ git clone git://git.gnumonks.org/openpcd.git
+            </screen>
+            </para>
+        </subsection>
+    
+        <subsection>
+            <para>The firmware consists out of two separate binaries that will be concatted
+            and flashed into the NOR flash of the microcontroller. The main part is the dfu
+            program that will handle basic USB functionality and respond to Device Firmware
+            Update (DFU) requests to allow to update the firmware in the NOR or execute
+            software in RAM.
+            <screen>
+$ cd openpcd/firmware
+$ make -f Makefile.dfu BOARD=SIMTRACE
+$ make BOARD=SIMTRACE DEBUG=1 TARGET=main_simtrace
+$ cat dfu.bin main_simtrace.bin > main_simtrace.samba
+$ cd ../..
+            </screen></para>
+        </subsection>
+    </section>
+</chapter>

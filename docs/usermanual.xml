@@ -10,6 +10,7 @@
 <!ENTITY chapter-hw-details SYSTEM "chapters/hardware_details.xml">
 <!ENTITY chapter-using-sniff SYSTEM "chapters/using_sniff.xml">
 <!ENTITY chapter-building SYSTEM "chapters/building.xml">
+<!ENTITY chapter-firmware SYSTEM "chapters/firmware.xml">
 <!ENTITY chapter-appendix SYSTEM "chapters/appendix.xml">
 ]>
 
@@ -34,6 +35,12 @@
             <authorinitials>z</authorinitials>
             <revremark>Document building wireshark</revremark>
         </revision>
+        <revision>
+            <revnumber>0.0.4</revnumber>
+            <date>8 October 2011</date>
+            <authorinitials>z</authorinitials>
+            <revremark>Document Firmware</revremark>
+        </revision>
     </revhistory>
 
     <title>SIMtrace Usermanual</title>
@@ -57,6 +64,7 @@
   &chapter-hw-details;
   &chapter-using-sniff;
   &chapter-building;
+  &chapter-firmware;
 
   &chapter-appendix;
 </book>
