@@ -26,7 +26,7 @@ $ <command>sudo</command> <command>make</command> install
         <section id="libusb">
             <title>Installing libusb</title>
             <para>You will need to install the libusb header files
-            to be able to compile <command>simtrace</command></para>.
+            to be able to compile <command>simtrace</command>.</para>
         </section>
 
         <section id="simtrace">
