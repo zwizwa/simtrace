@@ -142,6 +142,7 @@ static void run_mainloop(struct libusb_device_handle *devh)
 	int rc;
 
 	printf("Entering main loop\n");
+	apdu_split_reset(as);
 
 	while (1) {
 		rc = libusb_bulk_transfer(devh, SIMTRACE_IN_EP, buf, sizeof(buf), &xfer_len, 100000);
