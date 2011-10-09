@@ -42,7 +42,6 @@
 #include <osmocom/core/gsmtap_util.h>
 #include <osmocom/core/utils.h>
 
-static struct libusb_device_handle *devh;
 static struct apdu_split *as;
 static struct gsmtap_inst *g_gti;
 
@@ -135,14 +134,37 @@ static const struct option opts[] = {
 	{ NULL, 0, 0, 0 }
 };
 
+static void run_mainloop(struct libusb_device_handle *devh)
+{
+	unsigned int msg_count, byte_count = 0;
+	char buf[16*265];
+	int xfer_len;
+	int rc;
+
+	printf("Entering main loop\n");
+
+	while (1) {
+		rc = libusb_bulk_transfer(devh, SIMTRACE_IN_EP, buf, sizeof(buf), &xfer_len, 100000);
+		if (rc < 0 && rc != LIBUSB_ERROR_TIMEOUT) {
+			fprintf(stderr, "BULK IN transfer error; rc=%d\n", rc);
+			return;
+		}
+		if (xfer_len > 0) {
+			//printf("URB: %s\n", osmo_hexdump(buf, rc));
+			process_usb_msg(buf, xfer_len);
+			msg_count++;
+			byte_count += xfer_len;
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
-	char buf[16*265];
 	char *gsmtap_host = "127.0.0.1";
-	int rc, c, ret = 1;
+	int rc;
+	int c, ret = 1;
 	int skip_atr = 0;
-	int xfer_len;
-	unsigned int msg_count, byte_count = 0;
+	struct libusb_device_handle *devh;
 
 	print_welcome();
 
@@ -179,6 +201,10 @@ int main(int argc, char **argv)
 	}
 	gsmtap_source_add_sink(g_gti);
 
+	as = apdu_split_init(&apdu_out_cb, NULL);
+	if (!as)
+		goto release_exit;
+
 	devh = libusb_open_device_with_vid_pid(NULL, SIMTRACE_USB_VENDOR, SIMTRACE_USB_PRODUCT);
 	if (!devh) {
 		fprintf(stderr, "can't open USB device\n");
@@ -191,24 +217,7 @@ int main(int argc, char **argv)
 		goto close_exit;
 	}
 
-	as = apdu_split_init(&apdu_out_cb, NULL);
-	if (!as)
-		goto release_exit;
-
-	printf("Entering main loop\n");
-	while (1) {
-		rc = libusb_bulk_transfer(devh, SIMTRACE_IN_EP, buf, sizeof(buf), &xfer_len, 100000);
-		if (rc < 0 && rc != LIBUSB_ERROR_TIMEOUT) {
-			fprintf(stderr, "BULK IN transfer error; rc=%d\n", rc);
-			goto release_exit;
-		}
-		if (xfer_len > 0) {
-			//printf("URB: %s\n", osmo_hexdump(buf, rc));
-			process_usb_msg(buf, xfer_len);
-			msg_count++;
-			byte_count += xfer_len;
-		}
-	}
+	run_mainloop(devh);
 	ret = 0;
 
 release_exit:
