@@ -99,4 +99,20 @@ $ ./sam7 --exec set_clock --exec unlock_regions --exec "flash ../openpcd/firmwar
         </note>
         </para>
     </section>
+
+    <section id="firmware_programming_dfu">
+        <title>Device Firmware Update</title>
+        <para>The Device Firmware Update (DFU) part of the firmware will be
+        booted first, it is checking if a button is active or if the software
+        reset reason was for DFU and then activates the DFU part or jumps to
+        the main application. DFU can be activated at any time using
+        <command>dfu-util</command> on the USB Host.</para>
+        <para>The <command>dfu-util</command> application might be already
+        packaged for your distribution, the source code can be found on the
+        <ulink url="http://dfu-util.gnumonks.org/">dfu-util.gnumonks.org</ulink>
+        website. To update the main part of the firmware simply do:
+        <screen>
+$ $ dfu-util -d 16c0:0762 -a0 -D ./main_simtrace.bin -R
+        </screen></para>
+    </section>
 </chapter>
