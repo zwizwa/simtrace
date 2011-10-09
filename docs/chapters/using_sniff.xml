@@ -69,5 +69,12 @@ simtrace - GSM SIM and smartcard tracing
         <para>The hardware is capable to be used as an ordinary card reader,
         provide Man-In-The-Middle (MITM) attacks, or operate as a SIM. The
         firmware currently does not have support for these modes.</para>
+
+        <para>The SIMtrace hardware supports ISO7816 Part 3  T=0/T=1 protocols,
+        it basically can be used to intercept and analyze any traffic from (ISO7816)
+        smart cards. This includes SIM cards, Pay TV cards (smart card for CAM),
+        ATM cards, chip credit card, PKI smart cards, e-passport etc. etc. However
+        watch out: You have to make your chip card fitting in the “SIM card size”
+        ID-000 reader or build another adapter.</para>
     </section>
 </chapter>
