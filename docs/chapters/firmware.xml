@@ -69,6 +69,13 @@ $ cd ../..
             <step><para>Open/Remove the Jumper.</para></step>
         </procedure>
 
+        <figure>
+            <title>TEST Jumper</title>
+            <imageobject>
+                <imagedata fileref="images/shortTEST.jpg" width="12cm"/>
+            </imageobject>
+        </figure>
+
         <note><title>v1.0p Hardware Owners</title>
             <para>Sometimes the SAM-BA mode is not entered. This is the case when the
             two LEDs are on when powering up the SIMtrace Hardware with the Jumper set.
