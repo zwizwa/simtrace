@@ -1,0 +1,42 @@
+require 'rake/clean'
+
+# important info
+target = "simtrace"
+version = IO.read("version").chomp
+date = Time.now.strftime("%d-%m-%y")
+revision = `git log --pretty=oneline "#{target}.sch" | wc -l`.chomp.to_i
+
+# common files
+sch = "#{target}.sch"
+vsch = "#{target}_v#{version}.#{revision.to_s.rjust(3,'0')}.sch"
+
+task :default => [:version,:print,:pdf]
+
+task :version => vsch
+CLEAN.include(vsch)
+CLOBBER.include("#{target}_*.sch")
+
+task :print => "#{target}.ps"
+CLEAN.include("#{target}.ps")
+
+task :pdf => "#{target}.pdf"
+CLEAN.include("#{target}.pdf")
+
+file vsch => sch do
+  sh "cp #{sch} #{vsch}"
+  # on \ is to prevent ruby interpreting it, th other is for sed
+  # the version
+  sh "sed -i 's/\\(version=\\)\\$Version\\$/\\1#{version}/' #{vsch}"
+  # the date
+  sh "sed -i 's/\\(date=\\)\\$Date\\$/\\1#{date}/' #{vsch}"
+  # the revision
+  sh "sed -i 's/\\(revision=\\)\\$Revision\\$/\\1#{revision}/' #{vsch}"
+end
+
+file "#{target}.ps" => vsch do
+  sh "gschem -p -o #{target}.ps -s /usr/share/gEDA/scheme/print.scm #{vsch} > /dev/null 2>&1"
+end
+
+file "#{target}.pdf" => "#{target}.ps" do
+  sh "ps2pdf -sPAPERSIZE=a4 #{target}.ps"
+end

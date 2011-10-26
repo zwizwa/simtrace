@@ -1,0 +1,3 @@
+; .sch gEDA configuration file
+(define gedasymbols "lib")
+(component-library (build-path gedasymbols "symbols"))

@@ -1,0 +1,3 @@
+; gschem configuration file
+(paper-size 11.69 8.27) ; A4
+;(output-color "enabled") ; for color postscript output (black background)

@@ -1,0 +1,67 @@
+v 20110115 2
+P 0 900 300 900 1 0 0
+{
+T 0 900 5 10 0 0 0 0 1
+pintype=pwr
+T 355 895 5 10 1 1 0 0 1
+pinlabel=VIN
+T 205 945 5 10 1 1 0 6 1
+pinnumber=5
+T 0 900 5 10 0 0 0 0 1
+pinseq=5
+}
+P 0 600 300 600 1 0 0
+{
+T 0 600 5 10 0 0 0 0 1
+pintype=in
+T 355 595 5 10 1 1 0 0 1
+pinlabel=ON
+T 205 645 5 10 1 1 0 6 1
+pinnumber=4
+T 0 600 5 10 0 0 0 0 1
+pinseq=4
+}
+P 1000 0 1000 300 1 0 0
+{
+T 1000 0 5 10 0 0 0 0 1
+pintype=pwr
+T 1145 500 5 10 1 1 180 0 1
+pinlabel=GND
+T 950 205 5 10 1 1 90 6 1
+pinnumber=2
+T 1000 0 5 10 0 0 0 0 1
+pinseq=2
+}
+P 2000 600 1700 600 1 0 0
+{
+T 2000 600 5 10 0 0 0 0 1
+pintype=out
+T 1645 595 5 10 1 1 0 6 1
+pinlabel=FLAGB
+T 1795 645 5 10 1 1 0 0 1
+pinnumber=3
+T 2000 600 5 10 0 0 0 0 1
+pinseq=3
+}
+P 2000 900 1700 900 1 0 0
+{
+T 2000 900 5 10 0 0 0 0 1
+pintype=pwr
+T 1645 895 5 10 1 1 0 6 1
+pinlabel=VOUT
+T 1795 945 5 10 1 1 0 0 1
+pinnumber=1
+T 2000 900 5 10 0 0 0 0 1
+pinseq=1
+}
+B 300 300 1400 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 295 1795 8 10 0 0 0 0 1
+device=FPF2005
+T 300 1600 8 10 0 0 0 0 1
+description=load switch
+T 300 1200 8 10 1 1 0 0 1
+refdes=IC?
+T 300 1400 8 10 0 0 0 0 1
+footprint=SC70-5
+T 1000 1200 9 10 1 0 0 0 1
+FPF2005
