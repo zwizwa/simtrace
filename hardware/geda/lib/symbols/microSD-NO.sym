@@ -121,4 +121,4 @@ device=microSD
 T 300 2400 8 10 0 0 0 0 1
 description=microSD slot with normally open presence switch
 T 900 2200 9 10 1 0 0 0 1
-µSD
+uSD

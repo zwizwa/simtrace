@@ -3,7 +3,7 @@ require 'rake/clean'
 # important info
 target = "simtrace"
 version = IO.read("version").chomp
-date = Time.now.strftime("%d-%m-%y")
+date = Time.now.strftime("%Y-%m-%d")
 revision = `git log --pretty=oneline "#{target}.sch" | wc -l`.chomp.to_i
 
 # common files
