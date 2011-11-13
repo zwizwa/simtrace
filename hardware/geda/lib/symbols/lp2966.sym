@@ -15,7 +15,7 @@ P 0 700 300 700 1 0 0
 T 0 700 5 10 0 0 0 0 1
 pintype=in
 T 355 695 5 10 1 1 0 0 1
-pinlabel=/SD1
+pinlabel=\_SD1\_
 T 205 745 5 10 1 1 0 6 1
 pinnumber=2
 T 0 700 5 10 0 0 0 0 1
@@ -26,7 +26,7 @@ P 0 400 300 400 1 0 0
 T 0 400 5 10 0 0 0 0 1
 pintype=in
 T 355 395 5 10 1 1 0 0 1
-pinlabel=/SD2
+pinlabel=\_SD2\_
 T 205 445 5 10 1 1 0 6 1
 pinnumber=3
 T 0 400 5 10 0 0 0 0 1
@@ -70,7 +70,7 @@ P 2100 400 1800 400 1 0 0
 T 2100 400 5 10 0 0 0 0 1
 pintype=out
 T 1745 395 5 10 1 1 0 6 1
-pinlabel=/ERROR1
+pinlabel=\_ERROR1\_
 T 1895 445 5 10 1 1 0 0 1
 pinnumber=6
 T 2100 400 5 10 0 0 0 0 1
@@ -81,7 +81,7 @@ P 2100 100 1800 100 1 0 0
 T 2100 100 5 10 0 0 0 0 1
 pintype=out
 T 1745 95 5 10 1 1 0 6 1
-pinlabel=/ERROR2
+pinlabel=\_ERROR2\_
 T 1895 145 5 10 1 1 0 0 1
 pinnumber=5
 T 2100 100 5 10 0 0 0 0 1
