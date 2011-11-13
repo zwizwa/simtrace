@@ -1,0 +1,98 @@
+v 20110115 2
+P 0 1000 300 1000 1 0 0
+{
+T 0 1000 5 10 0 0 0 0 1
+pintype=pwr
+T 355 995 5 10 1 1 0 0 1
+pinlabel=VIN
+T 205 1045 5 10 1 1 0 6 1
+pinnumber=1
+T 0 1000 5 10 0 0 0 0 1
+pinseq=1
+}
+P 0 700 300 700 1 0 0
+{
+T 0 700 5 10 0 0 0 0 1
+pintype=in
+T 355 695 5 10 1 1 0 0 1
+pinlabel=/SD1
+T 205 745 5 10 1 1 0 6 1
+pinnumber=2
+T 0 700 5 10 0 0 0 0 1
+pinseq=2
+}
+P 0 400 300 400 1 0 0
+{
+T 0 400 5 10 0 0 0 0 1
+pintype=in
+T 355 395 5 10 1 1 0 0 1
+pinlabel=/SD2
+T 205 445 5 10 1 1 0 6 1
+pinnumber=3
+T 0 400 5 10 0 0 0 0 1
+pinseq=3
+}
+P 0 100 300 100 1 0 0
+{
+T 0 100 5 10 0 0 0 0 1
+pintype=pwr
+T 355 95 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 145 5 10 1 1 0 6 1
+pinnumber=4
+T 0 100 5 10 0 0 0 0 1
+pinseq=4
+}
+P 2100 1000 1800 1000 1 0 0
+{
+T 2100 1000 5 10 0 0 0 0 1
+pintype=pwr
+T 1745 995 5 10 1 1 0 6 1
+pinlabel=VOUT1
+T 1895 1045 5 10 1 1 0 0 1
+pinnumber=8
+T 2100 1000 5 10 0 0 0 0 1
+pinseq=8
+}
+P 2100 700 1800 700 1 0 0
+{
+T 2100 700 5 10 0 0 0 0 1
+pintype=pwr
+T 1745 695 5 10 1 1 0 6 1
+pinlabel=VOUT2
+T 1895 745 5 10 1 1 0 0 1
+pinnumber=7
+T 2100 700 5 10 0 0 0 0 1
+pinseq=7
+}
+P 2100 400 1800 400 1 0 0
+{
+T 2100 400 5 10 0 0 0 0 1
+pintype=out
+T 1745 395 5 10 1 1 0 6 1
+pinlabel=/ERROR1
+T 1895 445 5 10 1 1 0 0 1
+pinnumber=6
+T 2100 400 5 10 0 0 0 0 1
+pinseq=6
+}
+P 2100 100 1800 100 1 0 0
+{
+T 2100 100 5 10 0 0 0 0 1
+pintype=out
+T 1745 95 5 10 1 1 0 6 1
+pinlabel=/ERROR2
+T 1895 145 5 10 1 1 0 0 1
+pinnumber=5
+T 2100 100 5 10 0 0 0 0 1
+pinseq=5
+}
+B 300 0 1500 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 1300 8 10 1 1 0 0 1
+refdes=IC?
+T 1200 1300 8 10 1 1 0 0 1
+device=LP2966
+T 300 1500 8 10 0 0 0 0 1
+description=Dual 150mA Ultra Low-Dropout Regulator
+T 300 1700 8 10 0 0 0 0 1
+footprint=MSOP8
