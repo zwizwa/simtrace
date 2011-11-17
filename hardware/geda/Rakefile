@@ -1,16 +1,59 @@
 require 'rake/clean'
 
+# ==============
 # important info
+# ==============
+
 target = "simtrace"
 version = IO.read("version").chomp
 date = Time.now.strftime("%Y-%m-%d")
 revision = `git log --pretty=oneline "#{target}.sch" | wc -l`.chomp.to_i
 
-# common files
+# schema
 sch = "#{target}.sch"
+# schema with version
 vsch = "#{target}_v#{version}.#{revision.to_s.rjust(3,'0')}.sch"
 
-task :default => [:version,:print,:pdf]
+
+# ================
+# helper functions
+# ================
+
+def read_sch(path)
+  text = IO.read(path)
+  elements = []
+  element = {}
+  block = false
+  text.each_line do |line|
+    l = line.chomp
+    if l=="{" then
+      block = true
+      element[:block] = {}
+    elsif l=="}" then
+      block = false
+    elsif block then
+      # only take attributes
+      if l.include?("=") then
+        k,v = l.split("=")
+        element[:block][k] = v
+      end
+    elsif !block then
+      elements << element unless element.empty?
+      element = {}
+      element[:line] = l
+      element[:type] = l[0,1]
+    else
+      raise "don't know how to handle line: #{l}"
+    end
+  end
+  return elements
+end
+
+# =========
+# the tasks
+# =========
+
+task :default => [:version,:print,:pdf,:install]
 
 task :version => vsch
 CLEAN.include(vsch)
@@ -21,6 +64,32 @@ CLEAN.include("#{target}.ps")
 
 task :pdf => "#{target}.pdf"
 CLEAN.include("#{target}.pdf")
+
+task :install => "#{target}.pdf"
+  cp "#{target}.pdf","../pcb/schema/#{target}.pdf"
+CLOBBER.include("../pcb/schema/#{target}.pdf")
+
+
+# every component should have: refdes without ?, device, value,
+# footprint, manufacturer, documentation, digikey
+task :read
+  elements = read_sch(sch)
+  elements.each do |element|
+    if element[:type]=="C" then
+      if element[:block] and element[:block]["refdes"] then
+        name = element[:block]["refdes"]
+        name += " (#{element[:block]['device']})" if element[:block]["device"]
+        puts name+" has no ID" if element[:block]["refdes"].include? "?"
+        ["device","value","footprint","manufacturer","manufacturer-part","documentation","digikey-part"].each do |attribute|
+          puts name+" has no "+attribute unless element[:block][attribute]
+        end
+      end
+    end
+  end
+
+# ===============
+# file processing
+# ===============
 
 file vsch => sch do
   sh "cp #{sch} #{vsch}"
