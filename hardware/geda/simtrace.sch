@@ -3,6 +3,18 @@ C 37900 55600 1 0 0 usb-minib.sym
 {
 T 38000 57900 5 10 1 1 0 0 1
 refdes=P1
+T 37900 55600 5 10 0 0 0 0 1
+device=USB
+T 38600 57900 5 10 1 1 0 0 1
+value=USB MINI-B
+T 37900 55600 5 10 0 0 0 0 1
+digikey-part=WM17115-ND
+T 37900 55600 5 10 0 0 0 0 1
+manufacturer=Molex
+T 37900 55600 5 10 0 0 0 0 1
+manufacturer-part=54819-0519
+T 37900 55600 5 10 0 0 0 0 1
+documentation=http://www.molex.com/pdm_docs/sd/548190519_sd.pdf
 }
 C 61900 44000 1 0 0 gittitle-1.sym
 {
@@ -29,6 +41,16 @@ T 40300 59100 5 10 0 0 0 0 1
 device=Ferrite bead
 T 39900 58000 5 10 0 1 0 0 1
 value=100MHz 1A 390Ohm
+T 40300 57500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 80 50
+T 40300 57500 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 40300 57500 5 10 0 1 0 0 1
+manufacturer-part=EXC-ML20A390U
+T 40300 57500 5 10 0 1 0 0 1
+digikey-part=P10191CT-ND
+T 40300 57500 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-data/pdf/AEH0000/AEH0000CE1.pdf
 }
 N 40100 57600 40300 57600 4
 N 41100 57600 42300 57600 4
@@ -45,9 +67,19 @@ C 42300 56300 1 180 0 resistor-1.sym
 T 42000 55900 5 10 0 0 180 0 1
 device=RESISTOR
 T 41800 56500 5 10 1 1 180 0 1
-refdes=R7
+refdes=R11
 T 42200 56500 5 10 1 1 180 0 1
 value=10K
+T 42300 56300 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 42300 56300 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 42300 56300 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 42300 56300 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 42300 56300 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 40100 56700 42800 56700 4
 {
@@ -59,18 +91,38 @@ C 43000 57200 1 0 0 resistor-1.sym
 T 43300 57600 5 10 0 0 0 0 1
 device=RESISTOR
 T 43200 57500 5 10 1 1 0 0 1
-refdes=R8
-T 43500 57500 5 10 1 1 0 0 1
+refdes=R12
+T 43600 57500 5 10 1 1 0 0 1
 value=27R
+T 43000 57200 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 43000 57200 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 43000 57200 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ270V
+T 43000 57200 5 10 0 1 0 0 1
+digikey-part=P27GCT-ND
+T 43000 57200 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ270V+7+WW
 }
 C 43000 56900 1 0 0 resistor-1.sym
 {
 T 43300 57300 5 10 0 0 0 0 1
 device=RESISTOR
 T 43200 56700 5 10 1 1 0 0 1
-refdes=R9
-T 43500 56700 5 10 1 1 0 0 1
+refdes=R13
+T 43600 56700 5 10 1 1 0 0 1
 value=27R
+T 43000 56900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 43000 56900 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 43000 56900 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ270V
+T 43000 56900 5 10 0 1 0 0 1
+digikey-part=P27GCT-ND
+T 43000 56900 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ270V+7+WW
 }
 N 40100 57300 43000 57300 4
 N 40100 57000 43000 57000 4
@@ -84,6 +136,16 @@ T 43600 57700 5 10 0 0 90 0 1
 symversion=0.1
 T 44400 57600 5 10 1 1 0 0 1
 value=15pF
+T 44500 57500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 44500 57500 5 10 0 1 0 0 1
+manufacturer=Johanson Dielectrics Inc
+T 44500 57500 5 10 0 1 0 0 1
+manufacturer-part=500R14N150JV4T
+T 44500 57500 5 10 0 1 0 0 1
+digikey-part=709-1142-1-ND
+T 44500 57500 5 10 0 1 0 0 1
+documentation=http://www.johansondielectrics.com/images/stories/surface-mount/smt-mlc/JDI_Surface-Mount_2008-11.pdf
 }
 C 44500 55900 1 90 0 capacitor-1.sym
 {
@@ -95,6 +157,16 @@ T 43600 56100 5 10 0 0 90 0 1
 symversion=0.1
 T 44400 56000 5 10 1 1 0 0 1
 value=15pF
+T 44500 55900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 44500 55900 5 10 0 1 0 0 1
+manufacturer=Johanson Dielectrics Inc
+T 44500 55900 5 10 0 1 0 0 1
+manufacturer-part=500R14N150JV4T
+T 44500 55900 5 10 0 1 0 0 1
+digikey-part=709-1142-1-ND
+T 44500 55900 5 10 0 1 0 0 1
+documentation=http://www.johansondielectrics.com/images/stories/surface-mount/smt-mlc/JDI_Surface-Mount_2008-11.pdf
 }
 C 44400 58900 1 180 0 gnd-1.sym
 C 44200 55400 1 0 0 gnd-1.sym
@@ -117,42 +189,63 @@ C 43100 57600 1 90 0 capacitor-1.sym
 T 42400 57800 5 10 0 0 90 0 1
 device=CAPACITOR
 T 43300 58400 5 10 1 1 180 0 1
-refdes=C3
+refdes=C2
 T 42200 57800 5 10 0 0 90 0 1
 symversion=0.1
 T 43100 57800 5 10 1 1 0 0 1
 value=33pF
+T 43100 57600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 43200 57600 5 10 0 1 0 0 1
+manufacturer=Murata Electronics North America
+T 43100 57600 5 10 0 1 0 0 1
+manufacturer-part=GRM1885C1H330JA01D
+T 42900 58200 5 10 0 1 0 0 1
+digikey-part=490-1415-1-ND
+T 43100 57600 5 10 0 1 0 0 1
+documentation=http://search.murata.co.jp/Ceramy/image/img/PDF/ENG/GRM1885C1H330JA01.pdf
 }
 C 41500 58700 1 0 0 resistor-1.sym
 {
 T 41800 59100 5 10 0 0 0 0 1
 device=RESISTOR
 T 41700 59000 5 10 1 1 0 0 1
-refdes=R6
+refdes=R10
 T 42100 59000 5 10 1 1 0 0 1
-value=1K5
+value=1.5K
+T 41500 58700 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 41500 58700 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 41500 58700 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT1K50
+T 41500 58700 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT1K50CT-ND
+T 41500 58700 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 42900 57600 42900 57300 4
 N 42900 58500 42900 58800 4
 N 42900 58800 42400 58800 4
 N 42600 57300 42600 58800 4
-C 40900 59400 1 90 1 npn-3.sym
-{
-T 40400 58500 5 10 0 0 90 6 1
-device=NPN_TRANSISTOR
-T 40000 59300 5 10 1 1 0 0 1
-refdes=Q1
-T 40500 59300 5 10 1 1 0 0 1
-value=BC847
-}
 C 39800 59100 1 90 0 resistor-1.sym
 {
 T 39400 59400 5 10 0 0 90 0 1
 device=RESISTOR
 T 39500 59300 5 10 1 1 90 0 1
-refdes=R1
+refdes=R8
 T 39500 59700 5 10 1 1 90 0 1
 value=100K
+T 39800 59100 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 39800 59100 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 39800 59100 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 39800 59100 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 39800 59100 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 39500 58600 1 90 0 3.3V-plus-1.sym
 C 41300 59600 1 0 0 zener-1.sym
@@ -161,8 +254,18 @@ T 41700 60200 5 10 0 0 0 0 1
 device=ZENER_DIODE
 T 41600 59400 5 10 1 1 0 0 1
 refdes=Z3
-T 41900 59400 5 10 0 1 0 0 1
+T 41900 59400 5 10 1 1 0 0 1
 value=1N5819
+T 41300 59600 5 10 0 1 0 0 1
+manufacturer=Diodes Inc
+T 41300 59600 5 10 0 1 0 0 1
+manufacturer-part=1N5819HW-7-F
+T 41300 59600 5 10 0 1 0 0 1
+digikey-part=1N5819HW-FDICT-ND
+T 41300 59600 5 10 0 1 0 0 1
+documentation=http://www.diodes.com/datasheets/ds30217.pdf
+T 41300 59600 5 10 0 1 0 0 1
+footprint=SOD123
 }
 N 40900 58800 41500 58800 4
 N 41400 56200 41000 56200 4
@@ -193,46 +296,96 @@ T 39100 51900 5 10 0 0 90 0 1
 symversion=0.1
 T 39300 51800 5 10 1 1 0 0 1
 value=2.2uF
+T 40000 51700 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 40000 51700 5 10 0 1 0 0 1
+manufacturer=AVX
+T 40000 51700 5 10 0 1 0 0 1
+manufacturer-part=0603ZD225KAT2A
+T 40000 51700 5 10 0 1 0 0 1
+digikey-part=478-6212-1-ND
+T 40000 51700 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 44200 52000 1 180 0 capacitor-1.sym
 {
 T 44000 51300 5 10 0 0 180 0 1
 device=CAPACITOR
 T 43300 51900 5 10 1 1 0 0 1
-refdes=C4
+refdes=C3
 T 44000 51100 5 10 0 0 180 0 1
 symversion=0.1
 T 43900 51900 5 10 1 1 0 0 1
 value=2.2uF
+T 44200 52000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 44200 52000 5 10 0 1 0 0 1
+manufacturer=AVX
+T 44200 52000 5 10 0 1 0 0 1
+manufacturer-part=0603ZD225KAT2A
+T 44200 52000 5 10 0 1 0 0 1
+digikey-part=478-6212-1-ND
+T 44200 52000 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 43300 53100 1 0 0 capacitor-1.sym
 {
 T 43500 53800 5 10 0 0 0 0 1
 device=CAPACITOR
 T 43400 53400 5 10 1 1 0 0 1
-refdes=C7
+refdes=C4
 T 43500 54000 5 10 0 0 0 0 1
 symversion=0.1
 T 43900 53400 5 10 1 1 0 0 1
 value=2.2uF
+T 43300 53100 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 43300 53100 5 10 0 1 0 0 1
+manufacturer=AVX
+T 43300 53100 5 10 0 1 0 0 1
+manufacturer-part=0603ZD225KAT2A
+T 43300 53100 5 10 0 1 0 0 1
+digikey-part=478-6212-1-ND
+T 43300 53100 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 38100 52600 1 0 0 zener-1.sym
 {
 T 38500 53200 5 10 0 0 0 0 1
 device=ZENER_DIODE
-T 38400 53100 5 10 1 1 0 0 1
+T 38300 53100 5 10 1 1 0 0 1
 refdes=Z1
-T 38500 53100 5 10 0 1 0 0 1
+T 38600 53100 5 10 1 1 0 0 1
 value=1N5819
+T 38100 52600 5 10 0 1 0 0 1
+manufacturer=Diodes Inc
+T 38100 52600 5 10 0 1 0 0 1
+manufacturer-part=1N5819HW-7-F
+T 38100 52600 5 10 0 1 0 0 1
+digikey-part=1N5819HW-FDICT-ND
+T 38100 52600 5 10 0 1 0 0 1
+documentation=http://www.diodes.com/datasheets/ds30217.pdf
+T 38100 52600 5 10 0 1 0 0 1
+footprint=SOD123
 }
 C 38100 51900 1 0 0 zener-1.sym
 {
 T 38500 52500 5 10 0 0 0 0 1
 device=ZENER_DIODE
-T 38400 52400 5 10 1 1 0 0 1
+T 38300 51700 5 10 1 1 0 0 1
 refdes=Z2
-T 38500 52400 5 10 0 1 0 0 1
+T 38600 51700 5 10 1 1 0 0 1
 value=1N5819
+T 38100 51900 5 10 0 1 0 0 1
+manufacturer=Diodes Inc
+T 38100 51900 5 10 0 1 0 0 1
+manufacturer-part=1N5819HW-7-F
+T 38100 51900 5 10 0 1 0 0 1
+digikey-part=1N5819HW-FDICT-ND
+T 38100 51900 5 10 0 1 0 0 1
+documentation=http://www.diodes.com/datasheets/ds30217.pdf
+T 38100 51900 5 10 0 1 0 0 1
+footprint=SOD123
 }
 C 37100 51900 1 0 0 battery-1.sym
 {
@@ -244,6 +397,8 @@ T 37400 53200 5 10 0 0 0 0 1
 symversion=0.1
 T 37500 52400 5 10 1 1 0 0 1
 value=4.5-6V
+T 37100 51900 5 10 0 1 0 0 1
+footprint=HEADER2_1
 }
 C 36500 52200 1 270 0 gnd-1.sym
 C 39700 51100 1 0 0 gnd-1.sym
@@ -275,18 +430,38 @@ C 37800 63600 1 0 0 resistor-1.sym
 T 38100 64000 5 10 0 0 0 0 1
 device=RESISTOR
 T 38000 63900 5 10 1 1 0 0 1
-refdes=R2
+refdes=R6
 T 38300 63900 5 10 1 1 0 0 1
 value=150R
+T 37800 63600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37800 63600 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37800 63600 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ151V
+T 37800 63600 5 10 0 1 0 0 1
+digikey-part=P150GCT-ND
+T 37800 63600 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ151V+7+WW
 }
 C 37800 63000 1 0 0 resistor-1.sym
 {
 T 38100 63400 5 10 0 0 0 0 1
 device=RESISTOR
 T 38000 63300 5 10 1 1 0 0 1
-refdes=R3
+refdes=R7
 T 38300 63300 5 10 1 1 0 0 1
 value=150R
+T 37800 63000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37800 63000 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37800 63000 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ151V
+T 37800 63000 5 10 0 1 0 0 1
+digikey-part=P150GCT-ND
+T 37800 63000 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ151V+7+WW
 }
 C 37400 63200 1 90 0 3.3V-plus-1.sym
 C 39000 63500 1 0 0 led-1.sym
@@ -299,6 +474,16 @@ T 39800 64300 5 10 0 0 0 0 1
 symversion=0.1
 T 39000 64000 5 10 1 1 0 0 1
 value=RED
+T 39000 63500 5 10 0 1 0 0 1
+footprint=SMD_DIODE 80 50
+T 39000 63500 5 10 0 1 0 0 1
+manufacturer=OSRAM
+T 39000 63500 5 10 0 1 0 0 1
+manufacturer-part=LH R974-LP-1
+T 39000 63500 5 10 0 1 0 0 1
+digikey-part=475-1415-1-ND
+T 39000 63500 5 10 0 1 0 0 1
+documentation=http://catalog.osram-os.com/jsp/download.jsp?name=LH_R974.pdf&url=/media/_en/Graphics/00042077_0.pdf
 }
 C 39000 62900 1 0 0 led-1.sym
 {
@@ -310,6 +495,16 @@ T 39800 63700 5 10 0 0 0 0 1
 symversion=0.1
 T 39000 62700 5 10 1 1 0 0 1
 value=GREEN
+T 39000 62900 5 10 0 1 0 0 1
+footprint=SMD_DIODE 80 50
+T 39000 62900 5 10 0 0 0 0 1
+manufacturer=OSRAM
+T 39000 62900 5 10 0 1 0 0 1
+manufacturer-part=LG R971-KN-1-0-20-R18
+T 39000 62900 5 10 0 1 0 0 1
+digikey-part=475-1410-1-ND
+T 39000 62900 5 10 0 1 0 0 1
+documentation=475-1410-1-NDhttp://catalog.osram-os.com/catalogue/catalogue.do;jsessionid=B38D4035738FAE714C474120326E9384?act=downloadFile&favOid=02000002000009ee000100b6
 }
 N 37800 63700 37600 63700 4
 N 37600 63100 37600 63700 4
@@ -327,23 +522,24 @@ N 39900 63100 41100 63100 4
 T 40000 63100 5 10 1 1 0 0 1
 netname=LED_GREEN
 }
-C 41600 60800 1 90 1 npn-3.sym
-{
-T 41100 59900 5 10 0 0 90 6 1
-device=NPN_TRANSISTOR
-T 40900 60700 5 10 1 1 0 6 1
-refdes=Q2
-T 41200 60700 5 10 1 1 0 0 1
-value=BC847
-}
 C 41400 61000 1 0 0 resistor-1.sym
 {
 T 41700 61400 5 10 0 0 0 0 1
 device=RESISTOR
 T 41600 61300 5 10 1 1 0 0 1
-refdes=R5
+refdes=R9
 T 42000 61300 5 10 1 1 0 0 1
 value=10K
+T 41400 61000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 41400 61000 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 41400 61000 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 41400 61000 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 41400 61000 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 C 42500 60100 1 90 0 gnd-1.sym
 N 39700 60000 39700 60200 4
@@ -359,53 +555,105 @@ C 37100 47500 1 0 0 resistor-1.sym
 T 37400 47900 5 10 0 0 0 0 1
 device=RESISTOR
 T 36900 47600 5 10 1 1 0 0 1
-refdes=R13
+refdes=R1
 T 37900 47600 5 10 1 1 0 0 1
 value=100K
+T 37100 47500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37100 47500 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37100 47500 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 37100 47500 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 37100 47500 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 37100 47200 1 0 0 resistor-1.sym
 {
 T 37400 47600 5 10 0 0 0 0 1
 device=RESISTOR
 T 36900 47300 5 10 1 1 0 0 1
-refdes=R14
+refdes=R2
 T 37900 47300 5 10 1 1 0 0 1
 value=100K
+T 37100 47200 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37100 47200 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37100 47200 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 37100 47200 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 37100 47200 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 37100 46900 1 0 0 resistor-1.sym
 {
 T 37400 47300 5 10 0 0 0 0 1
 device=RESISTOR
 T 36900 47000 5 10 1 1 0 0 1
-refdes=R15
+refdes=R3
 T 37900 47000 5 10 1 1 0 0 1
 value=100K
+T 37100 46900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37100 46900 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37100 46900 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 37100 46900 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 37100 46900 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 37100 46600 1 0 0 resistor-1.sym
 {
 T 37400 47000 5 10 0 0 0 0 1
 device=RESISTOR
 T 36900 46700 5 10 1 1 0 0 1
-refdes=R16
+refdes=R4
 T 37900 46700 5 10 1 1 0 0 1
 value=100K
+T 37100 46600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37100 46600 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37100 46600 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 37100 46600 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 37100 46600 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 37100 46000 1 0 0 resistor-1.sym
 {
 T 37400 46400 5 10 0 0 0 0 1
 device=RESISTOR
 T 36900 46100 5 10 1 1 0 0 1
-refdes=R17
+refdes=R5
 T 37900 46100 5 10 1 1 0 0 1
 value=100K
+T 37100 46000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 37100 46000 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 37100 46000 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 37100 46000 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 37100 46000 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 36600 48300 1 0 0 3.3V-plus-1.sym
 C 41800 48800 1 180 0 armjtagconn.sym
 {
 T 41800 48800 5 1 0 0 180 0 1
 device=ARMJTAGCONN
-T 39650 48750 5 10 1 1 180 0 1
-refdes=P7
+T 39750 48750 5 10 1 1 180 0 1
+refdes=P2
+T 41000 48600 5 10 1 1 0 0 1
+value=JTAG
 }
 N 36800 46100 36800 48300 4
 N 36800 47600 37100 47600 4
@@ -469,14 +717,28 @@ JTAG
 C 68300 52100 1 0 0 ftdi.sym
 {
 T 68600 53500 5 10 1 1 0 0 1
-refdes=P4
-T 68600 53900 5 10 0 0 0 0 1
+refdes=P7
+T 68600 53900 5 10 0 1 0 0 1
 device=FTDI
+T 68600 51900 5 10 1 1 0 0 1
+value=FTDI
+T 68300 52100 5 10 0 1 0 0 1
+footprint=JUMPER6
 }
 C 67500 50800 1 0 0 jack.sym
 {
 T 68800 51600 5 10 1 1 0 0 1
 refdes=J3
+T 68300 50500 5 10 1 1 0 0 1
+value=osmocom
+T 67500 50800 5 10 0 1 0 0 1
+manufacturer=CUI
+T 67500 50800 5 10 0 1 0 0 1
+manufacturer-part=SJ1-2503A
+T 67500 50800 5 10 0 1 0 0 1
+digikey-part=CP1-2503A-ND
+T 67500 50800 5 10 0 1 0 0 1
+documentation=http://products.cui.com/getPDF.aspx?fileID=2593
 }
 C 66900 51600 1 270 0 gnd-1.sym
 C 67700 53300 1 270 0 gnd-1.sym
@@ -501,27 +763,39 @@ N 67500 50800 66500 50800 4
 N 66500 50800 66500 52400 4
 T 65900 54100 12 30 1 0 0 0 1
 SERIAL
-T 69000 52000 9 10 1 0 180 0 1
-FTDI
-T 57200 62200 9 10 1 0 0 0 1
-osmocom
 C 47500 62400 1 0 0 sc_no.sym
 {
 T 47800 64400 5 10 1 1 0 0 1
-refdes=P5
+refdes=P4
 T 47800 64800 5 10 0 0 0 0 1
 device=SC
 T 47800 64600 5 10 1 1 0 0 1
 value=ID-000
+T 47500 62400 5 10 0 1 0 0 1
+manufacturer=Amphenol
+T 47500 62400 5 10 0 1 0 0 1
+manufacturer-part=101-00271-82
+T 47500 62400 5 10 0 1 0 0 1
+digikey-part=101-00271-82-1-ND
+T 47500 62400 5 10 0 1 0 0 1
+documentation=http://datasheet.octopart.com/101-00271-82-Amphenol-datasheet-8633047.pdf
 }
 C 51800 62400 1 0 0 sc_no.sym
 {
 T 52100 64400 5 10 1 1 0 0 1
-refdes=P6
+refdes=P5
 T 52100 64800 5 10 0 0 0 0 1
 device=SC
 T 52100 64600 5 10 1 1 0 0 1
 value=ID-1
+T 51800 62400 5 10 0 1 0 0 1
+manufacturer=FCI
+T 51800 62400 5 10 0 1 0 0 1
+manufacturer-part=52400-25ALF
+T 51800 62400 5 10 0 1 0 0 1
+digikey-part=609-1414-ND
+T 51800 62400 5 10 0 1 0 0 1
+documentation=http://portal.fciconnect.com/res/en/pdffiles/doc_search/52400.pdf
 }
 C 50000 64000 1 90 0 gnd-1.sym
 C 50000 62600 1 90 0 gnd-1.sym
@@ -591,6 +865,14 @@ T 44900 64700 5 10 0 0 0 0 1
 device=REBELSIM
 T 44900 62700 5 10 1 1 0 0 1
 value=REBEL
+T 44600 62900 5 10 0 1 0 0 1
+manufacturer=FCI
+T 44600 62900 5 10 0 1 0 0 1
+manufacturer-part=SFW6R-1STE1LF
+T 44600 62900 5 10 0 1 0 0 1
+digikey-part=609-1889-1-ND
+T 44600 62900 5 10 0 1 0 0 1
+documentation=http://portal.fciconnect.com/res/en/pdffiles/doc_search/sfw12lf.pdf
 }
 C 44000 63100 1 270 0 gnd-1.sym
 N 44600 64000 43200 64000 4
@@ -656,20 +938,36 @@ BUS SWITCH
 C 51500 51800 1 0 0 SAM3SXB.sym
 {
 T 51800 59900 5 10 1 1 0 0 1
-refdes=IC3
+refdes=IC2
 T 51800 60500 5 10 0 0 0 0 1
 device=AT91SAM3SXB
 T 51800 60100 5 10 0 0 0 0 1
 footprint=LQFP64
+T 54700 59900 5 10 1 1 0 0 1
+value=AT91SAM3S2B
+T 51500 51800 5 10 0 1 0 0 1
+manufacturer-part=ATSAM3S2BA-AU
+T 51500 51800 5 10 0 0 0 0 1
+digikey-part=ATSAM3S2BA-AU-ND
 }
 C 51200 59800 1 90 0 resistor-1.sym
 {
 T 50800 60100 5 10 0 0 90 0 1
 device=RESISTOR
 T 51400 59900 5 10 1 1 90 0 1
-refdes=R10
+refdes=R14
 T 51400 60300 5 10 1 1 90 0 1
 value=100K
+T 51200 59800 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 51200 59800 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 51200 59800 5 10 0 1 0 0 1
+manufacturer-part=ERJ-3GEYJ104V
+T 51200 59800 5 10 0 1 0 0 1
+digikey-part=P100KGCT-ND
+T 51200 59800 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-cgi/jvcr13pz.cgi?E+PZ+3+AOA0001+ERJ3GEYJ104V+7+WW
 }
 C 50900 61000 1 0 0 3.3V-plus-1.sym
 C 50600 59800 1 90 0 switch-pushbutton-no-1.sym
@@ -680,6 +978,14 @@ T 50000 60200 5 10 0 0 90 0 1
 device=SWITCH_PUSHBUTTON_NO
 T 50800 60000 5 10 1 1 90 0 1
 value=RESET
+T 50600 59800 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 50600 59800 5 10 0 1 0 0 1
+manufacturer-part=EVQ-Q2K03W
+T 50600 59800 5 10 0 1 0 0 1
+digikey-part=P12943SCT-ND
+T 50600 59800 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-data/pdf/ATK0000/ATK0000CE28.pdf
 }
 C 50200 59300 1 90 0 jumper-1.sym
 {
@@ -689,6 +995,8 @@ T 49200 59600 5 10 1 1 180 0 1
 refdes=J1
 T 49400 59100 5 10 1 1 0 0 1
 value=TEST
+T 50200 59300 5 10 0 1 0 0 1
+footprint=JUMPER2
 }
 C 50200 58800 1 90 0 jumper-1.sym
 {
@@ -698,6 +1006,8 @@ T 49200 59100 5 10 1 1 180 0 1
 refdes=J2
 T 49400 58600 5 10 1 1 0 0 1
 value=ERASE
+T 50200 58800 5 10 0 1 0 0 1
+footprint=JUMPER2
 }
 C 50700 61300 1 180 0 gnd-1.sym
 C 48700 58700 1 90 0 3.3V-plus-1.sym
@@ -750,33 +1060,61 @@ C 48800 57300 1 0 0 capacitor-1.sym
 T 49000 58000 5 10 0 0 0 0 1
 device=CAPACITOR
 T 48800 57600 5 10 1 1 0 0 1
-refdes=C14
+refdes=C12
 T 49000 58200 5 10 0 0 0 0 1
 symversion=0.1
 T 49400 57600 5 10 1 1 0 0 1
 value=10pF
+T 48800 57300 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 48800 57300 5 10 0 0 0 0 1
+manufacturer=Murata
+T 48800 57300 5 10 0 1 0 0 1
+manufacturer-part=GRM1885C1H100JA01D
+T 48800 57300 5 10 0 1 0 0 1
+digikey-part=490-1403-1-ND
+T 48800 57300 5 10 0 1 0 0 1
+documentation=http://search.murata.co.jp/Ceramy/image/img/PDF/ENG/GRM1885C1H100JA01.pdf
 }
 C 48800 56600 1 0 0 capacitor-1.sym
 {
 T 49000 57300 5 10 0 0 0 0 1
 device=CAPACITOR
 T 48800 56600 5 10 1 1 0 0 1
-refdes=C15
+refdes=C13
 T 49000 57500 5 10 0 0 0 0 1
 symversion=0.1
 T 49400 56600 5 10 1 1 0 0 1
 value=10pF
+T 48800 56600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 48800 56600 5 10 0 0 0 0 1
+manufacturer=Murata
+T 48800 56600 5 10 0 1 0 0 1
+manufacturer-part=GRM1885C1H100JA01D
+T 48800 56600 5 10 0 1 0 0 1
+digikey-part=490-1403-1-ND
+T 48800 56600 5 10 0 1 0 0 1
+documentation=http://search.murata.co.jp/Ceramy/image/img/PDF/ENG/GRM1885C1H100JA01.pdf
 }
 C 50100 56800 1 90 0 crystal-1.sym
 {
 T 49600 57000 5 10 0 0 90 0 1
 device=CRYSTAL
 T 49600 57300 5 10 1 1 0 0 1
-refdes=U1
+refdes=U3
 T 49400 57000 5 10 0 0 90 0 1
 symversion=0.1
 T 48900 57100 5 10 1 1 0 0 1
 value=18.432MHz
+T 50100 56800 5 10 0 1 0 0 1
+manufacturer-part=ECS-184-S-5PX-TR
+T 50100 56800 5 10 0 1 0 0 1
+manufacturer=ECS
+T 50100 56800 5 10 0 1 0 0 1
+digikey-part=XC1252CT-ND
+T 50100 56800 5 10 0 1 0 0 1
+documentation=http://www.ecsxtal.com/store/pdf/csm-7x.pdf
 }
 N 51500 57000 50300 57000 4
 N 50300 57000 50300 57500 4
@@ -791,56 +1129,106 @@ C 47800 56600 1 90 0 capacitor-1.sym
 T 47100 56800 5 10 0 0 90 0 1
 device=CAPACITOR
 T 47700 57200 5 10 1 1 0 0 1
-refdes=C11
+refdes=C9
 T 46900 56800 5 10 0 0 90 0 1
 symversion=0.1
 T 47700 56800 5 10 1 1 0 0 1
 value=2.2uF
+T 47800 56600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 47800 56600 5 10 0 1 0 0 1
+manufacturer=AVX
+T 47800 56600 5 10 0 1 0 0 1
+manufacturer-part=0603ZD225KAT2A
+T 47800 56600 5 10 0 1 0 0 1
+digikey-part=478-6212-1-ND
+T 47800 56600 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 50800 53400 1 270 0 gnd-1.sym
 C 50500 52900 1 90 0 capacitor-1.sym
 {
 T 49800 53100 5 10 0 0 90 0 1
 device=CAPACITOR
-T 50600 53600 5 10 1 1 180 0 1
-refdes=C18
+T 50400 53500 5 10 1 1 0 0 1
+refdes=C16
 T 49600 53100 5 10 0 0 90 0 1
 symversion=0.1
 T 50300 53100 5 10 1 1 0 0 1
 value=100nF
+T 50500 52900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 50500 52900 5 10 0 1 0 0 1
+manufacturer=AVX
+T 50500 52900 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 50500 52900 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 50500 52900 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 49900 52900 1 90 0 capacitor-1.sym
 {
 T 49200 53100 5 10 0 0 90 0 1
 device=CAPACITOR
-T 50000 53600 5 10 1 1 180 0 1
-refdes=C17
+T 49800 53500 5 10 1 1 0 0 1
+refdes=C15
 T 49000 53100 5 10 0 0 90 0 1
 symversion=0.1
 T 49700 53100 5 10 1 1 0 0 1
 value=100nF
+T 49900 52900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 49900 52900 5 10 0 1 0 0 1
+manufacturer=AVX
+T 49900 52900 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 49900 52900 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 49900 52900 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 49300 52900 1 90 0 capacitor-1.sym
 {
 T 48600 53100 5 10 0 0 90 0 1
 device=CAPACITOR
 T 49200 53500 5 10 1 1 0 0 1
-refdes=C16
+refdes=C14
 T 48400 53100 5 10 0 0 90 0 1
 symversion=0.1
-T 49200 53100 5 10 1 1 0 0 1
+T 49100 53100 5 10 1 1 0 0 1
 value=100nF
+T 49300 52900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 49300 52900 5 10 0 1 0 0 1
+manufacturer=AVX
+T 49300 52900 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 49300 52900 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 49300 52900 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 48700 52900 1 90 0 capacitor-1.sym
 {
 T 48000 53100 5 10 0 0 90 0 1
 device=CAPACITOR
 T 48600 53500 5 10 1 1 0 0 1
-refdes=C13
+refdes=C11
 T 47800 53100 5 10 0 0 90 0 1
 symversion=0.1
-T 48600 53100 5 10 1 1 0 0 1
+T 48500 53100 5 10 1 1 0 0 1
 value=100nF
+T 48700 52900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 48700 52900 5 10 0 1 0 0 1
+manufacturer=AVX
+T 48700 52900 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 48700 52900 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 48700 52900 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 47900 54500 1 90 0 capacitor-1.sym
 {
@@ -850,30 +1238,60 @@ T 47800 55100 5 10 1 1 0 0 1
 refdes=C10
 T 47000 54700 5 10 0 0 90 0 1
 symversion=0.1
-T 47800 54700 5 10 1 1 0 0 1
+T 47700 54700 5 10 1 1 0 0 1
 value=100nF
+T 47900 54500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 47900 54500 5 10 0 1 0 0 1
+manufacturer=AVX
+T 47900 54500 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 47900 54500 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 47900 54500 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 47300 54500 1 90 0 capacitor-1.sym
 {
 T 46600 54700 5 10 0 0 90 0 1
 device=CAPACITOR
 T 47200 55100 5 10 1 1 0 0 1
-refdes=C9
+refdes=C8
 T 46400 54700 5 10 0 0 90 0 1
 symversion=0.1
-T 47200 54700 5 10 1 1 0 0 1
+T 47100 54700 5 10 1 1 0 0 1
 value=100nF
+T 47300 54500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 47300 54500 5 10 0 1 0 0 1
+manufacturer=AVX
+T 47300 54500 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 47300 54500 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 47300 54500 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 46700 54500 1 90 0 capacitor-1.sym
 {
 T 46000 54700 5 10 0 0 90 0 1
 device=CAPACITOR
 T 46600 55100 5 10 1 1 0 0 1
-refdes=C8
+refdes=C7
 T 45800 54700 5 10 0 0 90 0 1
 symversion=0.1
-T 46600 54700 5 10 1 1 0 0 1
+T 46500 54700 5 10 1 1 0 0 1
 value=100nF
+T 46700 54500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 46700 54500 5 10 0 1 0 0 1
+manufacturer=AVX
+T 46700 54500 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 46700 54500 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 46700 54500 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 N 51500 53000 51300 53000 4
 N 51300 53000 51300 53600 4
@@ -933,35 +1351,75 @@ T 57500 49400 5 10 0 0 180 0 1
 device=Ferrite bead
 T 56900 50400 5 10 0 1 0 0 1
 value=100MHz 1A 390Ohm
+T 57500 51000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 80 50
+T 57500 51000 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 57500 51000 5 10 0 1 0 0 1
+manufacturer-part=EXC-ML20A390U
+T 57500 51000 5 10 0 1 0 0 1
+digikey-part=P10191CT-ND
+T 57500 51000 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-data/pdf/AEH0000/AEH0000CE1.pdf
 }
 C 57600 51600 1 180 0 capacitor-1.sym
 {
 T 57400 50900 5 10 0 0 180 0 1
 device=CAPACITOR
 T 56700 51200 5 10 1 1 0 0 1
-refdes=C19
+refdes=C17
 T 57400 50700 5 10 0 0 180 0 1
 symversion=0.1
 T 57300 51200 5 10 1 1 0 0 1
 value=100nF
+T 57600 51600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 57600 51600 5 10 0 1 0 0 1
+manufacturer=AVX
+T 57600 51600 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 57600 51600 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 57600 51600 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 56600 51900 1 0 0 resistor-1.sym
 {
 T 56900 52300 5 10 0 0 0 0 1
 device=RESISTOR
 T 56800 51700 5 10 1 1 0 0 1
-refdes=R12
+refdes=R16
 T 57300 51700 5 10 1 1 0 0 1
 value=10K 1%
+T 56600 51900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 56600 51900 5 10 0 1 0 0 1
+manufacturer=Yageo
+T 56600 51900 5 10 0 1 0 0 1
+manufacturer-part=RC0603FR-0710KL
+T 56600 51900 5 10 0 1 0 0 1
+digikey-part=311-10.0KHRCT-ND
+T 56600 51900 5 10 0 1 0 0 1
+documentation=http://www.yageo.com/documents/recent/PYu-RC0603_51_RoHS_L_4.pdf
 }
 C 56600 52300 1 0 0 resistor-1.sym
 {
 T 56900 52700 5 10 0 0 0 0 1
 device=RESISTOR
 T 56800 52100 5 10 1 1 0 0 1
-refdes=R11
+refdes=R15
 T 57300 52100 5 10 1 1 0 0 1
 value=10K 1%
+T 56600 52300 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 56600 52300 5 10 0 1 0 0 1
+manufacturer=Yageo
+T 56600 52300 5 10 0 1 0 0 1
+manufacturer-part=RC0603FR-0710KL
+T 56600 52300 5 10 0 1 0 0 1
+digikey-part=311-10.0KHRCT-ND
+T 56600 52300 5 10 0 1 0 0 1
+documentation=http://www.yageo.com/documents/recent/PYu-RC0603_51_RoHS_L_4.pdf
 }
 C 58100 51900 1 90 0 gnd-1.sym
 N 56200 51400 56700 51400 4
@@ -997,6 +1455,14 @@ T 57400 52800 5 10 0 0 180 0 1
 device=SWITCH_PUSHBUTTON_NO
 T 56700 53400 5 10 1 1 0 0 1
 value=BOOTLOADER
+T 57800 53400 5 10 0 1 0 0 1
+manufacturer=Panasonic - ECG
+T 57800 53400 5 10 0 1 0 0 1
+manufacturer-part=EVQ-Q2K03W
+T 57800 53400 5 10 0 1 0 0 1
+digikey-part=P12943SCT-ND
+T 57800 53400 5 10 0 1 0 0 1
+documentation=http://industrial.panasonic.com/www-data/pdf/ATK0000/ATK0000CE28.pdf
 }
 C 58300 53300 1 90 0 gnd-1.sym
 N 56200 53400 56800 53400 4
@@ -1147,9 +1613,19 @@ SD CARD
 C 57300 62500 1 0 0 microSD-NO.sym
 {
 T 57600 64700 5 10 1 1 0 0 1
-refdes=P2
+refdes=P6
 T 57600 65100 5 10 0 0 0 0 1
 device=microSD
+T 57300 62500 5 10 0 1 0 0 1
+manufacturer=Amphenol
+T 57300 62500 5 10 0 1 0 0 1
+manufacturer-part=114-00841-68
+T 57300 62500 5 10 0 1 0 0 1
+documentation=http://www.amphenolcanada.com/ProductSearch/drawings/AC/1140084168.pdf
+T 57300 62500 5 10 0 1 0 0 1
+digikey-part=114-00841-68-1-ND
+T 58100 64700 5 10 1 1 0 0 1
+value=µSD
 }
 C 56000 62700 1 270 0 gnd-1.sym
 N 56300 62600 57300 62600 4
@@ -1239,50 +1715,98 @@ N 44600 63200 43200 63200 4
 T 43200 63200 5 10 1 1 0 0 1
 netname=VPP_PHONE
 }
-C 67300 62800 1 0 0 cb3q3244.sym
+C 67300 63000 1 0 0 cb3q3244.sym
 {
-T 67300 64300 5 10 1 1 0 0 1
+T 67300 64500 5 10 1 1 0 0 1
 netname=IC4
-T 67400 64600 5 10 0 0 0 0 1
-device=CB3Q3244
-T 68000 63500 5 10 1 0 0 0 1
+T 67400 62800 5 10 1 1 0 0 1
+value=CB3Q3244
+T 68000 63700 5 10 1 0 0 0 1
 slot=1
-}
-C 67300 60400 1 0 0 cb3q3244.sym
-{
-T 67300 61900 5 10 1 1 0 0 1
-netname=IC4
-T 67400 62200 5 10 0 0 0 0 1
+T 67300 63000 5 10 0 1 0 0 1
 device=CB3Q3244
-T 68000 61100 5 10 1 0 0 0 1
+T 67300 63000 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 67300 63000 5 10 0 1 0 0 1
+manufacturer-part=SN74CB3Q3244DBQR
+T 67300 63000 5 10 0 1 0 0 1
+digikey-part=296-19125-1-ND
+T 67300 63000 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74cb3q3244.pdf
+T 67300 63000 5 10 0 1 0 0 1
+footprint=SSOP20
+}
+C 67300 60600 1 0 0 cb3q3244.sym
+{
+T 67300 62100 5 10 1 1 0 0 1
+netname=IC4
+T 68000 61300 5 10 1 0 0 0 1
 slot=2
-}
-C 67300 57900 1 0 0 cb3q3244.sym
-{
-T 67300 59400 5 10 1 1 0 0 1
-netname=IC4
-T 67400 59700 5 10 0 0 0 0 1
+T 67300 60600 5 10 0 1 0 0 1
 device=CB3Q3244
-T 68000 58600 5 10 1 0 0 0 1
+T 67300 60400 5 10 1 1 0 0 1
+value=CB3Q3244
+T 67300 60600 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 67300 60600 5 10 0 1 0 0 1
+manufacturer-part=SN74CB3Q3244DBQR
+T 67300 60600 5 10 0 1 0 0 1
+digikey-part=296-19125-1-ND
+T 67300 60600 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74cb3q3244.pdf
+T 67300 60600 5 10 0 1 0 0 1
+footprint=SSOP20
+}
+C 67300 58100 1 0 0 cb3q3244.sym
+{
+T 67300 59600 5 10 1 1 0 0 1
+netname=IC4
+T 68000 58800 5 10 1 0 0 0 1
 slot=3
-}
-C 67300 55500 1 0 0 cb3q3244.sym
-{
-T 67300 57000 5 10 1 1 0 0 1
-netname=IC4
-T 67400 57300 5 10 0 0 0 0 1
+T 67300 58100 5 10 0 1 0 0 1
 device=CB3Q3244
-T 68000 56200 5 10 1 0 0 0 1
+T 67300 57900 5 10 1 1 0 0 1
+value=CB3Q3244
+T 67300 58100 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 67300 58100 5 10 0 1 0 0 1
+manufacturer-part=SN74CB3Q3244DBQR
+T 67300 58100 5 10 0 1 0 0 1
+digikey-part=296-19125-1-ND
+T 67300 58100 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74cb3q3244.pdf
+T 67300 58100 5 10 0 1 0 0 1
+footprint=SSOP20
+}
+C 67300 55700 1 0 0 cb3q3244.sym
+{
+T 67300 57200 5 10 1 1 0 0 1
+netname=IC4
+T 67400 57500 5 10 0 1 0 0 1
+device=CB3Q3244
+T 68000 56400 5 10 1 0 0 0 1
 slot=5
+T 67300 55500 5 10 1 1 0 0 1
+value=CB3Q3244
+T 67300 55700 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 67300 55700 5 10 0 1 0 0 1
+manufacturer-part=SN74CB3Q3244DBQR
+T 67300 55700 5 10 0 1 0 0 1
+digikey-part=296-19125-1-ND
+T 67300 55700 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74cb3q3244.pdf
+T 67300 55700 5 10 0 1 0 0 1
+footprint=SSOP20
 }
 C 40600 51800 1 0 0 lp2966.sym
 {
 T 40900 53100 5 10 1 1 0 0 1
-refdes=IC?
-T 40900 51500 5 10 1 1 0 0 1
-device=LP2966IMM-1833
-T 40900 53500 5 10 0 0 0 0 1
-footprint=MSOP8
+refdes=IC1
+T 40900 51500 5 10 0 1 0 0 1
+device=LP2966
+T 40900 51600 5 10 1 1 0 0 1
+value=LP2966IMM-1833
 }
 C 40200 51100 1 0 0 gnd-1.sym
 N 42700 51900 43000 51900 4
@@ -1304,13 +1828,19 @@ N 41200 57600 41200 58000 4
 C 61000 61600 1 0 0 fpf230x.sym
 {
 T 61300 63200 5 10 1 1 0 0 1
-refdes=IC?
+refdes=IC3
 T 62100 63200 5 10 1 1 0 0 1
+value=FPF2300
+T 61000 61600 5 10 0 1 0 0 1
+manufacturer=Fairchild Semiconductor
+T 61000 61600 5 10 0 1 0 0 1
+manufacturer-part=FPF2300MX
+T 61000 61600 5 10 0 1 0 0 1
+digikey-part=FPF2300MX-ND
+T 61000 61600 5 10 0 1 0 0 1
+documentation=http://www.fairchildsemi.com/ds/FP%2FFPF2300.pdf
+T 61000 61600 5 10 0 1 0 0 1
 device=FPF2300
-T 61300 63600 5 10 0 0 0 0 1
-footprint=SO8
-T 61300 63800 5 10 0 0 0 0 1
-footprint=MLP8
 }
 N 61000 62900 60600 62900 4
 C 61700 63600 1 0 0 resistor-1.sym
@@ -1318,18 +1848,38 @@ C 61700 63600 1 0 0 resistor-1.sym
 T 62000 64000 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 63400 5 10 1 1 0 0 1
-refdes=R?
+refdes=R18
 T 62200 63400 5 10 1 1 0 0 1
 value=10K
+T 61700 63600 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 63600 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 63600 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 63600 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 63600 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 C 61700 63900 1 0 0 resistor-1.sym
 {
 T 62000 64300 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 64200 5 10 1 1 0 0 1
-refdes=R?
+refdes=R17
 T 62200 64200 5 10 1 1 0 0 1
 value=10K
+T 61700 63900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 63900 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 63900 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 63900 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 63900 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 63200 62900 63500 62900 4
 N 63500 62900 63500 63700 4
@@ -1357,22 +1907,42 @@ C 64200 62500 1 90 0 capacitor-1.sym
 T 63500 62700 5 10 0 0 90 0 1
 device=CAPACITOR
 T 64100 63100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C22
 T 63300 62700 5 10 0 0 90 0 1
 symversion=0.1
 T 64100 62700 5 10 1 1 0 0 1
 value=100nF
+T 64200 62500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64200 62500 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64200 62500 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64200 62500 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64200 62500 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64300 61700 1 180 0 capacitor-1.sym
 {
 T 64100 61000 5 10 0 0 180 0 1
 device=CAPACITOR
 T 63400 61600 5 10 1 1 0 0 1
-refdes=C?
+refdes=C18
 T 64100 60800 5 10 0 0 180 0 1
 symversion=0.1
 T 64000 61600 5 10 1 1 0 0 1
 value=100nF
+T 64300 61700 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64300 61700 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64300 61700 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64300 61700 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64300 61700 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64100 63900 1 180 0 gnd-1.sym
 C 64800 61400 1 90 0 gnd-1.sym
@@ -1396,13 +1966,19 @@ N 59700 62000 59700 64400 4
 C 61000 57900 1 0 0 fpf230x.sym
 {
 T 61300 59500 5 10 1 1 0 0 1
-refdes=IC?
+refdes=IC4
 T 62100 59500 5 10 1 1 0 0 1
+value=FPF2300
+T 61000 57900 5 10 0 1 0 0 1
+manufacturer=Fairchild Semiconductor
+T 61000 57900 5 10 0 1 0 0 1
+manufacturer-part=FPF2300MX
+T 61000 57900 5 10 0 1 0 0 1
+digikey-part=FPF2300MX-ND
+T 61000 57900 5 10 0 1 0 0 1
+documentation=http://www.fairchildsemi.com/ds/FP%2FFPF2300.pdf
+T 61000 57900 5 10 0 1 0 0 1
 device=FPF2300
-T 61300 59900 5 10 0 0 0 0 1
-footprint=SO8
-T 61300 60100 5 10 0 0 0 0 1
-footprint=MLP8
 }
 N 61000 59200 60600 59200 4
 C 61700 59900 1 0 0 resistor-1.sym
@@ -1410,18 +1986,38 @@ C 61700 59900 1 0 0 resistor-1.sym
 T 62000 60300 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 59700 5 10 1 1 0 0 1
-refdes=R?
+refdes=R20
 T 62200 59700 5 10 1 1 0 0 1
 value=10K
+T 61700 59900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 59900 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 59900 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 59900 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 59900 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 C 61700 60200 1 0 0 resistor-1.sym
 {
 T 62000 60600 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 60500 5 10 1 1 0 0 1
-refdes=R?
+refdes=R19
 T 62200 60500 5 10 1 1 0 0 1
 value=10K
+T 61700 60200 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 60200 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 60200 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 60200 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 60200 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 63200 59200 63500 59200 4
 N 63500 59200 63500 60000 4
@@ -1449,22 +2045,42 @@ C 64200 58800 1 90 0 capacitor-1.sym
 T 63500 59000 5 10 0 0 90 0 1
 device=CAPACITOR
 T 64100 59400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C23
 T 63300 59000 5 10 0 0 90 0 1
 symversion=0.1
 T 64100 59000 5 10 1 1 0 0 1
 value=100nF
+T 64200 58800 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64200 58800 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64200 58800 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64200 58800 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64200 58800 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64300 58000 1 180 0 capacitor-1.sym
 {
 T 64100 57300 5 10 0 0 180 0 1
 device=CAPACITOR
 T 63400 57900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C19
 T 64100 57100 5 10 0 0 180 0 1
 symversion=0.1
 T 64000 57900 5 10 1 1 0 0 1
 value=100nF
+T 64300 58000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64300 58000 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64300 58000 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64300 58000 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64300 58000 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64100 60200 1 180 0 gnd-1.sym
 C 64800 57700 1 90 0 gnd-1.sym
@@ -1488,13 +2104,19 @@ N 59700 58300 59700 60700 4
 C 61000 54400 1 0 0 fpf230x.sym
 {
 T 61300 56000 5 10 1 1 0 0 1
-refdes=IC?
+refdes=IC5
 T 62100 56000 5 10 1 1 0 0 1
+value=FPF2300
+T 61000 54400 5 10 0 1 0 0 1
+manufacturer=Fairchild Semiconductor
+T 61000 54400 5 10 0 1 0 0 1
+manufacturer-part=FPF2300MX
+T 61000 54400 5 10 0 1 0 0 1
+digikey-part=FPF2300MX-ND
+T 61000 54400 5 10 0 1 0 0 1
+documentation=http://www.fairchildsemi.com/ds/FP%2FFPF2300.pdf
+T 61000 54400 5 10 0 1 0 0 1
 device=FPF2300
-T 61300 56400 5 10 0 0 0 0 1
-footprint=SO8
-T 61300 56600 5 10 0 0 0 0 1
-footprint=MLP8
 }
 N 61000 55700 60600 55700 4
 C 61700 56400 1 0 0 resistor-1.sym
@@ -1502,18 +2124,38 @@ C 61700 56400 1 0 0 resistor-1.sym
 T 62000 56800 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 56200 5 10 1 1 0 0 1
-refdes=R?
+refdes=R22
 T 62200 56200 5 10 1 1 0 0 1
 value=10K
+T 61700 56400 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 56400 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 56400 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 56400 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 56400 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 C 61700 56700 1 0 0 resistor-1.sym
 {
 T 62000 57100 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 57000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R21
 T 62200 57000 5 10 1 1 0 0 1
 value=10K
+T 61700 56700 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 56700 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 56700 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 56700 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 56700 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 63200 55700 63500 55700 4
 N 63500 55700 63500 56500 4
@@ -1541,22 +2183,42 @@ C 64200 55300 1 90 0 capacitor-1.sym
 T 63500 55500 5 10 0 0 90 0 1
 device=CAPACITOR
 T 64100 55900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C24
 T 63300 55500 5 10 0 0 90 0 1
 symversion=0.1
 T 64100 55500 5 10 1 1 0 0 1
 value=100nF
+T 64200 55300 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64200 55300 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64200 55300 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64200 55300 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64200 55300 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64300 54500 1 180 0 capacitor-1.sym
 {
 T 64100 53800 5 10 0 0 180 0 1
 device=CAPACITOR
 T 63400 54400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C20
 T 64100 53600 5 10 0 0 180 0 1
 symversion=0.1
 T 64000 54400 5 10 1 1 0 0 1
 value=100nF
+T 64300 54500 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64300 54500 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64300 54500 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64300 54500 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64300 54500 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64100 56700 1 180 0 gnd-1.sym
 C 64800 54200 1 90 0 gnd-1.sym
@@ -1580,13 +2242,19 @@ N 59700 54800 59700 57200 4
 C 61000 50900 1 0 0 fpf230x.sym
 {
 T 61300 52500 5 10 1 1 0 0 1
-refdes=IC?
+refdes=IC6
 T 62100 52500 5 10 1 1 0 0 1
+value=FPF2300
+T 61000 50900 5 10 0 1 0 0 1
+manufacturer=Fairchild Semiconductor
+T 61000 50900 5 10 0 1 0 0 1
+manufacturer-part=FPF2300MX
+T 61000 50900 5 10 0 1 0 0 1
+digikey-part=FPF2300MX-ND
+T 61000 50900 5 10 0 1 0 0 1
+documentation=http://www.fairchildsemi.com/ds/FP%2FFPF2300.pdf
+T 61000 50900 5 10 0 1 0 0 1
 device=FPF2300
-T 61300 52900 5 10 0 0 0 0 1
-footprint=SO8
-T 61300 53100 5 10 0 0 0 0 1
-footprint=MLP8
 }
 N 60400 52200 61000 52200 4
 {
@@ -1598,18 +2266,38 @@ C 61700 52900 1 0 0 resistor-1.sym
 T 62000 53300 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 52700 5 10 1 1 0 0 1
-refdes=R?
+refdes=R24
 T 62200 52700 5 10 1 1 0 0 1
 value=10K
+T 61700 52900 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 52900 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 52900 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 52900 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 52900 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 C 61700 53200 1 0 0 resistor-1.sym
 {
 T 62000 53600 5 10 0 0 0 0 1
 device=RESISTOR
 T 61800 53500 5 10 1 1 0 0 1
-refdes=R?
+refdes=R23
 T 62200 53500 5 10 1 1 0 0 1
 value=10K
+T 61700 53200 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 61700 53200 5 10 0 1 0 0 1
+manufacturer=Stackpole Electronics Inc
+T 61700 53200 5 10 0 1 0 0 1
+manufacturer-part=RMCF0603JT10K0
+T 61700 53200 5 10 0 1 0 0 1
+digikey-part=RMCF0603JT10K0CT-ND
+T 61700 53200 5 10 0 1 0 0 1
+documentation=http://www.seielect.com/Catalog/SEI-RMCF.pdf
 }
 N 63200 52200 63500 52200 4
 N 63500 52200 63500 53000 4
@@ -1637,22 +2325,42 @@ C 64200 51800 1 90 0 capacitor-1.sym
 T 63500 52000 5 10 0 0 90 0 1
 device=CAPACITOR
 T 64100 52400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C25
 T 63300 52000 5 10 0 0 90 0 1
 symversion=0.1
 T 64100 52000 5 10 1 1 0 0 1
 value=100nF
+T 64200 51800 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64200 51800 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64200 51800 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64200 51800 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64200 51800 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64300 51000 1 180 0 capacitor-1.sym
 {
 T 64100 50300 5 10 0 0 180 0 1
 device=CAPACITOR
 T 63400 50900 5 10 1 1 0 0 1
-refdes=C?
+refdes=C21
 T 64100 50100 5 10 0 0 180 0 1
 symversion=0.1
 T 64000 50900 5 10 1 1 0 0 1
 value=100nF
+T 64300 51000 5 10 0 1 0 0 1
+footprint=SMD_SIMPLE 60 30
+T 64300 51000 5 10 0 1 0 0 1
+manufacturer=AVX
+T 64300 51000 5 10 0 1 0 0 1
+manufacturer-part=0603YC104KAT2A
+T 64300 51000 5 10 0 1 0 0 1
+digikey-part=478-1239-1-ND
+T 64300 51000 5 10 0 1 0 0 1
+documentation=http://www.avx.com/docs/masterpubs/smccp.pdf
 }
 C 64100 53200 1 180 0 gnd-1.sym
 C 64800 50700 1 90 0 gnd-1.sym
@@ -1677,56 +2385,116 @@ C 60600 62700 1 90 0 5V-plus-1.sym
 C 60600 59000 1 90 0 3.3V-plus-1.sym
 C 60600 55500 1 90 0 1.8V-plus-1.sym
 N 60400 52200 60400 53700 4
-C 47000 47800 1 0 0 sn74lvc240a.sym
+C 47200 47800 1 0 0 sn74lvc240a.sym
 {
-T 47000 48750 5 10 1 1 0 0 1
-refdes=U?
-T 47700 48700 5 10 1 0 0 0 1
+T 47200 48750 5 10 1 1 0 0 1
+refdes=U2
+T 47200 49000 5 10 0 0 0 0 1
+device=SN74LVC240A
+T 47200 47800 5 10 0 0 0 0 1
+net=+3.3V:20
+T 47200 47800 5 10 0 0 0 0 1
 slot=1
-T 47000 49000 5 10 0 0 0 0 1
-device=SN74LVC240A
-T 47000 47800 5 10 0 0 0 0 1
-net=+3.3V:20
+T 47200 47800 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 47200 47800 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 47200 47800 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 47200 47800 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 47200 47800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 47200 47800 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 47000 46600 1 0 0 sn74lvc240a.sym
+C 47200 46600 1 0 0 sn74lvc240a.sym
 {
-T 47000 47550 5 10 1 1 0 0 1
-refdes=U?
-T 47700 47500 5 10 1 0 0 0 1
+T 47200 47550 5 10 1 1 0 0 1
+refdes=U2
+T 47200 47800 5 10 0 0 0 0 1
+device=SN74LVC240A
+T 47200 46600 5 10 0 0 0 0 1
+net=+3.3V:20
+T 47200 46600 5 10 0 0 0 0 1
 slot=2
-T 47000 47800 5 10 0 0 0 0 1
-device=SN74LVC240A
-T 47000 46600 5 10 0 0 0 0 1
-net=+3.3V:20
+T 47200 46600 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 47200 46600 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 47200 46600 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 47200 46600 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 47200 46600 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 47200 46600 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 47000 45400 1 0 0 sn74lvc240a.sym
+C 47200 45400 1 0 0 sn74lvc240a.sym
 {
-T 47000 46350 5 10 1 1 0 0 1
-refdes=U?
-T 47700 46300 5 10 1 0 0 0 1
+T 47200 46350 5 10 1 1 0 0 1
+refdes=U2
+T 47200 46600 5 10 0 0 0 0 1
+device=SN74LVC240A
+T 47200 45400 5 10 0 0 0 0 1
+net=+3.3V:20
+T 47200 45400 5 10 0 0 0 0 1
 slot=3
-T 47000 46600 5 10 0 0 0 0 1
-device=SN74LVC240A
-T 47000 45400 5 10 0 0 0 0 1
-net=+3.3V:20
+T 47200 45400 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 47200 45400 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 47200 45400 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 47200 45400 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 47200 45400 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 47200 45400 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 47000 44200 1 0 0 sn74lvc240a.sym
+C 47200 44200 1 0 0 sn74lvc240a.sym
 {
-T 47000 45150 5 10 1 1 0 0 1
-refdes=U?
-T 47700 45100 5 10 1 0 0 0 1
-slot=4
-T 47000 45400 5 10 0 0 0 0 1
+T 47200 45150 5 10 1 1 0 0 1
+refdes=U2
+T 47200 45400 5 10 0 0 0 0 1
 device=SN74LVC240A
-T 47000 44200 5 10 0 0 0 0 1
+T 47200 44200 5 10 0 0 0 0 1
 net=+3.3V:20
+T 47200 44200 5 10 0 0 0 0 1
+slot=4
+T 47200 44200 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 47200 44200 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 47200 44200 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 47200 44200 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 47200 44200 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 47200 44200 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 45700 45300 1 0 1 74cbtlv3253.sym
+C 45700 45500 1 0 1 74cbtlv3253.sym
 {
 T 44500 48000 5 10 1 1 0 6 1
-refdes=U?
-T 45400 45300 5 10 1 1 0 6 1
+refdes=U1
+T 45400 45500 5 10 0 1 0 6 1
 device=74CBTLV3253
+T 44300 45200 5 10 1 1 0 0 1
+value=74CBTLV3253
+T 45700 45500 5 10 0 1 0 0 1
+manufacturer=NXP
+T 45700 45500 5 10 0 1 0 0 1
+manufacturer-part=74CBTLV3253PW,118
+T 45700 45500 5 10 0 1 0 0 1
+digikey-part=568-5267-1-ND
+T 45700 45500 5 10 0 1 0 0 1
+documentation=http://www.nxp.com/documents/data_sheet/74CBTLV3253.pdf
+T 45700 45500 5 10 0 1 0 0 1
+footprint=TSSOP16
 }
 C 43600 47500 1 90 0 3.3V-plus-1.sym
 C 45800 45100 1 0 0 gnd-1.sym
@@ -1742,106 +2510,166 @@ N 46000 48100 44800 48100 4
 T 44900 48100 5 10 1 1 0 0 1
 netname=PWREN_SIM
 }
-N 47000 44400 46200 44400 4
-N 46200 44400 46200 46200 4
-N 45700 46200 46200 46200 4
-N 47000 45600 46400 45600 4
-N 46400 45600 46400 46500 4
-N 46400 46500 45700 46500 4
-N 45700 46800 47000 46800 4
-N 45700 47100 46400 47100 4
-N 46400 47100 46400 48000 4
-N 46400 48000 47000 48000 4
-N 45700 47400 46200 47400 4
-N 46200 47400 46200 49000 4
+N 47200 44400 46400 44400 4
+N 46400 44400 46400 46200 4
+N 45700 46200 46400 46200 4
+N 47200 45600 46600 45600 4
+N 46600 45600 46600 46500 4
+N 46600 46500 45700 46500 4
+N 45700 46800 47200 46800 4
+N 45700 47100 46600 47100 4
+N 46600 47100 46600 48000 4
+N 46600 48000 47200 48000 4
+N 45700 47400 46400 47400 4
+N 46400 47400 46400 49000 4
 {
-T 46200 47500 5 10 1 1 90 0 1
+T 46400 47500 5 10 1 1 90 0 1
 netname=PWRSEL_SIM_1
 }
-C 46500 48600 1 270 0 gnd-1.sym
-C 46500 47400 1 270 0 gnd-1.sym
-C 46500 46200 1 270 0 gnd-1.sym
-C 46500 45000 1 270 0 gnd-1.sym
-N 46800 48500 47000 48500 4
-N 46800 47300 47000 47300 4
-N 46800 46100 47000 46100 4
-N 46800 44900 47000 44900 4
+C 46700 48600 1 270 0 gnd-1.sym
+C 46700 47400 1 270 0 gnd-1.sym
+C 46700 46200 1 270 0 gnd-1.sym
+C 46700 45000 1 270 0 gnd-1.sym
+N 47000 48500 47200 48500 4
+N 47000 47300 47200 47300 4
+N 47000 46100 47200 46100 4
+N 47000 44900 47200 44900 4
 N 44000 47100 43500 47100 4
 N 43500 47100 43500 45500 4
 {
 T 43500 45600 5 10 1 1 90 0 1
 netname=PWRSEL_SIM_0
 }
-N 48200 48000 50000 48000 4
+N 48400 48000 50200 48000 4
 {
-T 48300 48000 5 10 1 1 0 0 1
+T 48500 48000 5 10 1 1 0 0 1
 netname=PWREN_SIM_FWD
 }
-N 48200 46800 50000 46800 4
+N 48400 46800 50200 46800 4
 {
-T 48300 46800 5 10 1 1 0 0 1
+T 48500 46800 5 10 1 1 0 0 1
 netname=PWREN_SIM_1.8V
 }
-N 48200 45600 50000 45600 4
+N 48400 45600 50200 45600 4
 {
-T 48300 45600 5 10 1 1 0 0 1
+T 48500 45600 5 10 1 1 0 0 1
 netname=PWREN_SIM_3.3V
 }
-N 48200 44400 50000 44400 4
+N 48400 44400 50200 44400 4
 {
-T 48300 44400 5 10 1 1 0 0 1
+T 48500 44400 5 10 1 1 0 0 1
 netname=PWREN_SIM_5V
 }
-C 54300 47800 1 0 0 sn74lvc240a.sym
+C 54500 47800 1 0 0 sn74lvc240a.sym
 {
-T 54300 48750 5 10 1 1 0 0 1
-refdes=U?
-T 55000 48700 5 10 1 0 0 0 1
-slot=1
-T 54300 49000 5 10 0 0 0 0 1
+T 54500 48750 5 10 1 1 0 0 1
+refdes=U2
+T 54500 49000 5 10 0 0 0 0 1
 device=SN74LVC240A
-T 54300 47800 5 10 0 0 0 0 1
+T 54500 47800 5 10 0 0 0 0 1
 net=+3.3V:20
+T 54500 47800 5 10 0 0 0 0 1
+slot=5
+T 54500 47800 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 54500 47800 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 54500 47800 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 54500 47800 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 54500 47800 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 54500 47800 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 54300 46600 1 0 0 sn74lvc240a.sym
+C 54500 46600 1 0 0 sn74lvc240a.sym
 {
-T 54300 47550 5 10 1 1 0 0 1
-refdes=U?
-T 55000 47500 5 10 1 0 0 0 1
-slot=2
-T 54300 47800 5 10 0 0 0 0 1
+T 54500 47550 5 10 1 1 0 0 1
+refdes=U2
+T 54500 47800 5 10 0 0 0 0 1
 device=SN74LVC240A
-T 54300 46600 5 10 0 0 0 0 1
+T 54500 46600 5 10 0 0 0 0 1
 net=+3.3V:20
+T 54500 46600 5 10 0 0 0 0 1
+slot=6
+T 54500 46600 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 54500 46600 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 54500 46600 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 54500 46600 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 54500 46600 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 54500 46600 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 54300 45400 1 0 0 sn74lvc240a.sym
+C 54500 45400 1 0 0 sn74lvc240a.sym
 {
-T 54300 46350 5 10 1 1 0 0 1
-refdes=U?
-T 55000 46300 5 10 1 0 0 0 1
-slot=3
-T 54300 46600 5 10 0 0 0 0 1
+T 54500 46350 5 10 1 1 0 0 1
+refdes=U2
+T 54500 46600 5 10 0 0 0 0 1
 device=SN74LVC240A
-T 54300 45400 5 10 0 0 0 0 1
+T 54500 45400 5 10 0 0 0 0 1
 net=+3.3V:20
+T 54500 45400 5 10 0 0 0 0 1
+slot=7
+T 54500 45400 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 54500 45400 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 54500 45400 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 54500 45400 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 54500 45400 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 54500 45400 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 54300 44200 1 0 0 sn74lvc240a.sym
+C 54500 44200 1 0 0 sn74lvc240a.sym
 {
-T 54300 45150 5 10 1 1 0 0 1
-refdes=U?
-T 55000 45100 5 10 1 0 0 0 1
-slot=4
-T 54300 45400 5 10 0 0 0 0 1
+T 54500 45150 5 10 1 1 0 0 1
+refdes=U2
+T 54500 45400 5 10 0 0 0 0 1
 device=SN74LVC240A
-T 54300 44200 5 10 0 0 0 0 1
+T 54500 44200 5 10 0 0 0 0 1
 net=+3.3V:20
+T 54500 44200 5 10 0 0 0 0 1
+slot=8
+T 54500 44200 5 10 0 1 0 0 1
+value=SN74LVC240A
+T 54500 44200 5 10 0 1 0 0 1
+manufacturer=Texas Instruments
+T 54500 44200 5 10 0 1 0 0 1
+manufacturer-part=SN74LVC240APWR
+T 54500 44200 5 10 0 1 0 0 1
+digikey-part=296-8498-1-ND
+T 54500 44200 5 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/ds/symlink/sn74lvc240a.pdf
+T 54500 44200 5 10 0 1 0 0 1
+footprint=TSSOP20
 }
-C 53000 45300 1 0 1 74cbtlv3253.sym
+C 53000 45500 1 0 1 74cbtlv3253.sym
 {
 T 51800 48000 5 10 1 1 0 6 1
-refdes=U?
-T 52700 45300 5 10 1 1 0 6 1
+refdes=U4
+T 52700 45500 5 10 0 1 0 6 1
 device=74CBTLV3253
+T 51600 45200 5 10 1 1 0 0 1
+value=74CBTLV3253
+T 53000 45500 5 10 0 1 0 0 1
+manufacturer=NXP
+T 53000 45500 5 10 0 1 0 0 1
+manufacturer-part=74CBTLV3253PW,118
+T 53000 45500 5 10 0 1 0 0 1
+digikey-part=568-5267-1-ND
+T 53000 45500 5 10 0 1 0 0 1
+documentation=http://www.nxp.com/documents/data_sheet/74CBTLV3253.pdf
+T 53000 45500 5 10 0 1 0 0 1
+footprint=TSSOP16
 }
 C 50900 47500 1 90 0 3.3V-plus-1.sym
 C 53100 45100 1 0 0 gnd-1.sym
@@ -1857,54 +2685,53 @@ N 53300 48100 52100 48100 4
 T 52200 48100 5 10 1 1 0 0 1
 netname=PWREN_SIM
 }
-N 54300 44400 53500 44400 4
-N 53500 44400 53500 46200 4
-N 53000 46200 53500 46200 4
-N 54300 45600 53700 45600 4
-N 53700 45600 53700 46500 4
-N 53700 46500 53000 46500 4
-N 53000 46800 54300 46800 4
-N 53000 47100 53700 47100 4
-N 53700 47100 53700 48000 4
-N 53700 48000 54300 48000 4
-N 53000 47400 53500 47400 4
-N 53500 47400 53500 49000 4
+N 54500 44400 53700 44400 4
+N 53700 44400 53700 46200 4
+N 53000 46200 53700 46200 4
+N 54500 45600 53900 45600 4
+N 53900 45600 53900 46500 4
+N 53900 46500 53000 46500 4
+N 53000 46800 54500 46800 4
+N 53000 47100 53900 47100 4
+N 53900 47100 53900 48000 4
+N 53900 48000 54500 48000 4
+N 53000 47400 53700 47400 4
+N 53700 47400 53700 49000 4
 {
-T 53500 47500 5 10 1 1 90 0 1
+T 53700 47500 5 10 1 1 90 0 1
 netname=PWRSEL_SIM_1
 }
-C 53800 48600 1 270 0 gnd-1.sym
-C 53800 47400 1 270 0 gnd-1.sym
-C 53800 46200 1 270 0 gnd-1.sym
-C 53800 45000 1 270 0 gnd-1.sym
-N 54100 48500 54300 48500 4
-N 54100 47300 54300 47300 4
-N 54100 46100 54300 46100 4
-N 54100 44900 54300 44900 4
+C 54000 48600 1 270 0 gnd-1.sym
+C 54000 47400 1 270 0 gnd-1.sym
+C 54000 46200 1 270 0 gnd-1.sym
+C 54000 45000 1 270 0 gnd-1.sym
+N 54300 48500 54500 48500 4
+N 54300 47300 54500 47300 4
+N 54300 46100 54500 46100 4
 N 51300 47100 50800 47100 4
 N 50800 47100 50800 45500 4
 {
 T 50800 45600 5 10 1 1 90 0 1
 netname=PWRSEL_SIM_0
 }
-N 55500 48000 57300 48000 4
+N 55700 48000 57500 48000 4
 {
-T 55600 48000 5 10 1 1 0 0 1
+T 55800 48000 5 10 1 1 0 0 1
 netname=PWREN_SIM_FWD
 }
-N 55500 46800 57300 46800 4
+N 55700 46800 57500 46800 4
 {
-T 55600 46800 5 10 1 1 0 0 1
+T 55800 46800 5 10 1 1 0 0 1
 netname=PWREN_SIM_1.8V
 }
-N 55500 45600 57300 45600 4
+N 55700 45600 57500 45600 4
 {
-T 55600 45600 5 10 1 1 0 0 1
+T 55800 45600 5 10 1 1 0 0 1
 netname=PWREN_SIM_3.3V
 }
-N 55500 44400 57300 44400 4
+N 55700 44400 57500 44400 4
 {
-T 55600 44400 5 10 1 1 0 0 1
+T 55800 44400 5 10 1 1 0 0 1
 netname=PWREN_SIM_5V
 }
 B 42800 44000 15200 6000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -1926,9 +2753,19 @@ netname=PWRSEL_PHONE_1
 C 60100 46300 1 0 0 nvt2003.sym
 {
 T 60400 48200 5 10 1 1 0 0 1
-refdes=U?
-T 61300 46300 5 10 1 1 0 0 1
+refdes=U5
+T 61300 46300 5 10 0 1 0 0 1
 device=NVT2003
+T 61200 46300 5 10 1 1 0 0 1
+value=NVT2003DP
+T 60100 46300 5 10 0 1 0 0 1
+manufacturer=NXP
+T 60100 46300 5 10 0 1 0 0 1
+manufacturer-part=NVT2003DP,118
+T 60100 46300 5 10 0 1 0 0 1
+digikey-part=568-8383-1-ND
+T 60100 46300 5 10 0 1 0 0 1
+documentation=http://www.nxp.com/documents/data_sheet/NVT2003_04_06.pdf
 }
 T 58500 49200 12 30 1 0 0 0 1
 TRANSLATOR
@@ -1992,9 +2829,19 @@ netname=PWR_SIM_FWD
 C 65700 46300 1 0 0 nvt2003.sym
 {
 T 66000 48200 5 10 1 1 0 0 1
-refdes=U?
-T 66900 46300 5 10 1 1 0 0 1
+refdes=U6
+T 66900 46300 5 10 0 1 0 0 1
 device=NVT2003
+T 66800 46300 5 10 1 1 0 0 1
+value=NVT2003DP
+T 65700 46300 5 10 0 1 0 0 1
+manufacturer=NXP
+T 65700 46300 5 10 0 1 0 0 1
+manufacturer-part=NVT2003DP,118
+T 65700 46300 5 10 0 1 0 0 1
+digikey-part=568-8383-1-ND
+T 65700 46300 5 10 0 1 0 0 1
+documentation=http://www.nxp.com/documents/data_sheet/NVT2003_04_06.pdf
 }
 C 66600 45800 1 0 0 gnd-1.sym
 C 66300 48400 1 0 0 3.3V-plus-1.sym
@@ -2077,3 +2924,52 @@ N 51000 65200 52600 65200 4
 T 51100 65200 5 10 1 1 0 0 1
 netname=PWR_SIM_1.8V
 }
+C 41600 60800 1 90 1 npn-bec.sym
+{
+T 41100 59900 5 10 0 0 270 2 1
+device=NPN_TRANSISTOR
+T 41200 60800 5 10 1 1 0 2 1
+refdes=Q2
+T 41500 60400 5 10 1 1 0 0 1
+value=BC847
+T 41200 60500 5 10 0 1 0 0 1
+manufacturer=Infineon Technologies
+T 41600 60800 5 10 0 1 0 0 1
+manufacturer-part=BC847CE6327
+T 41600 60800 5 10 0 1 0 0 1
+digikey-part=BC847CINCT-ND
+T 41600 60800 5 10 0 1 0 0 1
+documentation=http://www.infineon.com/dgdl/bc846series_bc847series_bc848series_bc849series_bc850series.pdf?folderId=db3a304314dca389011541d30fa21656&fileId=db3a304314dca389011541d4630a1657
+T 41600 60800 5 10 0 1 0 0 1
+footprint=SOT23
+}
+T 41500 60600 8 10 0 1 0 0 1
+footprint=SOT23
+T 41500 60400 8 10 0 1 0 0 1
+manufacturer=Infineon Technologies
+C 40900 59400 1 90 1 npn-bec.sym
+{
+T 40400 58500 5 10 0 0 270 2 1
+device=NPN_TRANSISTOR
+T 40500 59400 5 10 1 1 0 2 1
+refdes=Q1
+T 40800 59000 5 10 1 1 0 0 1
+value=BC847
+T 40500 59100 5 10 0 1 0 0 1
+manufacturer=Infineon Technologies
+T 40900 59400 5 10 0 1 0 0 1
+manufacturer-part=BC847CE6327
+T 40900 59400 5 10 0 1 0 0 1
+digikey-part=BC847CINCT-ND
+T 40900 59400 5 10 0 1 0 0 1
+documentation=http://www.infineon.com/dgdl/bc846series_bc847series_bc848series_bc849series_bc850series.pdf?folderId=db3a304314dca389011541d30fa21656&fileId=db3a304314dca389011541d4630a1657
+T 40900 59400 5 10 0 1 0 0 1
+footprint=SOT23
+}
+C 46400 45000 1 180 0 3.3V-plus-1.sym
+C 53700 45000 1 180 0 3.3V-plus-1.sym
+N 45700 45900 46200 45900 4
+N 46200 45900 46200 45000 4
+N 53000 45900 53500 45900 4
+N 53500 45900 53500 45000 4
+N 54500 44900 54300 44900 4

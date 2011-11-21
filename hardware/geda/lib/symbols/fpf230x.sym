@@ -97,4 +97,4 @@ description=Dual-Output Current Limit Switch
 T 300 2000 8 10 0 0 0 0 1
 footprint=SO8
 T 300 2200 8 10 0 0 0 0 1
-footprint=MLP8
+alt-footprint=MLP8

@@ -706,13 +706,15 @@ pinseq=30
 B 300 0 4100 8000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 8100 8 10 1 1 0 0 1
 refdes=IC?
-T 3100 8100 9 10 1 0 0 0 1
-AT91SAM3SXB
-T 300 8900 8 10 0 0 0 0 1
+T 300 8500 8 10 0 0 0 0 1
 device=AT91SAM3SXB
 T 300 8700 8 10 0 0 0 0 1
-description=Atmeal AT91SAM3S1/2/4B microprocessor
-T 300 8500 8 10 0 0 0 0 1
+description=Atmel AT91SAM3S1/2/4B microprocessor
+T 300 9100 8 10 0 0 0 0 1
 footprint=LQFP64
+T 300 9300 8 10 0 0 0 0 1
+alt-footprint=QFN64
 T 300 8300 8 10 0 0 0 0 1
-footprint=QFN64
+documentation=http://www.atmel.com/dyn/resources/prod_documents/doc6500.pdf
+T 300 8900 8 10 0 0 0 0 1
+manufacturer=Atmel

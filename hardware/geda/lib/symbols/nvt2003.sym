@@ -112,9 +112,11 @@ pinseq=6
 B 300 300 1300 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1900 8 10 1 1 0 0 1
 refdes=U?
-T 300 2100 8 10 1 1 0 0 1
+T 300 2100 8 10 0 0 0 0 1
 device=NVT2003
 T 300 2300 8 10 0 0 0 0 1
 description=Bidirectional voltage-level translator
 T 300 2500 8 10 0 0 0 0 1
 manufacturer=NXP
+T 300 2700 8 10 0 0 0 0 1
+footprint=TSSOP10

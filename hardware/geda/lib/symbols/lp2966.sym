@@ -96,3 +96,5 @@ T 300 1500 8 10 0 0 0 0 1
 description=Dual 150mA Ultra Low-Dropout Regulator
 T 300 1700 8 10 0 0 0 0 1
 footprint=MSOP8
+T 300 1900 8 10 0 0 0 0 1
+manufacturer=National Semiconductor

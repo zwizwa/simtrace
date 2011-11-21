@@ -8,6 +8,7 @@ target = "simtrace"
 version = IO.read("version").chomp
 date = Time.now.strftime("%Y-%m-%d")
 revision = `git log --pretty=oneline "#{target}.sch" | wc -l`.chomp.to_i
+LIB = "lib/symbols/"
 
 # schema
 sch = "#{target}.sch"
@@ -19,8 +20,14 @@ vsch = "#{target}_v#{version}.#{revision.to_s.rjust(3,'0')}.sch"
 # helper functions
 # ================
 
+# read schema
+# return a list of components
 def read_sch(path)
+  # get all symbols
+  symbols = read_symbols(LIB)
+  # read schema
   text = IO.read(path)
+  # parse all elements
   elements = []
   element = {}
   block = false
@@ -28,7 +35,7 @@ def read_sch(path)
     l = line.chomp
     if l=="{" then
       block = true
-      element[:block] = {}
+      element[:block] = {} unless element[:block]
     elsif l=="}" then
       block = false
     elsif block then
@@ -42,11 +49,53 @@ def read_sch(path)
       element = {}
       element[:line] = l
       element[:type] = l[0,1]
+      if element[:type]=="C" then
+        element[:symbol] = l.split(" ")[-1]
+        # get the default attributes (if any)
+        element[:bloc] = symbols[element[:symbol]]
+      end
     else
       raise "don't know how to handle line: #{l}"
     end
   end
   return elements
+end
+
+# read the attributes from a symbol
+# return { name => value }
+# warning: it only get uniq attributes (not multiple slots, ...)
+def read_symbol(file)
+  text = IO.read(file)
+  symbol = {}
+  block = false
+  text.each_line do |line|
+    l = line.chomp
+    if l=="{" then
+      block = true
+    elsif l=="}" then
+      block = false
+    elsif block then
+      next
+    elsif l.include?("=") then
+      name = l.split("=")[0]
+      value = l.split("=")[1..-1]*"="
+      symbol[name] = value
+    else
+      next
+    end
+  end
+  return symbol
+end
+
+# read all symbols
+# return a list fo symbols { name => symbol } (see read_symbol)
+def read_symbols(folder)
+  symbols = {}
+  Dir.entries(folder).each do |file|
+    next unless file =~ /\.sym$/
+    symbols[file.split("/")[-1]] = read_symbol(folder+"/"+file)
+  end
+  return symbols
 end
 
 # =========
