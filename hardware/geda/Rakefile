@@ -52,7 +52,7 @@ def read_sch(path)
       if element[:type]=="C" then
         element[:symbol] = l.split(" ")[-1]
         # get the default attributes (if any)
-        element[:bloc] = symbols[element[:symbol]]
+        element[:block] = symbols[element[:symbol]]
       end
     else
       raise "don't know how to handle line: #{l}"
@@ -131,6 +131,7 @@ task :read
         puts name+" has no ID" if element[:block]["refdes"].include? "?"
         ["device","value","footprint","manufacturer","manufacturer-part","documentation","digikey-part"].each do |attribute|
           puts name+" has no "+attribute unless element[:block][attribute]
+          break if element[:block]["footprint"] =~ /^HEADER/ or element[:block]["footprint"] =~ /^JUMPER/
         end
       end
     end
