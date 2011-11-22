@@ -102,7 +102,7 @@ end
 # the tasks
 # =========
 
-task :default => [:version,:print,:pdf,:install]
+task :default => [:version,:print,:pdf,:install,:check]
 
 task :version => vsch
 CLEAN.include(vsch)
@@ -121,7 +121,7 @@ CLOBBER.include("../pcb/schema/#{target}.pdf")
 
 # every component should have: refdes without ?, device, value,
 # footprint, manufacturer, documentation, digikey
-task :read
+task :check
   elements = read_sch(sch)
   elements.each do |element|
     if element[:type]=="C" then

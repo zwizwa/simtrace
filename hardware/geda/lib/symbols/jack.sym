@@ -38,6 +38,6 @@ T 300 700 5 10 1 1 0 0 1
 pinlabel=SLEEVE
 }
 T 1300 800 8 10 1 1 0 0 1
-refdes=J?
+refdes=P?
 T 0 1200 8 10 0 0 0 0 1
 description=stereo jack

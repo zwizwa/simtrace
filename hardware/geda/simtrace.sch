@@ -654,6 +654,8 @@ T 39750 48750 5 10 1 1 180 0 1
 refdes=P2
 T 41000 48600 5 10 1 1 0 0 1
 value=JTAG
+T 41800 48800 5 10 0 0 0 0 1
+footprint=HEADER20_2
 }
 N 36800 46100 36800 48300 4
 N 36800 47600 37100 47600 4
@@ -728,7 +730,7 @@ footprint=JUMPER6
 C 67500 50800 1 0 0 jack.sym
 {
 T 68800 51600 5 10 1 1 0 0 1
-refdes=J3
+refdes=P3
 T 68300 50500 5 10 1 1 0 0 1
 value=osmocom
 T 67500 50800 5 10 0 1 0 0 1
@@ -739,6 +741,8 @@ T 67500 50800 5 10 0 1 0 0 1
 digikey-part=CP1-2503A-ND
 T 67500 50800 5 10 0 1 0 0 1
 documentation=http://products.cui.com/getPDF.aspx?fileID=2593
+T 67500 50800 5 10 0 1 0 0 1
+device=jack
 }
 C 66900 51600 1 270 0 gnd-1.sym
 C 67700 53300 1 270 0 gnd-1.sym
@@ -1807,6 +1811,14 @@ T 40900 51500 5 10 0 1 0 0 1
 device=LP2966
 T 40900 51600 5 10 1 1 0 0 1
 value=LP2966IMM-1833
+T 40600 51800 5 10 0 1 0 0 1
+manufacturer=National Semiconductor
+T 40600 51800 5 10 0 1 0 0 1
+manufacturer-part=LP2966IMM-1833/NOPB
+T 40600 51800 5 10 0 1 0 0 1
+digikey-part=LP2966IMM-1833CT-ND
+T 40600 51800 5 10 0 1 0 0 1
+documentation=http://www.national.com/ds/LP/LP2966.pdf
 }
 C 40200 51100 1 0 0 gnd-1.sym
 N 42700 51900 43000 51900 4
