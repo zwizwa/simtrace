@@ -1,0 +1,65 @@
+v 20110115 2
+P 0 700 300 700 1 0 0
+{
+T 0 700 5 10 0 0 0 0 1
+pintype=pwr
+T 355 695 5 10 1 1 0 0 1
+pinlabel=Vin
+T 205 745 5 10 1 1 0 6 1
+pinnumber=1
+T 0 700 5 10 0 0 0 0 1
+pinseq=1
+}
+P 0 400 300 400 1 0 0
+{
+T 0 400 5 10 0 0 0 0 1
+pintype=pwr
+T 355 395 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 445 5 10 1 1 0 6 1
+pinnumber=2
+T 0 400 5 10 0 0 0 0 1
+pinseq=2
+}
+P 0 100 300 100 1 0 0
+{
+T 0 100 5 10 0 0 0 0 1
+pintype=in
+T 355 95 5 10 1 1 0 0 1
+pinlabel=\_SHDN\_
+T 205 145 5 10 1 1 0 6 1
+pinnumber=3
+T 0 100 5 10 0 0 0 0 1
+pinseq=3
+}
+P 1700 700 1400 700 1 0 0
+{
+T 1700 700 5 10 0 0 0 0 1
+pintype=pwr
+T 1345 695 5 10 1 1 0 6 1
+pinlabel=Vout
+T 1495 745 5 10 1 1 0 0 1
+pinnumber=5
+T 1700 700 5 10 0 0 0 0 1
+pinseq=5
+}
+P 1700 100 1400 100 1 0 0
+{
+T 1700 100 5 10 0 0 0 0 1
+pintype=passive
+T 1345 95 5 10 1 1 0 6 1
+pinlabel=ADJ
+T 1495 145 5 10 1 1 0 0 1
+pinnumber=4
+T 1700 100 5 10 0 0 0 0 1
+pinseq=4
+}
+B 300 0 1100 900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 1000 8 10 1 1 0 0 1
+refdes=U?
+T 300 1200 8 10 0 0 0 0 1
+device=TC1071
+T 300 1400 8 10 0 0 0 0 1
+manufacturer=Microchip
+T 300 1600 8 10 0 0 0 0 1
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/21353E.pdf
