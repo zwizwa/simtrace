@@ -52,7 +52,7 @@ def read_sch(path)
       if element[:type]=="C" then
         element[:symbol] = l.split(" ")[-1]
         # get the default attributes (if any)
-        element[:block] = symbols[element[:symbol]]
+        element[:block] = symbols[element[:symbol]].dup if symbols[element[:symbol]]
       end
     else
       raise "don't know how to handle line: #{l}"
@@ -104,24 +104,30 @@ end
 
 task :default => [:version,:print,:pdf,:install,:check]
 
+desc "set version in schema"
 task :version => vsch
 CLEAN.include(vsch)
 CLOBBER.include("#{target}_*.sch")
 
+desc "print schema (into ps)"
 task :print => "#{target}.ps"
 CLEAN.include("#{target}.ps")
 
+desc "get printed schema in pdf"
 task :pdf => "#{target}.pdf"
 CLEAN.include("#{target}.pdf")
 
-task :install => "#{target}.pdf"
+desc "put printed schema in output folder"
+task :install => "#{target}.pdf" do
+  mkdir "../pcb/schema" unless File.directory? "../pcb/schema"
   cp "#{target}.pdf","../pcb/schema/#{target}.pdf"
+end
 CLOBBER.include("../pcb/schema/#{target}.pdf")
 
 
 # every component should have: refdes without ?, device, value,
 # footprint, manufacturer, documentation, digikey
-task :check
+task :check => sch do
   elements = read_sch(sch)
   elements.each do |element|
     if element[:type]=="C" then
@@ -136,6 +142,7 @@ task :check
       end
     end
   end
+end
 
 # ===============
 # file processing
