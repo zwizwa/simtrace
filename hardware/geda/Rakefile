@@ -8,7 +8,17 @@ target = "simtrace"
 version = IO.read("version").chomp
 date = Time.now.strftime("%Y-%m-%d")
 revision = `git log --pretty=oneline "#{target}.sch" | wc -l`.chomp.to_i
+# symbol library for gschem
 LIB = "lib/symbols/"
+# gEDA scheme
+GEDA_SCHEME_DIRS=["/usr/share/gEDA/scheme","/usr/local/gEDA/scheme"].collect{|path| File.directory?(path) ? path : nil}.compact
+unless GEDA_SCHEME_DIRS.size==0 then
+  GEDA_SCHEME_DIR=GEDA_SCHEME_DIRS[0]
+else
+  GEDA_SCHEME_DIR=nil
+  puts "warning: could not find gEDA scheme directory. can not print schematic"
+end
+
 
 # schema
 sch = "#{target}.sch"
@@ -160,7 +170,11 @@ file vsch => sch do
 end
 
 file "#{target}.ps" => vsch do
-  sh "gschem -p -o #{target}.ps -s /usr/share/gEDA/scheme/print.scm #{vsch} > /dev/null 2>&1"
+  if GEDA_SCHEME_DIR then
+    sh "gschem -p -o #{target}.ps -s #{GEDA_SCHEME_DIR}/print.scm #{vsch} > /dev/null 2>&1"
+  else
+    puts "can not print schematic. gEDA scheme directory missing"
+  end
 end
 
 file "#{target}.pdf" => "#{target}.ps" do
