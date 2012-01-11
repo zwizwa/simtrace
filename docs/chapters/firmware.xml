@@ -76,16 +76,13 @@ $ cd ../..
             </imageobject>
         </figure>
 
-        <note><title>v1.0p Hardware Owners</title>
+        <note><title>v1.0p/v1.1p Hardware Owners</title>
             <para>Sometimes the SAM-BA mode is not entered. This is the case when the
             two LEDs are on when powering up the SIMtrace Hardware with the Jumper set.
             The reason for this is unknown but there are several workarounds:
             <itemizedlist>
                 <listitem>Press the RESET button while powering up.</listitem>
-                <listitem>Touch PA0 (pin 48, on the right upper corner)
-                with a piece of metal.</listitem>
-                <listitem>Short PA0 and PA1 (pin 48 and 47, next to each other on
-                the right upper corner).</listitem>
+                <listitem>In addition, remove the jumper and put it back.</listitem>
             </itemizedlist>
 
             As soon as the two LEDs go off, the SAM-BA mode is properly entered.
@@ -119,7 +116,21 @@ $ ./sam7 --exec set_clock --exec unlock_regions --exec "flash ../openpcd/firmwar
         <ulink url="http://dfu-util.gnumonks.org/">dfu-util.gnumonks.org</ulink>
         website. To update the main part of the firmware simply do:
         <screen>
-$ $ dfu-util -d 16c0:0762 -a0 -D ./main_simtrace.bin -R
+$ dfu-util -d 16c0:0762 -a0 -D ./main_simtrace.bin -R
         </screen></para>
+    </section>
+
+    <section id="firmware_programming_upgrade">
+        <title>Upgrading to v0.4 Firmware</title>
+        <para>Upgrading to v0.4 requires flashing both the Bootloader and the
+        SIMtrace application. The procedure is first to flash the bootloader,
+        then the SIMtrace application and finally reset the device.
+        </para>
+
+        <screen>
+$ dfu-util -d 16c0:0762 -a 1  -D ./dfu.bin
+$ dfu-util -d 16c0:0762 -a 0  -D ./main_simtrace.bin
+... reset the device
+        </screen>
     </section>
 </chapter>

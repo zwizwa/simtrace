@@ -41,12 +41,19 @@
             <authorinitials>z</authorinitials>
             <revremark>Document Firmware</revremark>
         </revision>
+        <revision>
+            <revnumber>0.0.5</revnumber>
+            <date>10 January 2012</date>
+            <authorinitials>z</authorinitials>
+            <revremark>Add additional distro packages, mention the v0.4 firmware
+            update procedure, add some notes of the SAM-BA mode</revremark>
+        </revision>
     </revhistory>
 
     <title>SIMtrace Usermanual</title>
 
     <copyright>
-      <year>2011</year>
+      <year>2011-2012</year>
     </copyright>
 
     <legalnotice>
