@@ -9,8 +9,8 @@
     distributions. All these operations must be executed as root.</para>
 
     <section id="install_ubuntu_natty">
-        <title>Installation Ubuntu Natty</title>
-        <para>Ubuntu Natty users can use the holger+lp/osmocom PPA to install
+        <title>Installation Ubuntu Natty, Ubuntu Oneiric</title>
+        <para>Ubuntu Natty and Oneiric users can use the holger+lp/osmocom PPA to install
 <application>SIMtrace</application> and upgrade wireshark. The PPA needs to
         be added to the system, the package database needs to be refreshed
         and the applications can be installed afterwards.</para>
@@ -33,6 +33,12 @@ $ <command>sudo</command> <command>apt-get</command> update
 $ <command>sudo</command> <command>apt-get</command> install wireshark simtrace
 ...
         </screen>
+
+        <note>The wireshark will only be installed if it is newer than the version
+        provided by Ubuntu. Please verify that the above command installed a version
+        coming from the PPA.
+        </note>
+
     </section>
 
     <section id="install_opensuse">
@@ -52,6 +58,14 @@ $ <command>zypper</command> install wireshark simtrace
 
         <section>
             <title>openSUSE 11.4</title>
+            <screen>
+$ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.4/home:zecke23.repo
+$ <command>zypper</command> refresh
+$ <command>zypper</command> install wireshark simtrace
+            </screen>
+        </section>
+        <section>
+            <title>openSUSE 12.1</title>
             <screen>
 $ <command>zypper</command> addrepo http://download.opensuse.org/repositories/home:/zecke23/openSUSE_11.4/home:zecke23.repo
 $ <command>zypper</command> refresh
@@ -79,6 +93,16 @@ $ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_15/home:zec
 $ yum install wireshark simtrace
             </screen>
         </section>
+
+        <section>
+            <title>Fedora 16</title>
+            <screen>
+$ cd /etc/yum/repos.d/
+$ wget http://download.opensuse.org/repositories/home:zecke23/Fedora_16/home:zecke23.repo
+$ yum install wireshark simtrace
+            </screen>
+        </section>
+
     </section>
 
     <section id="install_centos">
@@ -93,7 +117,7 @@ $ yum install wireshark simtrace
         </section>
 
         <section>
-            <title>Fedora 15</title>
+            <title>CentOS 6</title>
             <screen>
 $ cd /etc/yum/repos.d/
 $ wget http://download.opensuse.org/repositories/home:zecke23/CentOS_CentOS-6/home:zecke23.repo
@@ -103,12 +127,25 @@ $ yum install wireshark simtrace
     </section>
 
     <section id="install_mandriva">
-        <title>Mandriva 2010.1</title>
-        <screen>
+        <title>Mandriva</title>
+
+        <section>
+            <title>Mandriva 2010.1</title>
+            <screen>
 $ urpmi.addmedia home:zecke23 http://download.opensuse.org/repositories/home:zecke23/Mandriva_2010.1/
 $ urpmi.update -a
 $ urpmi wireshark simtrace
-        </screen>
+            </screen>
+        </section>
+
+        <section>
+            <title>Mandriva 2011</title>
+            <screen>
+$ urpmi.addmedia home:zecke23 http://download.opensuse.org/repositories/home:zecke23/Mandriva_2011/
+$ urpmi.update -a
+$ urpmi wireshark simtrace
+            </screen>
+        </section>
     </section>
 
     <section id="installation_from_source">
