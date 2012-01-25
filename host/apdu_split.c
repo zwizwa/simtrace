@@ -100,7 +100,7 @@ static void apdu_split_inbyte(struct apdu_split *as, uint8_t ch)
 		break;
 	case APDU_S_P3:
 		apdu_buf_append(as, ch);
-		as->apdu_data_remaining = ch;
+		as->apdu_data_remaining = (ch == 0 ? 256 : ch);
 		set_state(as, APDU_S_SW1);
 		break;
 	case APDU_S_DATA:
