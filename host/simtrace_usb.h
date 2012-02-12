@@ -20,5 +20,6 @@ enum simtrace_usb_msgt {
 /* flags for MSGT_DATA */
 #define SIMTRACE_FLAG_ATR		0x01	/* ATR immediately after reset */
 #define SIMTRACE_FLAG_WTIME_EXP		0x04	/* work waiting time expired */
+#define SIMTRACE_FLAG_PPS_FIDI		0x08	/* Fi/Di values in res[2] */
 
 #endif /* SIMTRACE_USB_H */

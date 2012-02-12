@@ -97,6 +97,10 @@ static int process_usb_msg(uint8_t *buf, int len)
 			apdu_out_cb(payload, payload_len, NULL);
 			break;
 		}
+		if (sh->flags & SIMTRACE_FLAG_PPS_FIDI) {
+			printf("PPS(Fi=%u/Di=%u) ",
+				sh->res[0], sh->res[1]);
+		}
 		/* everything else goes into APDU splitter */
 		apdu_split_in(as, payload, payload_len);
 #if 0
