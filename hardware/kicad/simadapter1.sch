@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Sat 18 Feb 2012 04:14:56 PM CET
+EESchema Schematic File Version 2  date Sat 18 Feb 2012 04:48:32 PM CET
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -93,19 +93,19 @@ Wire Wire Line
 Wire Wire Line
 	6000 2350 5750 2350
 $Comp
-L ISO7816_NO P?
+L ISO7816_NO P2
 U 1 1 4F3FBFC0
 P 5200 2400
-F 0 "P?" H 5200 2650 60  0000 C CNN
+F 0 "P2" H 5200 2650 60  0000 C CNN
 F 1 "ISO7816_NO" H 5200 2150 60  0000 C CNN
 	1    5200 2400
 	1    0    0    -1  
 $EndComp
 $Comp
-L REBELSIM P?
+L REBELSIM P1
 U 1 1 4F3FBFB5
 P 5150 1300
-F 0 "P?" H 5200 1650 60  0000 C CNN
+F 0 "P1" H 5200 1650 60  0000 C CNN
 F 1 "REBELSIM" V 5350 1300 60  0000 C CNN
 	1    5150 1300
 	0    -1   -1   0   
