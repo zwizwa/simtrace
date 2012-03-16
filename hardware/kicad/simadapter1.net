@@ -1,0 +1,22 @@
+# EESchema Netlist Version 1.1 created  Sat 18 Feb 2012 04:35:11 PM CET
+(
+ ( /4F3FBFB5 FFC_REBELSIM P1 REBELSIM
+  ( 1 N-000002 )
+  ( 2 N-000003 )
+  ( 3 N-000007 )
+  ( 4 N-000008 )
+  ( 5 N-000001 )
+  ( 6 N-000005 )
+ )
+ ( /4F3FBFC0 SAM_FCI P2 ISO7816_NO
+  ( C1 N-000002 )
+  ( C2 N-000003 )
+  ( C3 N-000007 )
+  ( C4 ? )
+  ( C5 N-000005 )
+  ( C6 N-000001 )
+  ( C7 N-000008 )
+  ( C8 ? )
+ )
+)
+*

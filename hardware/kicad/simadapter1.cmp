@@ -1,0 +1,17 @@
+Cmp-Mod V01 Created by CvPCB (2011-07-02 BZR 3034)-testing date = Sat 18 Feb 2012 04:35:11 PM CET
+
+BeginCmp
+TimeStamp = /4F3FBFB5;
+Reference = P1;
+ValeurCmp = REBELSIM;
+IdModule  = FFC_REBELSIM;
+EndCmp
+
+BeginCmp
+TimeStamp = /4F3FBFC0;
+Reference = P2;
+ValeurCmp = ISO7816_NO;
+IdModule  = SAM_FCI;
+EndCmp
+
+EndListe
