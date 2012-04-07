@@ -8,6 +8,15 @@
     sections provide some hints how to achieve this on the various Linux
     distributions. All these operations must be executed as root.</para>
 
+
+    <note>
+      <title>Wireshark Patches</title>
+      <para>The SIMtrace patch has been upstreamed. Wireshark 1.7.1 was released
+      on April the 6th 2012 and is the first development release to support SIMtrace
+      out of the box. Wireshark 1.8 will be the first stable version.
+      </para>
+    </note>
+
     <section id="install_ubuntu_natty">
         <title>Installation Ubuntu Natty, Ubuntu Oneiric</title>
         <para>Ubuntu Natty and Oneiric users can use the holger+lp/osmocom PPA to install
