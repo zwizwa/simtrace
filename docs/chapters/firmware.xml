@@ -58,7 +58,8 @@ $ cd ../..
         <para>In case the NOR Flash of the SAM7 Microcontroller is either blank or has
         become corrupted the Microcontrollers support entering a mode called SAM-BA which
         then allows flashing the device using the <filename>sam</filename> application. The
-        SAM-BA mode can be easily entered by following the below procedure.
+        SAM-BA mode can be easily entered by following the below procedure.</para>
+
         <procedure>
             <title>Entering SAM-BA Mode</title>
             <step><para>Unplug the SIMtrace Hardware from USB.</para></step>
@@ -71,9 +72,9 @@ $ cd ../..
 
         <figure>
             <title>TEST Jumper</title>
-            <imageobject>
+            <mediaobject><imageobject>
                 <imagedata fileref="images/shortTEST.jpg" width="12cm"/>
-            </imageobject>
+            </imageobject></mediaobject>
         </figure>
 
         <note><title>v1.0p/v1.1p Hardware Owners</title>
@@ -81,14 +82,13 @@ $ cd ../..
             two LEDs are on when powering up the SIMtrace Hardware with the Jumper set.
             The reason for this is unknown but there are several workarounds:
             <itemizedlist>
-                <listitem>Press the RESET button while powering up.</listitem>
-                <listitem>In addition, remove the jumper and put it back.</listitem>
+                <listitem><para>Press the RESET button while powering up.</para></listitem>
+                <listitem><para>In addition, remove the jumper and put it back.</para></listitem>
             </itemizedlist>
 
             As soon as the two LEDs go off, the SAM-BA mode is properly entered.
             </para>
         </note>
-        </para>
         <para>The <command>sam</command> application can be compiled to either use libusb or
         normal files to program the device, depending on the drivers used you will
         need to configure the application one way or another. The programming can then

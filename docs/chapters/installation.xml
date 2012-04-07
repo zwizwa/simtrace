@@ -34,9 +34,9 @@ $ <command>sudo</command> <command>apt-get</command> install wireshark simtrace
 ...
         </screen>
 
-        <note>The wireshark will only be installed if it is newer than the version
+        <note><para>The wireshark will only be installed if it is newer than the version
         provided by Ubuntu. Please verify that the above command installed a version
-        coming from the PPA.
+        coming from the PPA.</para>
         </note>
 
     </section>
