@@ -51,9 +51,21 @@ simtrace - GSM SIM and smartcard tracing
 
     <section id="known_firmware_issues">
         <title>Known Firmware Issues</title>
-        <para>For some SIM Cards the ATR and the first APDU are sent in the
-        same USB message and the host utility fails to split the APDUs
-        properly. A band-aid for the firmware exists.</para>
+        <section>
+          <title>Combined ATR/APDU message</title>
+          <para>For some cards the firmware does not send an USB message at
+          the end of the ATR. The ATR and first APDU will be send in one message
+          and the host utility fails to split APDUs and nothing will be traced.
+          A band-aid for the firmware exists and can be found on the mailinglist.
+          </para>
+        </section>
+        <section>
+          <title>Lost bytes</title>
+          <para>For some new high speed cards the firmware can lose bytes. The
+          issue appears to be when the received bytes will be copied to the memory
+          of the USB controller. The workaround is to reduce the size of the buffer.
+          </para>
+        </section>
     </section>
 
     <section id="other_modes">
