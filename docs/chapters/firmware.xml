@@ -13,6 +13,17 @@
         using the Device Firmware Update (DFU) mode.</para>
     </section>
 
+    <section id="getting_a_toolchain">
+        <title>Getting a Toolchain</title>
+        <para>The toolchain needs to include a GCC newer than 3.4
+        and it may not be an EABI toolchain. EABI toolchains fail to properly
+        link the SIMtrace binary. You can easily build a toolchain yourself
+        or use one of the known working pre-built ones. Please see the
+        <ulink url="http://bb.osmocom.org/trac/wiki/toolchain">SIMtrace wiki</ulink>
+        for more information about getting a toolchain.
+        </para>
+    </section>
+
     <section id="getting_the_firmware">
         <title>Getting and Building the Firmware</title>
 
