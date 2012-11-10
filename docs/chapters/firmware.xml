@@ -144,4 +144,9 @@ $ dfu-util -d 16c0:0762 -a 0  -D ./main_simtrace.bin
 ... reset the device
         </screen>
     </section>
+
+    <section id="firmware_serial_console">
+	<title>Serial Console for debugging</title>
+	<para>The serial console operates at 115200 bauds with 8n1 and no flow control.</para>
+    </section>
 </chapter>
